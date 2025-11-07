@@ -27,7 +27,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <div className="bg-card rounded-3xl shadow-xl p-6 md:p-8 space-y-6">
+        <div className="bg-card rounded-3xl shadow-xl p-6 md:p-8 space-y-6 border-4 border-primary">
           {/* Speech bubble and illustration */}
           <div className="flex flex-col items-center space-y-4 mb-8">
             <div className="relative bg-card border-4 border-primary rounded-3xl px-6 py-4 shadow-lg">
