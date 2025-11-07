@@ -1,4 +1,5 @@
 import { Input } from "@/components/ui/input";
+import { typography } from "@/theme/typography";
 
 interface TeamMemberInputProps {
   label: string;
@@ -9,8 +10,8 @@ interface TeamMemberInputProps {
 
 const TeamMemberInput = ({ label, value, onChange, placeholder }: TeamMemberInputProps) => {
   return (
-    <div className="space-y-2">
-      <label className="text-sm font-bold text-foreground">{label}</label>
+    <div className="space-y-[0.15rem]">
+      <label className={`${typography.body} font-bold text-foreground`}>{label}</label>
       <Input
         value={value}
         onChange={(e) => onChange(e.target.value)}

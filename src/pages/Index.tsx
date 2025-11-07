@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import TeamMemberInput from "@/components/TeamMemberInput";
 import characterImage from "@/assets/character.png";
+import { typography } from "@/theme/typography";
 
 const Index = () => {
   const [teamName, setTeamName] = useState("");
@@ -24,36 +25,40 @@ const Index = () => {
     // Handle navigation to next screen
   };
 
+  // TODO: header 를 공통으로 빼기 
   return (
-    <div className="min-h-screen bg-card flex flex-col">
-      {/* Scrollable content area */}
-      <div className="flex-1 overflow-y-auto p-6 pb-24">
+    <div className="h-svh flex flex-col bg-card px-10">
+      <header className="h-[11%] flex items-center justify-center">    
+      </header>
+      <div className="h-80 flex-1 overflow-y-auto">
         {/* Speech bubble and illustration */}
-        <div className="flex flex-col items-center space-y-4 mb-8">
-          <div className="relative bg-card border-4 border-primary rounded-3xl px-6 py-4 shadow-lg">
-            <p className="text-center font-bold text-base md:text-lg leading-relaxed text-foreground">
-              자, 이제 너의 팀에 대해
-              <br />
-              소개해줘!
-            </p>
-            {/* Speech bubble tail */}
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
-              <div className="w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[20px] border-t-primary"></div>
-              <div className="absolute top-[-16px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[16px] border-t-card"></div>
-            </div>
-          </div>
+        <div className="flex justify-center items-center space-y-4 mb-4">
           
-          <div className="w-48 h-48 relative">
+          <div className="w-40 h-40 relative">
             <img 
               src={characterImage}
               alt="Friendly character"
               className="w-full h-full object-contain rounded-full"
             />
           </div>
+          <div className="relative bg-card border-4 border-primary rounded-3xl px-6 py-4 shadow-lg">
+            <p className={`text-center font-bold ${typography.body} leading-relaxed text-foreground`}>
+              모모에게
+              <br />
+              너희 팀을
+              <br />
+              소개해줘!
+            </p>
+            {/* Speech bubble tail */}
+            <div className="absolute left-0 top-1/2 transform -translate-x-full -translate-y-1/2">
+              <div className="w-0 h-0 border-t-[15px] border-t-transparent border-b-[15px] border-b-transparent border-r-[20px] border-r-primary"></div>
+              <div className="absolute left-[-16px] top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent border-r-[16px] border-r-card"></div>
+            </div>
+          </div>
         </div>
 
         {/* Form inputs */}
-        <div className="space-y-4 mb-6">
+        <div className="space-y-[0.5rem] mb-4">
           <TeamMemberInput
             label="탐사대 이름"
             value={teamName}
@@ -78,18 +83,18 @@ const Index = () => {
             onClick={addMember}
             variant="outline"
             size="icon"
-            className="w-14 h-14 rounded-full border-2 border-primary hover:bg-secondary hover:border-primary transition-all"
+            className="w-14 h-14 rounded-full border-2 bg-primary border-primary hover:bg-primary hover:border-primary transition-all"
           >
-            <Plus className="w-6 h-6 text-primary" />
+            <Plus className="w-6 h-6 text-[#fff] bg-primary" />
           </Button>
         </div>
       </div>
 
       {/* Fixed bottom button */}
-      <div className="p-6 bg-card">
+      <div className="py-4 bg-card">
         <Button
           onClick={handleNext}
-          className="w-full h-14 rounded-xl text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all"
+          className={`w-full h-14 rounded-xl ${typography.button} font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all`}
         >
           다음
         </Button>
