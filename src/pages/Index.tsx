@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import TeamMemberInput from "@/components/TeamMemberInput";
@@ -7,7 +6,6 @@ import characterImage from "@/assets/character.png";
 import { typography } from "@/theme/typography";
 
 const Index = () => {
-  const navigate = useNavigate();
   const [teamName, setTeamName] = useState("");
   const [members, setMembers] = useState(["", ""]);
 
@@ -24,15 +22,16 @@ const Index = () => {
   const handleNext = () => {
     console.log("Team Name:", teamName);
     console.log("Members:", members);
-    navigate("/preparation");
+    // Handle navigation to next screen
   };
 
   // TODO: header 를 공통으로 빼기 
   return (
-    <div className="h-svh flex flex-col bg-card px-10">
+    <div className="h-svh flex flex-col bg-card">
       <header className="h-[11%] flex items-center justify-center">    
+        <h1 className={`${typography.title} font-bold text-primary`}>탐사대 정보</h1>
       </header>
-      <div className="h-80 flex-1 overflow-y-auto">
+      <div className="h-80 flex-1 p-6 overflow-y-auto">
         {/* Speech bubble and illustration */}
         <div className="flex justify-center items-center space-y-4 mb-4">
           
@@ -93,7 +92,7 @@ const Index = () => {
       </div>
 
       {/* Fixed bottom button */}
-      <div className="py-4 bg-card">
+      <div className="p-6 bg-card">
         <Button
           onClick={handleNext}
           className={`w-full h-14 rounded-xl ${typography.button} font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all`}

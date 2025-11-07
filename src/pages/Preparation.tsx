@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import characterImage from "@/assets/character.png";
 import { typography } from "@/theme/typography";
+import { colors } from "@/theme/colors";
 
 const Preparation = () => {
   const [wheelchair, setWheelchair] = useState<string>("");
@@ -20,12 +20,12 @@ const Preparation = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-card">
+    <div className="h-svh flex flex-col bg-card">
       <header className="h-[11%] flex items-center justify-center">
-        <h1 className={`${typography.body} font-bold text-primary`}>탐험 준비</h1>
+        <h1 className={`${typography.title} font-bold text-primary`}>탐험 준비</h1>
       </header>
       
-      <div className="flex-1 overflow-y-auto p-6 pb-24">
+      <div className="flex-1 overflow-y-auto p-6">
         {/* Character and speech bubble */}
         <div className="flex justify-center items-center space-x-4 mb-8">
           <div className="w-40 h-40 relative flex-shrink-0">
@@ -35,11 +35,11 @@ const Preparation = () => {
               className="w-full h-full object-contain rounded-full"
             />
           </div>
-          <div className="relative bg-card border-4 border-primary rounded-3xl px-6 py-4 shadow-lg">
-            <p className={`text-center font-bold ${typography.body} leading-relaxed text-foreground`}>
-              이동약자 친구들을 돕기 위한
+          <div className="relative bg-card border-4 border-primary rounded-3xl px-4 py-4 shadow-lg">
+            <p className={`text-center font-bold ${typography.body} leading-relaxed text-foreground break-keep`}>
+              이동약자 친구들을 돕기위한
               <br />
-              탐험 도구를 확인해보자!
+              <span className="text-primary">"탐험도구"</span>들을 확인해보자!
             </p>
             {/* Speech bubble tail */}
             <div className="absolute left-0 top-1/2 transform -translate-x-full -translate-y-1/2">
@@ -50,50 +50,104 @@ const Preparation = () => {
         </div>
 
         {/* Checklist items */}
-        <div className="space-y-6">
+        <div className="space-y-3.5">
           {/* Wheelchair */}
           <div className="space-y-3">
-            <Label className={`${typography.body} font-bold text-foreground`}>휠체어</Label>
-            <RadioGroup value={wheelchair} onValueChange={setWheelchair} className="flex gap-4">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="yes" id="wheelchair-yes" className="w-6 h-6" />
-                <Label htmlFor="wheelchair-yes" className={`${typography.body} cursor-pointer`}>응</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="no" id="wheelchair-no" className="w-6 h-6" />
-                <Label htmlFor="wheelchair-no" className={`${typography.body} cursor-pointer`}>아니</Label>
-              </div>
-            </RadioGroup>
+            <Label className={`${typography.body} font-bold text-foreground`}>휠체어 있니?</Label>
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                type="button"
+                variant="outline"
+                aria-pressed={wheelchair === "yes"}
+                onClick={() => setWheelchair("yes")}
+                className={`w-full h-10 rounded-xl ${typography.body} font-bold transition-colors border ${
+                  wheelchair === "yes"
+                    ? colors.button.selected
+                    : colors.button.unselected
+                }`}
+              >
+                응
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                aria-pressed={wheelchair === "no"}
+                onClick={() => setWheelchair("no")}
+                className={`w-full h-10 rounded-xl ${typography.body} font-bold transition-colors border ${
+                  wheelchair === "no"
+                    ? colors.button.selected
+                    : colors.button.unselected
+                }`}
+              >
+                아니
+              </Button>
+            </div>
           </div>
 
           {/* Tape */}
           <div className="space-y-3">
-            <Label className={`${typography.body} font-bold text-foreground`}>줄자</Label>
-            <RadioGroup value={tape} onValueChange={setTape} className="flex gap-4">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="yes" id="tape-yes" className="w-6 h-6" />
-                <Label htmlFor="tape-yes" className={`${typography.body} cursor-pointer`}>응</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="no" id="tape-no" className="w-6 h-6" />
-                <Label htmlFor="tape-no" className={`${typography.body} cursor-pointer`}>아니</Label>
-              </div>
-            </RadioGroup>
+            <Label className={`${typography.body} font-bold text-foreground`}>줄자 있니?</Label>
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                type="button"
+                variant="outline"
+                aria-pressed={tape === "yes"}
+                onClick={() => setTape("yes")}
+                className={`w-full h-10 rounded-xl ${typography.body} font-bold transition-colors border ${
+                  tape === "yes"
+                    ? colors.button.selected
+                    : colors.button.unselected
+                }`}
+              >
+                응
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                aria-pressed={tape === "no"}
+                onClick={() => setTape("no")}
+                className={`w-full h-10 rounded-xl ${typography.body} font-bold transition-colors border ${
+                  tape === "no"
+                    ? colors.button.selected
+                    : colors.button.unselected
+                }`}
+              >
+                아니
+              </Button>
+            </div>
           </div>
 
           {/* Selfie Stick */}
           <div className="space-y-3">
-            <Label className={`${typography.body} font-bold text-foreground`}>셀카봉</Label>
-            <RadioGroup value={selfieStick} onValueChange={setSelfieStick} className="flex gap-4">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="yes" id="selfie-yes" className="w-6 h-6" />
-                <Label htmlFor="selfie-yes" className={`${typography.body} cursor-pointer`}>응</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="no" id="selfie-no" className="w-6 h-6" />
-                <Label htmlFor="selfie-no" className={`${typography.body} cursor-pointer`}>아니</Label>
-              </div>
-            </RadioGroup>
+            <Label className={`${typography.body} font-bold text-foreground`}>셀카봉 있니?</Label>
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                type="button"
+                variant="outline"
+                aria-pressed={selfieStick === "yes"}
+                onClick={() => setSelfieStick("yes")}
+                className={`w-full h-10 rounded-xl ${typography.body} font-bold transition-colors border ${
+                  selfieStick === "yes"
+                    ? colors.button.selected
+                    : colors.button.unselected
+                }`}
+              >
+                응
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                aria-pressed={selfieStick === "no"}
+                onClick={() => setSelfieStick("no")}
+                className={`w-full h-10 rounded-xl ${typography.body} font-bold transition-colors border ${
+                  selfieStick === "no"
+                    ? colors.button.selected
+                    : colors.button.unselected
+                }`}
+              >
+                아니
+              </Button>
+            </div>
           </div>
         </div>
       </div>
