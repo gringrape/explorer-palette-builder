@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import TeamMemberInput from "@/components/TeamMemberInput";
+import characterImage from "@/assets/character.png";
 
 const Index = () => {
   const [teamName, setTeamName] = useState("");
@@ -29,24 +30,24 @@ const Index = () => {
         <div className="bg-card rounded-3xl shadow-xl p-6 md:p-8 space-y-6">
           {/* Speech bubble and illustration */}
           <div className="flex flex-col items-center space-y-4 mb-8">
-            <div className="relative bg-card border-4 border-foreground rounded-3xl px-6 py-4 shadow-lg">
-              <p className="text-center font-bold text-base md:text-lg leading-relaxed">
+            <div className="relative bg-card border-4 border-primary rounded-3xl px-6 py-4 shadow-lg">
+              <p className="text-center font-bold text-base md:text-lg leading-relaxed text-foreground">
                 자, 이제 너의 팀에 대해
                 <br />
                 소개해줘!
               </p>
               {/* Speech bubble tail */}
               <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
-                <div className="w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[20px] border-t-foreground"></div>
+                <div className="w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[20px] border-t-primary"></div>
                 <div className="absolute top-[-16px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[16px] border-t-card"></div>
               </div>
             </div>
             
             <div className="w-48 h-48 relative">
               <img 
-                src="https://images.unsplash.com/photo-1544717302-de2939b7ef71?w=400&h=400&fit=crop"
+                src={characterImage}
                 alt="Friendly character"
-                className="w-full h-full object-contain rounded-2xl"
+                className="w-full h-full object-contain rounded-full"
               />
             </div>
           </div>
@@ -77,16 +78,16 @@ const Index = () => {
               onClick={addMember}
               variant="outline"
               size="icon"
-              className="w-14 h-14 rounded-full border-2 border-foreground hover:bg-secondary hover:border-secondary transition-all"
+              className="w-14 h-14 rounded-full border-2 border-primary hover:bg-secondary hover:border-primary transition-all"
             >
-              <Plus className="w-6 h-6" />
+              <Plus className="w-6 h-6 text-primary" />
             </Button>
           </div>
 
           {/* Next button */}
           <Button
             onClick={handleNext}
-            className="w-full h-14 rounded-xl text-lg font-bold bg-foreground hover:bg-foreground/90 text-background transition-all"
+            className="w-full h-14 rounded-xl text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all"
           >
             다음
           </Button>
