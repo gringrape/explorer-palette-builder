@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import TeamMemberInput from "@/components/TeamMemberInput";
@@ -6,6 +7,7 @@ import characterImage from "@/assets/character.png";
 import { typography } from "@/theme/typography";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [teamName, setTeamName] = useState("");
   const [members, setMembers] = useState(["", ""]);
 
@@ -22,7 +24,7 @@ const Index = () => {
   const handleNext = () => {
     console.log("Team Name:", teamName);
     console.log("Members:", members);
-    // Handle navigation to next screen
+    navigate("/preparation");
   };
 
   // TODO: header 를 공통으로 빼기 
