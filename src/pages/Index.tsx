@@ -25,8 +25,9 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-card p-6">
-      <div className="h-full space-y-6">
+    <div className="min-h-screen bg-card flex flex-col">
+      {/* Scrollable content area */}
+      <div className="flex-1 overflow-y-auto p-6 pb-24">
         {/* Speech bubble and illustration */}
         <div className="flex flex-col items-center space-y-4 mb-8">
           <div className="relative bg-card border-4 border-primary rounded-3xl px-6 py-4 shadow-lg">
@@ -52,7 +53,7 @@ const Index = () => {
         </div>
 
         {/* Form inputs */}
-        <div className="space-y-4">
+        <div className="space-y-4 mb-6">
           <TeamMemberInput
             label="탐사대 이름"
             value={teamName}
@@ -72,7 +73,7 @@ const Index = () => {
         </div>
 
         {/* Add member button */}
-        <div className="flex justify-center pt-2">
+        <div className="flex justify-center">
           <Button
             onClick={addMember}
             variant="outline"
@@ -82,8 +83,10 @@ const Index = () => {
             <Plus className="w-6 h-6 text-primary" />
           </Button>
         </div>
+      </div>
 
-        {/* Next button */}
+      {/* Fixed bottom button */}
+      <div className="p-6 bg-card border-t-2 border-primary/20">
         <Button
           onClick={handleNext}
           className="w-full h-14 rounded-xl text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all"
