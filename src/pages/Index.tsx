@@ -86,7 +86,7 @@ const Index = () => {
       </div>
 
       {/* Fixed bottom button */}
-      <div className="p-6 bg-card border-t-2 border-primary/20">
+      <div className="p-6 bg-card">
         <Button
           onClick={handleNext}
           className="w-full h-14 rounded-xl text-lg font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all"
