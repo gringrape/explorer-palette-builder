@@ -35,7 +35,7 @@ const LocationSurvey = () => {
 
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
         {/* 건물 찾기 */}
-        <div className="border-4 border-foreground bg-card p-4">
+        <div className="bg-card p-4">
           <h2 className={`${typography.title} font-bold text-foreground mb-2`}>
             건물 찾기
           </h2>
@@ -61,7 +61,7 @@ const LocationSurvey = () => {
         </div>
 
         {/* 층수 찾기 */}
-        <div className="border-4 border-foreground bg-card p-4">
+        <div className="bg-card p-4">
           <h2 className={`${typography.title} font-bold text-foreground mb-2`}>
             층수 찾기
           </h2>
@@ -87,7 +87,7 @@ const LocationSurvey = () => {
         </div>
 
         {/* 성별 구분 */}
-        <div className="border-4 border-foreground bg-card p-4">
+        <div className="bg-card p-4">
           <h2 className={`${typography.title} font-bold text-foreground mb-2`}>
             성별 구분
           </h2>
