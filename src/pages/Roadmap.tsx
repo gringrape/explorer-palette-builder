@@ -24,11 +24,9 @@ const Roadmap = () => {
   return (
     <div className="h-svh flex flex-col bg-card">
       <header className="h-[11%] px-6 flex items-center justify-center flex-col">
-        <div className="w-full h-2 bg-primary/20 rounded-full mb-6">
-          <div className="w-1/3 h-full bg-primary rounded-full"></div>
-        </div>
+        <p className={`${typography.body} text-foreground`}>모모탐사대</p>
         <h1 className={`${typography.title} font-bold text-primary`}>
-          탐사 지도
+          화장실 탐사 지도
         </h1>
       </header>
 
