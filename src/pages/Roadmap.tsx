@@ -6,13 +6,12 @@ const Roadmap = () => {
   const navigate = useNavigate();
 
   const roadmapSteps = [
-    { id: 1, label: "위치", position: "top-0 left-8" },
-    { id: 2, label: "문", position: "top-16 left-32" },
-    { id: 3, label: "크기", position: "top-32 right-16" },
-    { id: 4, label: "사진", position: "top-48 right-8" },
-    { id: 5, label: "승강이", position: "top-64 right-24" },
-    { id: 6, label: "세면대", position: "top-80 left-24" },
-    { id: 7, label: "보스", position: "top-96 left-4" },
+    { id: 1, label: "위치" },
+    { id: 2, label: "문" },
+    { id: 3, label: "크기" },
+    { id: 4, label: "사진" },
+    { id: 5, label: "손잡이" },
+    { id: 6, label: "세면대" },
   ];
 
   const handleNext = () => {
@@ -54,93 +53,91 @@ const Roadmap = () => {
         </div>
 
         {/* Roadmap flowchart */}
-        <div className="relative min-h-[400px] mb-8">
+        <div className="relative min-h-[450px] mb-8">
           {/* SVG for connecting lines */}
           <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
+            {/* 위치 -> 문 */}
             <path
-              d="M 80 40 Q 120 60 160 80"
+              d="M 80 50 Q 120 60 160 90"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="3"
               fill="none"
               className="text-foreground"
             />
+            {/* 문 -> 크기 */}
             <path
-              d="M 180 100 Q 220 120 260 140"
+              d="M 190 110 Q 230 140 250 170"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="3"
               fill="none"
               className="text-foreground"
             />
+            {/* 크기 -> 사진 */}
             <path
-              d="M 280 160 Q 280 200 280 240"
+              d="M 270 200 Q 280 230 270 260"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="3"
               fill="none"
               className="text-foreground"
             />
+            {/* 사진 -> 손잡이 */}
             <path
-              d="M 260 260 Q 240 290 280 320"
+              d="M 250 280 Q 200 310 150 330"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="3"
               fill="none"
               className="text-foreground"
             />
+            {/* 손잡이 -> 세면대 */}
             <path
-              d="M 260 340 Q 200 360 180 380"
+              d="M 130 350 Q 100 380 90 410"
               stroke="currentColor"
-              strokeWidth="2"
-              fill="none"
-              className="text-foreground"
-            />
-            <path
-              d="M 160 400 Q 100 410 80 420"
-              stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="3"
               fill="none"
               className="text-foreground"
             />
           </svg>
 
           {/* Step nodes */}
-          <div className="absolute top-4 left-12">
+          {/* 위치 */}
+          <div className="absolute top-6 left-12">
             <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
               <span className={`${typography.body} font-bold text-foreground`}>위치</span>
             </div>
           </div>
 
-          <div className="absolute top-20 left-32">
-            <div className="bg-card border-2 border-foreground rounded-full w-24 h-24 flex items-center justify-center">
+          {/* 문 */}
+          <div className="absolute top-24 left-32">
+            <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
               <span className={`${typography.body} font-bold text-foreground`}>문</span>
             </div>
           </div>
 
-          <div className="absolute top-36 right-20">
+          {/* 크기 */}
+          <div className="absolute top-40 right-20">
             <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
               <span className={`${typography.body} font-bold text-foreground`}>크기</span>
             </div>
           </div>
 
-          <div className="absolute top-52 right-12">
+          {/* 사진 */}
+          <div className="absolute top-56 right-16">
             <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
               <span className={`${typography.body} font-bold text-foreground`}>사진</span>
             </div>
           </div>
 
-          <div className="absolute top-[280px] right-16">
-            <div className="bg-card border-2 border-foreground rounded-full w-24 h-24 flex items-center justify-center">
-              <span className={`${typography.body} font-bold text-foreground`}>승강이</span>
-            </div>
-          </div>
-
-          <div className="absolute top-[360px] left-28">
-            <div className="bg-card border-2 border-foreground rounded-full w-24 h-24 flex items-center justify-center">
-              <span className={`${typography.body} font-bold text-foreground`}>세면대</span>
-            </div>
-          </div>
-
-          <div className="absolute top-[440px] left-8">
+          {/* 손잡이 */}
+          <div className="absolute top-72 left-24">
             <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
-              <span className={`${typography.body} font-bold text-foreground`}>보스</span>
+              <span className={`${typography.body} font-bold text-foreground`}>손잡이</span>
+            </div>
+          </div>
+
+          {/* 세면대 */}
+          <div className="absolute top-[360px] left-12">
+            <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
+              <span className={`${typography.body} font-bold text-foreground`}>세면대</span>
             </div>
           </div>
         </div>
