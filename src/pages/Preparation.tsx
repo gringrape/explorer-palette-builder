@@ -4,8 +4,10 @@ import { Label } from "@/components/ui/label";
 import characterImage from "@/assets/character.png";
 import { typography } from "@/theme/typography";
 import { colors } from "@/theme/colors";
+import { useNavigate } from "react-router-dom";
 
 const Preparation = () => {
+  const navigate = useNavigate();
   const [wheelchair, setWheelchair] = useState<string>("");
   const [tape, setTape] = useState<string>("");
   const [selfieStick, setSelfieStick] = useState<string>("");
@@ -16,7 +18,7 @@ const Preparation = () => {
     console.log("Wheelchair:", wheelchair);
     console.log("Tape:", tape);
     console.log("Selfie Stick:", selfieStick);
-    // Handle navigation to next screen
+    navigate("/roadmap");
   };
 
   return (
