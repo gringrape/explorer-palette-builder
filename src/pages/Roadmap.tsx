@@ -18,7 +18,7 @@ const Roadmap = () => {
 
   const handleNext = () => {
     console.log("Starting mission");
-    // Navigate to next screen
+    navigate("/location-survey");
   };
 
   return (
