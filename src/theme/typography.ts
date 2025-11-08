@@ -6,6 +6,7 @@
  */
 
 export const typography = {
+  title: "text-xl",
   // Button text sizes
   button: "text-lg",
   // General text sizes
