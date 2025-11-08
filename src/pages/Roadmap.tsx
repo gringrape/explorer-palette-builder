@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import { useNavigate } from "react-router-dom";
+import characterImage from "@/assets/character.png";
+
 
 const Roadmap = () => {
   const navigate = useNavigate();
@@ -21,123 +23,140 @@ const Roadmap = () => {
 
   return (
     <div className="h-svh flex flex-col bg-card">
-      <header className="h-[11%] flex items-center justify-center">
+      <header className="h-[11%] px-6 flex items-center justify-center flex-col">
+        <div className="w-full h-2 bg-primary/20 rounded-full mb-6">
+          <div className="w-1/3 h-full bg-primary rounded-full"></div>
+        </div>
         <h1 className={`${typography.title} font-bold text-primary`}>
-          03 화장실 조사 로드맵
+          탐사 지도
         </h1>
       </header>
 
       <div className="flex-1 overflow-y-auto p-6">
         {/* Progress bar */}
-        <div className="w-full h-2 bg-primary/20 rounded-full mb-6">
-          <div className="w-1/3 h-full bg-primary rounded-full"></div>
-        </div>
 
-        {/* Section title */}
-        <div className="mb-6">
-          <p className={`${typography.body} text-foreground/70`}>모모탐사대</p>
-          <h2 className={`${typography.title} font-bold text-foreground`}>
-            화장실 탐사 지도
-          </h2>
-        </div>
 
         {/* Mission box */}
-        <div className="border-4 border-foreground bg-card p-6 mb-8">
-          <p className={`${typography.title} font-bold text-center text-foreground`}>
-            mission
-          </p>
-          <p className={`${typography.body} font-bold text-center text-foreground mt-2`}>
-            탐사 안료하고
-            <br />더 나은 학교 만들기!
-          </p>
+        <div className="flex items-center gap-10 border-4 border-foreground bg-card p-4 mb-4">
+          <img src={characterImage} alt="Mission" className="w-20 h-20" />
+          <div>
+            <p className={`${typography.title} font-bold text-center text-foreground`}>
+              모모 Mission
+            </p>
+            <p className={`${typography.body} font-bold text-center text-foreground mt-2`}>
+              화장실을 조사하고
+              <br />더 나은 학교 만들기!
+            </p>
+          </div>
         </div>
 
         {/* Roadmap flowchart */}
-        <div className="relative min-h-[450px] mb-8">
-          {/* SVG for connecting lines */}
-          <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
-            {/* 위치 -> 문 */}
+        <div className="relative min-h-[500px] mb-8 px-4">
+          {/* SVG for connecting lines - Zigzag pattern */}
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 500" preserveAspectRatio="none" style={{ zIndex: 0 }}>
+            <defs>
+              <marker
+                id="arrowhead"
+                markerWidth="10"
+                markerHeight="10"
+                refX="9"
+                refY="3"
+                orient="auto"
+              >
+                <polygon
+                  points="0 0, 10 3, 0 6"
+                  className="fill-primary"
+                />
+              </marker>
+            </defs>
+            {/* 위치(왼쪽) -> 문(오른쪽) */}
             <path
-              d="M 80 50 Q 120 60 160 90"
+              d="M 80 50 L 200 50 L 200 90 L 320 90"
               stroke="currentColor"
               strokeWidth="3"
               fill="none"
-              className="text-foreground"
+              className="text-primary"
+              markerEnd="url(#arrowhead)"
+              style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}
             />
-            {/* 문 -> 크기 */}
+            {/* 문(오른쪽) -> 크기(왼쪽) */}
             <path
-              d="M 190 110 Q 230 140 250 170"
+              d="M 320 130 L 200 130 L 200 170 L 80 170"
               stroke="currentColor"
               strokeWidth="3"
               fill="none"
-              className="text-foreground"
+              className="text-primary"
+              markerEnd="url(#arrowhead)"
+              style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}
             />
-            {/* 크기 -> 사진 */}
+            {/* 크기(왼쪽) -> 사진(오른쪽) */}
             <path
-              d="M 270 200 Q 280 230 270 260"
+              d="M 80 210 L 200 210 L 200 250 L 320 250"
               stroke="currentColor"
               strokeWidth="3"
               fill="none"
-              className="text-foreground"
+              className="text-primary"
+              markerEnd="url(#arrowhead)"
+              style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}
             />
-            {/* 사진 -> 손잡이 */}
+            {/* 사진(오른쪽) -> 손잡이(왼쪽) */}
             <path
-              d="M 250 280 Q 200 310 150 330"
+              d="M 320 290 L 200 290 L 200 330 L 80 330"
               stroke="currentColor"
               strokeWidth="3"
               fill="none"
-              className="text-foreground"
+              className="text-primary"
+              markerEnd="url(#arrowhead)"
+              style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}
             />
-            {/* 손잡이 -> 세면대 */}
+            {/* 손잡이(왼쪽) -> 세면대(오른쪽) */}
             <path
-              d="M 130 350 Q 100 380 90 410"
+              d="M 80 370 L 200 370 L 200 410 L 320 410"
               stroke="currentColor"
               strokeWidth="3"
               fill="none"
-              className="text-foreground"
+              className="text-primary"
+              markerEnd="url(#arrowhead)"
+              style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' }}
             />
           </svg>
 
-          {/* Step nodes */}
-          {/* 위치 */}
-          <div className="absolute top-6 left-12">
-            <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
-              <span className={`${typography.body} font-bold text-foreground`}>위치</span>
-            </div>
-          </div>
+          {/* Step nodes - 2 columns layout */}
+          <div className="relative z-10 flex justify-between h-full">
+            {/* 왼쪽 열 */}
+            <div className="flex flex-col items-center justify-start gap-20 pt-0">
+              {/* 위치 */}
+              <div className="bg-card border-2 border-primary rounded-full w-20 h-20 flex items-center justify-center shadow-md">
+                <span className={`${typography.body} font-bold text-foreground`}>위치</span>
+              </div>
 
-          {/* 문 */}
-          <div className="absolute top-24 left-32">
-            <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
-              <span className={`${typography.body} font-bold text-foreground`}>문</span>
-            </div>
-          </div>
+              {/* 크기 */}
+              <div className="bg-card border-2 border-primary rounded-full w-20 h-20 flex items-center justify-center shadow-md">
+                <span className={`${typography.body} font-bold text-foreground`}>크기</span>
+              </div>
 
-          {/* 크기 */}
-          <div className="absolute top-40 right-20">
-            <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
-              <span className={`${typography.body} font-bold text-foreground`}>크기</span>
+              {/* 손잡이 */}
+              <div className="bg-card border-2 border-primary rounded-full w-20 h-20 flex items-center justify-center shadow-md">
+                <span className={`${typography.body} font-bold text-foreground`}>손잡이</span>
+              </div>
             </div>
-          </div>
 
-          {/* 사진 */}
-          <div className="absolute top-56 right-16">
-            <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
-              <span className={`${typography.body} font-bold text-foreground`}>사진</span>
-            </div>
-          </div>
+            {/* 오른쪽 열 */}
+            <div className="flex flex-col items-center justify-start gap-20 pt-20">
+              {/* 문 */}
+              <div className="bg-card border-2 border-primary rounded-full w-20 h-20 flex items-center justify-center shadow-md">
+                <span className={`${typography.body} font-bold text-foreground`}>문</span>
+              </div>
 
-          {/* 손잡이 */}
-          <div className="absolute top-72 left-24">
-            <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
-              <span className={`${typography.body} font-bold text-foreground`}>손잡이</span>
-            </div>
-          </div>
+              {/* 사진 */}
+              <div className="bg-card border-2 border-primary rounded-full w-20 h-20 flex items-center justify-center shadow-md">
+                <span className={`${typography.body} font-bold text-foreground`}>사진</span>
+              </div>
 
-          {/* 세면대 */}
-          <div className="absolute top-[360px] left-12">
-            <div className="bg-card border-2 border-foreground rounded-full w-20 h-20 flex items-center justify-center">
-              <span className={`${typography.body} font-bold text-foreground`}>세면대</span>
+              {/* 세면대 */}
+              <div className="bg-card border-2 border-primary rounded-full w-20 h-20 flex items-center justify-center shadow-md">
+                <span className={`${typography.body} font-bold text-foreground`}>세면대</span>
+              </div>
             </div>
           </div>
         </div>
