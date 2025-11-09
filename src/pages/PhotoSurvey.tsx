@@ -41,9 +41,9 @@ const PhotoSurvey = () => {
               특별 미션 #2 (준비물: 삼각대)
             </p>
             <p className={`${typography.body} text-foreground`}>
-              화장실 사진을 찍어서<br />
-              모모에게 보내줘! 홍이하지💕<br />
-              <span className="text-sm">(사진 가이드는 반드시 지켜야 해!)</span>
+              화장실 <strong>"사진"</strong>을 찍어서<br />
+              <strong>모모</strong>에게 보내줘! 좋아할거야 💕<br />
+              <span className="text-sm">(단, 사진 가이드는 반드시 지켜야 해!)</span>
             </p>
           </div>
           
@@ -64,7 +64,7 @@ const PhotoSurvey = () => {
             <ul className={`${typography.body} text-foreground space-y-1 text-sm`}>
               <li>- 첫 장은 반드시 삼각대를 화면에서 찍어야해.</li>
               <li>- 얼굴은 되도록 나오지 않게 해줘.</li>
-              <li>- 사진 가이드 보기 통해서 자세히 확인하자.</li>
+              <li>- <strong>사진 가이드 보기</strong>를 통해서 자세히 확인하자.</li>
             </ul>
           </div>
         </div>
