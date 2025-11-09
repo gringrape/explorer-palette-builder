@@ -14,7 +14,7 @@ const SizeSurvey = () => {
 
   const handleNext = () => {
     console.log("Size survey:", { width, height });
-    // Navigate to next survey screen
+    navigate("/photo-survey");
   };
 
   return (
