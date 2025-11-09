@@ -14,7 +14,7 @@ const LocationSurvey = () => {
 
   const handleNext = () => {
     console.log("Location survey:", { building, floor, gender });
-    // Navigate to next survey screen
+    navigate("/door-survey");
   };
 
   const buildingOptions = ["본관", "별관", "체육관", "기타"];
