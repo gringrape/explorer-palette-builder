@@ -36,14 +36,14 @@ const DoorSurvey = () => {
         </h1>
       </header>
 
-      <div className="flex-1 overflow-y-auto p-6 space-y-4">
-        {/* 일러스트 */}
+      <div className="flex-1 overflow-y-auto p-6 space-y-2">
+        {/* TODO: 애니메이션 삽입 */}
         <div className="bg-card p-4">
           <div className="border-4 border-foreground rounded-lg overflow-hidden">
             <img 
               src={characterImage} 
               alt="화장실 문 일러스트" 
-              className="w-full h-auto"
+              className="m-auto w-1/2 h-auto"
             />
           </div>
         </div>
