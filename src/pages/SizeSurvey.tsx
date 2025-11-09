@@ -34,12 +34,10 @@ const SizeSurvey = () => {
         <div className="bg-primary/10 border-2 border-primary rounded-lg p-4 space-y-3">
           <div className="space-y-2">
             <p className={`${typography.body} font-bold text-foreground`}>
-              특별 미션#1 (준비물: 줄자)
+              특별 미션 #1
             </p>
             <p className={`${typography.body} text-foreground`}>
-              줄자를 들고<br />
-              화장실 크기를 재자<br />
-              (이미지 삽입 필요)
+              <strong>"줄자"</strong>를 들고 화장실 <strong>크기</strong>를 재어보자
             </p>
           </div>
           
