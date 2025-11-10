@@ -49,7 +49,7 @@ const Index = () => {
           onClick={handleNext}
           className={`w-full h-14 rounded-xl ${typography.button} font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all`}
         >
-          시작하기
+          탐사 시작하기
         </Button>
       </div>
     </div>
