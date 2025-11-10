@@ -11,12 +11,30 @@ const Index = () => {
   };
 
   return (
-    <div className="h-svh flex flex-col bg-card">
-      <header className="h-[11%] flex items-center justify-center">    
+    <div className="h-svh flex flex-col bg-card relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 w-16 h-16 bg-primary/10 rounded-full"></div>
+        <div className="absolute top-32 right-20 w-12 h-12 bg-primary/10 rounded-full"></div>
+        <div className="absolute bottom-40 left-1/4 w-20 h-20 bg-primary/10 rounded-full"></div>
+        <div className="absolute bottom-20 right-1/3 w-14 h-14 bg-primary/10 rounded-full"></div>
+      </div>
+
+      <header className="h-[11%] flex items-center justify-center relative z-10">    
         <h1 className={`${typography.title} font-bold text-primary`}>모모탐사대</h1>
       </header>
       
-      <div className="flex-1 flex flex-col items-center justify-center p-6">
+      <div className="flex-1 flex flex-col items-center justify-center p-6 relative z-10">
+        {/* Main title */}
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-foreground mb-2">
+            🎒 장애물 없는 학교를 위한 여정
+          </h2>
+          <p className={`${typography.body} text-muted-foreground`}>
+            우리 학교의 숨은 불편함을 찾아 떠나요!
+          </p>
+        </div>
+
         {/* Character and speech bubble centered */}
         <div className="flex items-center justify-center space-x-4 mb-8">
           <div className="w-48 h-48 relative flex-shrink-0">
@@ -41,10 +59,34 @@ const Index = () => {
             </div>
           </div>
         </div>
+
+        {/* Mission cards */}
+        <div className="grid grid-cols-3 gap-4 max-w-2xl w-full mt-6">
+          <div className="bg-primary/5 border-2 border-primary/20 rounded-2xl p-4 text-center">
+            <div className="text-3xl mb-2">📍</div>
+            <p className="text-sm font-semibold text-foreground">위치 조사</p>
+          </div>
+          <div className="bg-primary/5 border-2 border-primary/20 rounded-2xl p-4 text-center">
+            <div className="text-3xl mb-2">📏</div>
+            <p className="text-sm font-semibold text-foreground">크기 측정</p>
+          </div>
+          <div className="bg-primary/5 border-2 border-primary/20 rounded-2xl p-4 text-center">
+            <div className="text-3xl mb-2">📸</div>
+            <p className="text-sm font-semibold text-foreground">사진 촬영</p>
+          </div>
+        </div>
+
+        {/* Info text */}
+        <div className="mt-8 text-center max-w-lg">
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            💡 화장실의 접근성을 확인하고, 모두가 편하게<br />
+            이용할 수 있는 학교를 만드는 첫 걸음을 함께해요!
+          </p>
+        </div>
       </div>
 
       {/* Fixed bottom button */}
-      <div className="p-6 bg-card">
+      <div className="p-6 bg-card relative z-10">
         <Button
           onClick={handleNext}
           className={`w-full h-14 rounded-xl ${typography.button} font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all`}
