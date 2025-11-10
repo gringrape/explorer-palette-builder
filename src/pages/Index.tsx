@@ -19,15 +19,15 @@ const Index = () => {
       <div className="flex-1 flex flex-col items-center justify-center p-6">
         {/* Character and speech bubble centered */}
         <div className="flex items-center justify-center space-x-4 mb-8">
-          <div className="w-48 h-48 relative flex-shrink-0 animate-fade-in">
+          <div className="w-48 h-48 relative flex-shrink-0">
             <img 
               src={characterImage}
               alt="모모 캐릭터"
-              className="w-full h-full object-contain animate-[bounce_2s_ease-in-out_infinite]"
+              className="w-full h-full object-contain"
             />
           </div>
           
-          <div className="relative bg-card border-4 border-primary rounded-3xl px-8 py-6 shadow-lg max-w-md animate-fade-in">
+          <div className="relative bg-card border-4 border-primary rounded-3xl px-8 py-6 shadow-lg max-w-md">
             <p className={`text-center font-bold ${typography.body} leading-relaxed text-foreground`}>
               <span className="text-primary">"모두의 학교"</span>를 위한<br />
               <span className="text-primary">"탐험"</span>을 떠나기 위해 오신<br />
