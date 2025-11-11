@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
-import characterImage from "@/assets/character.png";
+import { momoUnavailable } from "@/assets";
 
 const RestroomUnavailablePage = () => {
   const navigate = useNavigate();
@@ -18,8 +18,8 @@ const RestroomUnavailablePage = () => {
         </h1>
       </header>
 
-      <div className="flex-1 overflow-y-auto p-6 flex items-center justify-center">
-        <div className="bg-card p-4 w-full max-w-md">
+      <div className="flex-1 overflow-y-auto flex items-center justify-center">
+        <div className="bg-card w-full max-w-md">
           <div className="bg-card rounded-lg overflow-hidden p-8 space-y-6">
             {/* 메시지 말풍선 */}
             <div className="bg-primary text-primary-foreground rounded-3xl py-6 px-6 text-center relative">
@@ -37,9 +37,9 @@ const RestroomUnavailablePage = () => {
             {/* 캐릭터 이미지 */}
             <div className="flex justify-center">
               <img 
-                src={characterImage} 
+                src={momoUnavailable} 
                 alt="모모탐사대 캐릭터" 
-                className="w-3/4 h-auto"
+                className="w-full h-auto"
               />
             </div>
           </div>

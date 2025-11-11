@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { typography } from "@/theme/typography";
 import { useNavigate } from "react-router-dom";
-import characterImage from "@/assets/character.png";
+import { sizeMomo } from "@/assets";
 
 const SizeSurvey = () => {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const SizeSurvey = () => {
           <div className="bg-card border-2 border-primary rounded-lg p-6">
             <div className="flex flex-col items-center justify-center space-y-2">
               <img 
-                src={characterImage} 
+                src={sizeMomo} 
                 alt="크기 측정 가이드" 
                 className="w-24 h-auto opacity-50"
               />

@@ -93,7 +93,7 @@ const Index = () => {
 
         <div className="flex-1 flex flex-col items-center justify-center p-6">
           <div className="w-48 h-48 mb-8">
-            <img src={momoCharacter} alt="모모 캐릭터" className="w-full h-full object-contain" />
+            <img src="https://i.postimg.cc/j256JCVt/doctor-oh.png" alt="오박사" className="w-full h-full object-contain" />
           </div>
 
           <div className="w-full max-w-md space-y-4">
@@ -128,7 +128,7 @@ const Index = () => {
 
       <div className="flex-1 flex items-center justify-center">
         <div className="w-64 h-64">
-          <img src={momoCharacter} alt="모모 캐릭터" className="w-full h-full object-contain" />
+          <img src="https://i.postimg.cc/j256JCVt/doctor-oh.png" alt="모모 캐릭터" className="w-full h-full object-contain" />
         </div>
       </div>
 

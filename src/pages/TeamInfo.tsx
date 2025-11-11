@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import TeamMemberInput from "@/components/TeamMemberInput";
-import characterImage from "@/assets/character.png";
+import { characterImage } from "@/assets";
 import { typography } from "@/theme/typography";
 
 const TeamInfo = () => {
@@ -37,7 +37,7 @@ const TeamInfo = () => {
         {/* Speech bubble and illustration */}
         <div className="flex justify-center items-center space-y-4 mb-4">
           
-          <div className="w-40 h-40 relative">
+          <div className="w-40 h-40 scale-125 relative">
             <img 
               src={characterImage}
               alt="Friendly character"

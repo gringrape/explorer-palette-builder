@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { typography } from "@/theme/typography";
-import characterImage from "@/assets/character.png";
+import { characterImage, goodbye } from "@/assets";
 
 const dialogs = [
   "이렇게 꼼꼼히 탐사를 완료 하다니\n정말 대단해!",
@@ -84,8 +84,8 @@ const GoodbyePage = () => {
         </header>
 
         <div className="flex-1 flex flex-col items-center justify-center p-6">
-          <div className="w-64 h-64 mb-8">
-            <img src={characterImage} alt="모모 캐릭터" className="w-full h-full object-contain" />
+          <div className="w-full mb-8">
+            <img src={goodbye} alt="모모 캐릭터" className="w-full h-full object-contain" />
           </div>
         </div>
 
@@ -112,8 +112,8 @@ const GoodbyePage = () => {
       </header>
 
       <div className="flex-1 flex items-center justify-center">
-        <div className="w-64 h-64">
-          <img src={characterImage} alt="모모 캐릭터" className="w-full h-full object-contain" />
+        <div className="w-full">
+          <img src={goodbye} alt="모모 캐릭터" className="w-full h-full object-contain" />
         </div>
       </div>
 
