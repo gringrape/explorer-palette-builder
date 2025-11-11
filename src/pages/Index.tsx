@@ -1,98 +1,154 @@
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import characterImage from "@/assets/character.png";
+import { useState, useEffect, useRef } from "react";
+import momoCharacter from "@/assets/momo-character.png";
 import { typography } from "@/theme/typography";
+
+const dialogs = [
+  "모모탐사대에 오신 것을 환영해요.",
+  "탐사 시작에 앞서 '모모탐사대'의 규칙에 대해 설명할게요 :)",
+  "탐사의 규칙은 간단해요.\n\n첫 번째, \n 두 명 이상 팀을 이뤄 진행할 것",
+  "두 번째,\n최대한 휠체어를 타고 조사할 것",
+  "세 번째,\n반드시 설명 가이드에 따라 정확히 탐사할 것",
+];
 
 const Index = () => {
   const navigate = useNavigate();
+  const [currentDialog, setCurrentDialog] = useState(0);
+  const [displayedText, setDisplayedText] = useState("");
+  const [isTyping, setIsTyping] = useState(true);
+  const [showFinalScreen, setShowFinalScreen] = useState(false);
+  const typingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleNext = () => {
+  useEffect(() => {
+    if (showFinalScreen) return;
+
+    const fullText = dialogs[currentDialog];
+    let currentIndex = 0;
+    setDisplayedText("");
+    setIsTyping(true);
+
+    // 이전 interval 정리
+    if (typingIntervalRef.current) {
+      clearInterval(typingIntervalRef.current);
+    }
+
+    typingIntervalRef.current = setInterval(() => {
+      if (currentIndex <= fullText.length) {
+        setDisplayedText(fullText.slice(0, currentIndex));
+        currentIndex++;
+      } else {
+        setIsTyping(false);
+        if (typingIntervalRef.current) {
+          clearInterval(typingIntervalRef.current);
+          typingIntervalRef.current = null;
+        }
+      }
+    }, 50);
+
+    return () => {
+      if (typingIntervalRef.current) {
+        clearInterval(typingIntervalRef.current);
+        typingIntervalRef.current = null;
+      }
+    };
+  }, [currentDialog, showFinalScreen]);
+
+  const handleDialogClick = () => {
+    if (isTyping) {
+      // 타이핑 중이면 interval 중지하고 텍스트 완성
+      if (typingIntervalRef.current) {
+        clearInterval(typingIntervalRef.current);
+        typingIntervalRef.current = null;
+      }
+      setDisplayedText(dialogs[currentDialog]);
+      setIsTyping(false);
+    } else {
+      // 완성된 상태면 다음으로
+      if (currentDialog < dialogs.length - 1) {
+        setCurrentDialog(currentDialog + 1);
+      } else {
+        setShowFinalScreen(true);
+      }
+    }
+  };
+
+  const handleStartExploration = () => {
     navigate("/team-info");
   };
 
+  const handleReadGuide = () => {
+    navigate("/roadmap");
+  };
+
+  if (showFinalScreen) {
+    return (
+      <div className="h-svh flex flex-col bg-card">
+        <header className="h-[11%] flex items-center justify-center">
+          <h1 className={`${typography.title} font-bold text-primary text-center`}>
+            모모탐사대
+            <br />
+            게임 규칙 소개
+          </h1>
+        </header>
+
+        <div className="flex-1 flex flex-col items-center justify-center p-6">
+          <div className="w-48 h-48 mb-8">
+            <img src={momoCharacter} alt="모모 캐릭터" className="w-full h-full object-contain" />
+          </div>
+
+          <div className="w-full max-w-md space-y-4">
+            <button
+              onClick={handleStartExploration}
+              className="w-full border-2 border-primary rounded-lg px-6 py-4 text-center bg-card hover:bg-primary/10 transition-colors"
+            >
+              <span className={`${typography.body} font-semibold text-foreground`}>▶ 탐사를 시작한다</span>
+            </button>
+
+            <button
+              onClick={handleReadGuide}
+              className="w-full border-2 border-primary rounded-lg px-6 py-4 text-center bg-card hover:bg-primary/10 transition-colors"
+            >
+              <span className={`${typography.body} font-semibold text-foreground`}>상세 설명서를 읽는다</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="h-svh flex flex-col bg-card relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-10 left-10 w-16 h-16 bg-primary/10 rounded-full"></div>
-        <div className="absolute top-32 right-20 w-12 h-12 bg-primary/10 rounded-full"></div>
-        <div className="absolute bottom-40 left-1/4 w-20 h-20 bg-primary/10 rounded-full"></div>
-        <div className="absolute bottom-20 right-1/3 w-14 h-14 bg-primary/10 rounded-full"></div>
-      </div>
-
-      <header className="h-[11%] flex items-center justify-center relative z-10">    
-        <h1 className={`${typography.title} font-bold text-primary`}>모모탐사대</h1>
+    <div className="h-svh flex flex-col bg-card">
+      <header className="h-[11%] flex items-center justify-center">
+        <h1 className={`${typography.title} font-bold text-primary text-center`}>
+          모모탐사대
+          <br />
+          게임 규칙 소개
+        </h1>
       </header>
-      
-      <div className="flex-1 flex flex-col items-center overflow-y-auto p-6 relative z-10">
-        {/* Main title */}
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-foreground mb-2">
-            🎒 장애물 없는 학교를 위한 여정
-          </h2>
-          <p className={`${typography.body} text-muted-foreground`}>
-            우리 학교의 숨은 불편함을 찾아 떠나요!
-          </p>
-        </div>
 
-        {/* Character and speech bubble centered */}
-        <div className="flex flex-col items-center justify-center space-y-4 mb-8">
-          <div className="w-48 h-48 relative flex-shrink-0">
-            <img 
-              src={characterImage}
-              alt="모모 캐릭터"
-              className="w-full h-full object-contain"
-            />
-          </div>
-          
-          <div className="relative bg-card border-4 border-primary rounded-3xl px-8 py-6 shadow-lg max-w-md">
-            <p className={`text-center font-bold ${typography.body} leading-relaxed text-foreground`}>
-              <span className="text-primary">"모두의 학교"</span>를 위한<br />
-              <span className="text-primary">"탐험"</span>을 떠나기 위해 오신<br />
-              여러분 <strong>환영</strong>합니다! 🎉
-            </p>
-            
-            {/* Speech bubble tail pointing upward to character */}
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full">
-              <div className="w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[20px] border-t-primary"></div>
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[16px] border-t-card"></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Mission cards */}
-        <div className="grid grid-cols-3 gap-4 max-w-2xl w-full mt-6">
-          <div className="bg-primary/5 border-2 border-primary/20 rounded-2xl p-4 text-center">
-            <div className="text-3xl mb-2">📍</div>
-            <p className="text-sm font-semibold text-foreground">위치 조사</p>
-          </div>
-          <div className="bg-primary/5 border-2 border-primary/20 rounded-2xl p-4 text-center">
-            <div className="text-3xl mb-2">📏</div>
-            <p className="text-sm font-semibold text-foreground">크기 측정</p>
-          </div>
-          <div className="bg-primary/5 border-2 border-primary/20 rounded-2xl p-4 text-center">
-            <div className="text-3xl mb-2">📸</div>
-            <p className="text-sm font-semibold text-foreground">사진 촬영</p>
-          </div>
-        </div>
-
-        {/* Info text */}
-        <div className="mt-8 text-center max-w-lg">
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            💡 화장실의 접근성을 확인하고, 모두가 편하게<br />
-            이용할 수 있는 학교를 만드는 첫 걸음을 함께해요!
-          </p>
+      <div className="flex-1 flex items-center justify-center">
+        <div className="w-64 h-64">
+          <img src={momoCharacter} alt="모모 캐릭터" className="w-full h-full object-contain" />
         </div>
       </div>
 
-      {/* Fixed bottom button */}
-      <div className="p-6 bg-card relative z-10">
-        <Button
-          onClick={handleNext}
-          className={`w-full h-14 rounded-xl ${typography.button} font-bold bg-primary hover:bg-primary/90 text-primary-foreground transition-all`}
+      <div className="p-6">
+        <div
+          onClick={handleDialogClick}
+          className="relative border-4 border-primary rounded-3xl px-8 py-6 cursor-pointer bg-card hover:bg-primary/5 transition-colors shadow-lg"
         >
-          탐사 시작하기
-        </Button>
+          <p
+            className={`${typography.body} text-foreground whitespace-pre-line leading-relaxed min-h-[100px] font-bold`}
+          >
+            {displayedText}
+          </p>
+
+          {!isTyping && (
+            <div className="absolute bottom-4 right-4">
+              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[12px] border-t-primary animate-pulse"></div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
