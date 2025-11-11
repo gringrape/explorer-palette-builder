@@ -50,7 +50,7 @@ const RestroomUnavailablePage = () => {
       <div className="p-6 bg-card">
         <Button
           onClick={() => navigate("/")}
-          className={`w-full h-14 rounded-xl ${typography.button} font-bold bg-foreground hover:bg-foreground/90 text-background`}
+          className={`w-full h-14 rounded-xl ${typography.button} font-bold bg-primary hover:bg-primary/90 text-primary-foreground`}
         >
           탐사 종료
         </Button>
