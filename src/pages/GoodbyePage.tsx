@@ -4,10 +4,10 @@ import { typography } from "@/theme/typography";
 import characterImage from "@/assets/character.png";
 
 const dialogs = [
-  "이렇게 꼼꼼히\n탐사를 완료 하다니\n정말 대단해!",
-  "덕분에 더 나은\n모두의 학교를 만들 수\n있게 되었어!",
-  "마지막으로\n오늘 활동하고 느낀 점\n을 선생님과\n이야기 해보자!",
-  "앞으로도 모모가\n학교에서 함께 행복할\n수 있도록 많이 도와줘!\n안녕!",
+  "이렇게 꼼꼼히 탐사를 완료 하다니\n정말 대단해!",
+  "덕분에 더 나은 \n모두의 학교를 만들 수 있게 되었어!",
+  "마지막으로,\n오늘 활동하고 느낀 점을 \n 선생님과 이야기 해보자!",
+  "앞으로도 모모가\n학교에서 함께 행복할 수 있도록 \n 많이 도와줘! 안녕!",
 ];
 
 const GoodbyePage = () => {
