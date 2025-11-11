@@ -92,9 +92,9 @@ const GoodbyePage = () => {
         <div className="p-6">
           <button
             onClick={handleFinish}
-            className="w-full border-2 border-primary rounded-lg px-6 py-4 text-center bg-card hover:bg-primary/10 transition-colors"
+            className={`w-full rounded-lg px-6 py-4 bg-primary hover:bg-primary/90 text-primary-foreground transition-colors ${typography.body} font-semibold`}
           >
-            <span className={`${typography.body} font-semibold text-foreground`}>탐사 종료</span>
+            탐사 종료
           </button>
         </div>
       </div>
