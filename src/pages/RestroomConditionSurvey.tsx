@@ -27,17 +27,15 @@ const RestroomConditionSurvey = () => {
   };
 
   const handleWhyNotUseToggle = (value: string) => {
-    setWhyNotUse((prev) =>
-      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
-    );
+    const newWhyNotUse = whyNotUse.includes(value)
+      ? whyNotUse.filter((v) => v !== value)
+      : [...whyNotUse, value];
+    setWhyNotUse(newWhyNotUse);
+    
+    // 선택 후 바로 goodbye 페이지로 이동
+    console.log("Restroom condition survey:", { dreamSchool, canUseRestroom, whyNotUse: newWhyNotUse });
+    setTimeout(() => navigate("/goodbye"), 300);
   };
-
-  const handleComplete = () => {
-    console.log("Restroom condition survey:", { dreamSchool, canUseRestroom, whyNotUse });
-    navigate("/goodbye");
-  };
-
-  const isStep3Complete = whyNotUse.length > 0;
 
   return (
     <div className="h-svh flex flex-col bg-card">
@@ -207,22 +205,6 @@ const RestroomConditionSurvey = () => {
         </div>
       </div>
 
-      {/* Fixed bottom button - only show on step 3 */}
-      {currentStep === 3 && (
-        <div className="p-6 bg-card">
-          <Button
-            onClick={handleComplete}
-            disabled={!isStep3Complete}
-            className={`w-full h-14 rounded-xl ${typography.button} font-bold transition-all ${
-              isStep3Complete
-                ? "bg-primary hover:bg-primary/90 text-primary-foreground"
-                : "bg-primary/30 text-primary-foreground cursor-not-allowed"
-            }`}
-          >
-            다음
-          </Button>
-        </div>
-      )}
     </div>
   );
 };
