@@ -8,11 +8,13 @@ import TeamInfo from "./pages/TeamInfo";
 import Preparation from "./pages/Preparation";
 import Roadmap from "./pages/Roadmap";
 import LocationSurvey from "./pages/LocationSurvey";
+import RestroomConditionSurvey from "./pages/RestroomConditionSurvey";
 import DoorSurvey from "./pages/DoorSurvey";
 import SizeSurvey from "./pages/SizeSurvey";
 import PhotoSurvey from "./pages/PhotoSurvey";
 import HandrailSurvey from "./pages/HandrailSurvey";
 import SinkSurvey from "./pages/SinkSurvey";
+import GoodbyePage from "./pages/GoodbyePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,11 +31,13 @@ const App = () => (
           <Route path="/preparation" element={<Preparation />} />
           <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/location-survey" element={<LocationSurvey />} />
+          <Route path="/restroom-condition-survey" element={<RestroomConditionSurvey />} />
           <Route path="/door-survey" element={<DoorSurvey />} />
           <Route path="/size-survey" element={<SizeSurvey />} />
           <Route path="/photo-survey" element={<PhotoSurvey />} />
           <Route path="/handrail-survey" element={<HandrailSurvey />} />
           <Route path="/sink-survey" element={<SinkSurvey />} />
+          <Route path="/goodbye" element={<GoodbyePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
