@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import momoCharacter from "@/assets/momo-character.png";
 import { typography } from "@/theme/typography";
 
@@ -17,6 +17,7 @@ const Index = () => {
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
   const [showFinalScreen, setShowFinalScreen] = useState(false);
+  const typingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (showFinalScreen) return;
@@ -26,24 +27,43 @@ const Index = () => {
     setDisplayedText("");
     setIsTyping(true);
 
-    const typingInterval = setInterval(() => {
+    // 이전 interval 정리
+    if (typingIntervalRef.current) {
+      clearInterval(typingIntervalRef.current);
+    }
+
+    typingIntervalRef.current = setInterval(() => {
       if (currentIndex <= fullText.length) {
         setDisplayedText(fullText.slice(0, currentIndex));
         currentIndex++;
       } else {
         setIsTyping(false);
-        clearInterval(typingInterval);
+        if (typingIntervalRef.current) {
+          clearInterval(typingIntervalRef.current);
+          typingIntervalRef.current = null;
+        }
       }
     }, 50);
 
-    return () => clearInterval(typingInterval);
+    return () => {
+      if (typingIntervalRef.current) {
+        clearInterval(typingIntervalRef.current);
+        typingIntervalRef.current = null;
+      }
+    };
   }, [currentDialog, showFinalScreen]);
 
   const handleDialogClick = () => {
     if (isTyping) {
+      // 타이핑 중이면 interval 중지하고 텍스트 완성
+      if (typingIntervalRef.current) {
+        clearInterval(typingIntervalRef.current);
+        typingIntervalRef.current = null;
+      }
       setDisplayedText(dialogs[currentDialog]);
       setIsTyping(false);
     } else {
+      // 완성된 상태면 다음으로
       if (currentDialog < dialogs.length - 1) {
         setCurrentDialog(currentDialog + 1);
       } else {
@@ -129,9 +149,11 @@ const Index = () => {
             {displayedText}
           </p>
           
-          <div className="absolute bottom-4 right-4">
-            <div className={`w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[12px] border-t-foreground ${!isTyping ? 'animate-pulse' : ''}`}></div>
-          </div>
+          {!isTyping && (
+            <div className="absolute bottom-4 right-4">
+              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[12px] border-t-foreground animate-pulse"></div>
+            </div>
+          )}
         </div>
       </div>
     </div>
