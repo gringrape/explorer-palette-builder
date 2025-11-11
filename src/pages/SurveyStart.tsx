@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import { useNavigate } from "react-router-dom";
-import characterImage from "@/assets/character.png";
+import { startMomo } from "@/assets";
 
 const SurveyStart = () => {
   const navigate = useNavigate();
@@ -35,19 +35,12 @@ const SurveyStart = () => {
               </p>
             </div>
 
-            {/* LET'S START 텍스트 */}
-            <div className="text-center">
-              <p className="text-4xl font-bold text-primary" style={{ fontFamily: 'Comic Sans MS, cursive' }}>
-                LET'S START!
-              </p>
-            </div>
-
             {/* 캐릭터 이미지 */}
             <div className="flex justify-center">
               <img 
-                src={characterImage} 
+                src={startMomo}
                 alt="모모탐사대 캐릭터" 
-                className="w-3/4 h-auto"
+                className="w-full h-auto"
               />
             </div>
           </div>

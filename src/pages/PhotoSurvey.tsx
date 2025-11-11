@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import { useNavigate } from "react-router-dom";
-import characterImage from "@/assets/character.png";
+import { characterImage } from "@/assets";
 import { Camera } from "lucide-react";
 
 const PhotoSurvey = () => {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import characterImage from "@/assets/character.png";
+import { characterImage, sizeMomo } from "@/assets";
 import { typography } from "@/theme/typography";
 import { colors } from "@/theme/colors";
 import { useNavigate } from "react-router-dom";
@@ -30,11 +30,11 @@ const Preparation = () => {
       <div className="flex-1 overflow-y-auto p-6">
         {/* Character and speech bubble */}
         <div className="flex justify-center items-center space-x-4 mb-8">
-          <div className="w-40 h-40 relative flex-shrink-0">
+          <div className="w-40 h-auto relative flex-shrink-0">
             <img 
-              src={characterImage}
+              src={sizeMomo}
               alt="Friendly character"
-              className="w-full h-full object-contain rounded-full"
+              className="w-full h-full scale-125 object-contain rounded-full"
             />
           </div>
           <div className="relative bg-card border-4 border-primary rounded-3xl px-4 py-4 shadow-lg">

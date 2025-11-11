@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import { colors } from "@/theme/colors";
 import { useNavigate } from "react-router-dom";
-import characterImage from "@/assets/character.png";
+import { characterImage } from "@/assets";
 
 const DoorSurvey = () => {
   const navigate = useNavigate();

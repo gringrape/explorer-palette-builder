@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import { useNavigate } from "react-router-dom";
-import characterImage from "@/assets/character.png";
+import { characterImage } from "@/assets";
 
 
 const Roadmap = () => {
@@ -36,7 +36,7 @@ const Roadmap = () => {
 
         {/* Mission box */}
         <div className="flex items-center gap-10 border-4 border-foreground bg-card p-4 mb-4">
-          <img src={characterImage} alt="Mission" className="w-20 h-20" />
+          <img src={characterImage} alt="Mission" className="w-20 h-20 scale-150" />
           <div>
             <p className={`${typography.title} font-bold text-center text-foreground`}>
               모모 Mission

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { typography } from "@/theme/typography";
-import characterImage from "@/assets/momo-character.png";
+import { characterImage, momoMiddle } from "@/assets";
 
 const MidpointEncouragement = () => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const MidpointEncouragement = () => {
         </div>
 
         <div className="w-64 h-64">
-          <img src={characterImage} alt="모모 캐릭터" className="w-full h-full object-contain" />
+          <img src={momoMiddle} alt="모모 캐릭터" className="w-full h-full object-contain" />
         </div>
       </div>
 
