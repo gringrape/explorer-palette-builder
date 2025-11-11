@@ -11,6 +11,7 @@ import LocationSurvey from "./pages/LocationSurvey";
 import DoorSurvey from "./pages/DoorSurvey";
 import SizeSurvey from "./pages/SizeSurvey";
 import PhotoSurvey from "./pages/PhotoSurvey";
+import HandrailSurvey from "./pages/HandrailSurvey";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/door-survey" element={<DoorSurvey />} />
           <Route path="/size-survey" element={<SizeSurvey />} />
           <Route path="/photo-survey" element={<PhotoSurvey />} />
+          <Route path="/handrail-survey" element={<HandrailSurvey />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

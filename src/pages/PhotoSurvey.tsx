@@ -18,7 +18,7 @@ const PhotoSurvey = () => {
 
   const handleNext = () => {
     console.log("Photo survey:", { photoCount });
-    // Navigate to next survey screen
+    navigate("/handrail-survey");
   };
 
   return (
