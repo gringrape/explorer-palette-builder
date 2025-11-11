@@ -52,7 +52,7 @@ const RestroomConditionSurvey = () => {
           {/* Step 1: 모모가 꿈꾸는 모두의 학교 */}
           {currentStep === 1 && (
             <div className="animate-fade-in space-y-4">
-              <div className="border-4 border-foreground p-6 space-y-4">
+              <div className="p-6 space-y-4">
                 <p className={`${typography.body} font-bold text-foreground text-center mb-4`}>
                   모모가 꿈꾸는 모두의 학교
                 </p>
@@ -102,7 +102,7 @@ const RestroomConditionSurvey = () => {
           {/* Step 2: 모모가 장애인 화장실을 사용할 수 있을까? */}
           {currentStep === 2 && (
             <div className="animate-fade-in space-y-4">
-              <div className="border-4 border-foreground p-6 space-y-4">
+              <div className="p-6 space-y-4">
                 <p className={`${typography.body} font-bold text-foreground text-center mb-4`}>
                   모모가 장애인 화장실을
                   <br />
@@ -139,7 +139,7 @@ const RestroomConditionSurvey = () => {
           {/* Step 3: 모모가 화장실을 왜 사용할 수 없을까? */}
           {currentStep === 3 && (
             <div className="animate-fade-in space-y-4">
-              <div className="border-4 border-foreground p-6 space-y-4">
+              <div className="p-6 space-y-4">
                 <p className={`${typography.body} font-bold text-foreground text-center mb-4`}>
                   모모가 화장실을
                   <br />왜 사용할 수 없을까?
