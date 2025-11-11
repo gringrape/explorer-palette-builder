@@ -83,8 +83,8 @@ const Index = () => {
   if (showFinalScreen) {
     return (
       <div className="h-svh flex flex-col bg-card">
-        <header className="h-[11%] flex items-center justify-center border-b-2 border-foreground">
-          <h1 className={`${typography.title} font-bold text-foreground`}>
+        <header className="h-[11%] flex items-center justify-center">
+          <h1 className={`${typography.title} font-bold text-primary text-center`}>
             모모탐사대<br />게임 규칙 소개
           </h1>
         </header>
@@ -101,7 +101,7 @@ const Index = () => {
           <div className="w-full max-w-md space-y-4">
             <button
               onClick={handleStartExploration}
-              className="w-full border-2 border-foreground rounded-lg px-6 py-4 text-center bg-card hover:bg-muted transition-colors"
+              className="w-full border-2 border-primary rounded-lg px-6 py-4 text-center bg-card hover:bg-primary/10 transition-colors"
             >
               <span className={`${typography.body} font-semibold text-foreground`}>
                 ▶ 탐사를 시작한다
@@ -110,7 +110,7 @@ const Index = () => {
             
             <button
               onClick={handleReadGuide}
-              className="w-full border-2 border-foreground rounded-lg px-6 py-4 text-center bg-card hover:bg-muted transition-colors"
+              className="w-full border-2 border-primary rounded-lg px-6 py-4 text-center bg-card hover:bg-primary/10 transition-colors"
             >
               <span className={`${typography.body} font-semibold text-foreground`}>
                 상세 설명서를 읽는다
@@ -124,8 +124,8 @@ const Index = () => {
 
   return (
     <div className="h-svh flex flex-col bg-card">
-      <header className="h-[11%] flex items-center justify-center border-b-2 border-foreground">
-        <h1 className={`${typography.title} font-bold text-foreground text-center`}>
+      <header className="h-[11%] flex items-center justify-center">
+        <h1 className={`${typography.title} font-bold text-primary text-center`}>
           모모탐사대<br />게임 규칙 소개
         </h1>
       </header>
@@ -143,15 +143,15 @@ const Index = () => {
       <div className="p-6">
         <div 
           onClick={handleDialogClick}
-          className="relative border-2 border-foreground rounded-lg px-8 py-6 cursor-pointer bg-card hover:bg-muted/50 transition-colors"
+          className="relative border-4 border-primary rounded-3xl px-8 py-6 cursor-pointer bg-card hover:bg-primary/5 transition-colors shadow-lg"
         >
-          <p className={`${typography.body} text-foreground whitespace-pre-line leading-relaxed min-h-[100px]`}>
+          <p className={`${typography.body} text-foreground whitespace-pre-line leading-relaxed min-h-[100px] font-bold`}>
             {displayedText}
           </p>
           
           {!isTyping && (
             <div className="absolute bottom-4 right-4">
-              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[12px] border-t-foreground animate-pulse"></div>
+              <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[12px] border-t-primary animate-pulse"></div>
             </div>
           )}
         </div>
