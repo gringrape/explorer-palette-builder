@@ -24,20 +24,14 @@ const SinkSurvey = () => {
           <div className="w-full h-full bg-primary rounded-full"></div>
         </div>
         <p className={`${typography.body} text-foreground`}>모모탐사대</p>
-        <h1 className={`${typography.title} font-bold text-primary`}>
-          세면대를 조사하자
-        </h1>
+        <h1 className={`${typography.title} font-bold text-primary`}>세면대를 조사하자</h1>
       </header>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-2">
         {/* Illustration */}
         <div className="bg-card p-4">
           <div className="border-4 border-primary rounded-lg overflow-hidden">
-            <img
-              src={sinkImage}
-              alt="휠체어를 탄 어린이가 세면대에서 손을 씻는 일러스트"
-              className="w-full h-auto"
-            />
+            <img src={sinkImage} alt="휠체어를 탄 어린이가 세면대에서 손을 씻는 일러스트" className="w-full h-auto" />
           </div>
         </div>
 
@@ -45,9 +39,7 @@ const SinkSurvey = () => {
         <div className="bg-card p-4 space-y-4">
           {/* Question 1: 세면대 있어? */}
           <div>
-            <p className={`${typography.body} font-bold text-foreground mb-3`}>
-              최장실에 세면대 있어?
-            </p>
+            <p className={`${typography.body} font-bold text-foreground mb-3`}>화장실에 세면대 있어?</p>
             <div className="grid grid-cols-2 gap-3">
               <Button
                 onClick={() => setHasSink("yes")}
@@ -76,9 +68,7 @@ const SinkSurvey = () => {
 
           {/* Question 2: 손 씻을 수 있어? */}
           <div>
-            <p className={`${typography.body} font-bold text-foreground mb-3`}>
-              손 씻을 수 있어?
-            </p>
+            <p className={`${typography.body} font-bold text-foreground mb-3`}>손 씻을 수 있어?</p>
             <div className="grid grid-cols-2 gap-3">
               <Button
                 onClick={() => setCanWash("yes")}
@@ -107,9 +97,7 @@ const SinkSurvey = () => {
 
           {/* Question 3: 세면대 높이는 어때? */}
           <div>
-            <p className={`${typography.body} font-bold text-foreground mb-3`}>
-              세면대 높이는 어때?
-            </p>
+            <p className={`${typography.body} font-bold text-foreground mb-3`}>세면대 높이는 어때?</p>
             <div className="grid grid-cols-3 gap-3">
               <Button
                 onClick={() => setSinkHeight("high")}
