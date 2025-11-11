@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import { useNavigate } from "react-router-dom";
@@ -8,12 +8,32 @@ import { Camera } from "lucide-react";
 const PhotoSurvey = () => {
   const navigate = useNavigate();
   const [photoCount, setPhotoCount] = useState<number>(0);
+  const [photos, setPhotos] = useState<string[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isComplete = photoCount > 0;
 
   const handleTakePhoto = () => {
-    // Simulate photo taking - in real app would open camera
-    setPhotoCount(Math.min(photoCount + 1, 3));
+    // Trigger file input to open camera
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && photoCount < 3) {
+      // Create a preview URL for the image
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const result = reader.result as string;
+        setPhotos((prev) => [...prev, result]);
+        setPhotoCount((prev) => Math.min(prev + 1, 3));
+      };
+      reader.readAsDataURL(file);
+    }
+    // Reset input so the same file can be selected again
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   const handleNext = () => {
@@ -80,6 +100,16 @@ const PhotoSurvey = () => {
             </p>
           </div>
 
+          {/* 숨겨진 파일 입력 (카메라 접근용) */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            capture="environment"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+
           {/* 사진 촬영 버튼 */}
           <Button
             onClick={handleTakePhoto}
@@ -93,6 +123,26 @@ const PhotoSurvey = () => {
             <Camera className="mr-2 h-5 w-5" />
             사진 촬영하기 {photoCount > 0 && `(${photoCount}/3)`}
           </Button>
+
+          {/* 촬영한 사진 미리보기 */}
+          {photos.length > 0 && (
+            <div className="space-y-2">
+              <p className={`${typography.body} font-bold text-foreground text-sm`}>
+                촬영한 사진 ({photos.length}/3)
+              </p>
+              <div className="grid grid-cols-3 gap-2">
+                {photos.map((photo, index) => (
+                  <div key={index} className="relative aspect-square rounded-lg overflow-hidden border-2 border-primary">
+                    <img
+                      src={photo}
+                      alt={`촬영한 사진 ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* 사진 가이드 링크 */}
           <button
