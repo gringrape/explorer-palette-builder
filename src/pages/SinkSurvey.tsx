@@ -12,7 +12,7 @@ const SinkSurvey = () => {
 
   const handleNext = () => {
     console.log("Sink survey:", { hasSink, canWash, sinkHeight });
-    navigate("/");
+    navigate("/goodbye");
   };
 
   const isComplete = hasSink !== "" && canWash !== "" && sinkHeight !== "";
