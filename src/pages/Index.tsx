@@ -24,7 +24,7 @@ const Index = () => {
         <h1 className={`${typography.title} font-bold text-primary`}>모모탐사대</h1>
       </header>
       
-      <div className="flex-1 flex flex-col items-center justify-center p-6 relative z-10">
+      <div className="flex-1 flex flex-col items-center overflow-y-auto p-6 relative z-10">
         {/* Main title */}
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-foreground mb-2">
@@ -36,7 +36,7 @@ const Index = () => {
         </div>
 
         {/* Character and speech bubble centered */}
-        <div className="flex items-center justify-center space-x-4 mb-8">
+        <div className="flex flex-col items-center justify-center space-y-4 mb-8">
           <div className="w-48 h-48 relative flex-shrink-0">
             <img 
               src={characterImage}
@@ -52,10 +52,10 @@ const Index = () => {
               여러분 <strong>환영</strong>합니다! 🎉
             </p>
             
-            {/* Speech bubble tail pointing to character */}
-            <div className="absolute left-0 top-1/2 transform -translate-x-full -translate-y-1/2">
-              <div className="w-0 h-0 border-t-[15px] border-t-transparent border-b-[15px] border-b-transparent border-r-[20px] border-r-primary"></div>
-              <div className="absolute left-[-16px] top-1/2 transform -translate-y-1/2 w-0 h-0 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent border-r-[16px] border-r-card"></div>
+            {/* Speech bubble tail pointing upward to character */}
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full">
+              <div className="w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[20px] border-t-primary"></div>
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[16px] border-t-card"></div>
             </div>
           </div>
         </div>
