@@ -18,8 +18,8 @@ const RestroomConditionSurvey = () => {
   const handleCanUseSelect = (value: string) => {
     setCanUseRestroom(value);
     if (value === "yes") {
-      // 장애인 화장실을 사용할 수 있으면 문 조사로
-      setTimeout(() => navigate("/door-survey"), 300);
+      // 장애인 화장실을 사용할 수 있으면 시작 화면으로
+      setTimeout(() => navigate("/survey-start"), 300);
     } else {
       // 사용할 수 없으면 다음 질문으로
       setTimeout(() => setCurrentStep(3), 300);
