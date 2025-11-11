@@ -105,23 +105,25 @@ const Index = () => {
   return (
     <div className="h-svh flex flex-col bg-card">
       <header className="h-[11%] flex items-center justify-center border-b-2 border-foreground">
-        <h1 className={`${typography.title} font-bold text-foreground`}>
+        <h1 className={`${typography.title} font-bold text-foreground text-center`}>
           모모탐사대<br />게임 규칙 소개
         </h1>
       </header>
 
-      <div className="flex-1 flex flex-col items-center justify-center p-6">
-        <div className="w-48 h-48 mb-8">
+      <div className="flex-1 flex items-center justify-center">
+        <div className="w-64 h-64">
           <img 
             src={momoCharacter}
             alt="모모 캐릭터"
             className="w-full h-full object-contain"
           />
         </div>
+      </div>
 
+      <div className="p-6">
         <div 
           onClick={handleDialogClick}
-          className="relative border-2 border-foreground rounded-lg px-8 py-6 max-w-md cursor-pointer bg-card hover:bg-muted/50 transition-colors"
+          className="relative border-2 border-foreground rounded-lg px-8 py-6 cursor-pointer bg-card hover:bg-muted/50 transition-colors"
         >
           <p className={`${typography.body} text-foreground whitespace-pre-line leading-relaxed min-h-[100px]`}>
             {displayedText}
