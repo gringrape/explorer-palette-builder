@@ -4,7 +4,7 @@ import momoCharacter from "@/assets/momo-character.png";
 import { typography } from "@/theme/typography";
 
 const dialogs = [
-  "모모탐사대에 함께한 것을 환영해요.",
+  "모모탐사대에 오신 것을 환영해요.",
   "탐사 시작에 앞서 '모모탐사대'의 규칙에 대해 설명할게요 :)",
   "탐사의 규칙은 간단해요.\n\n첫 번째, \n 두 명 이상 팀을 이뤄 진행할 것",
   "두 번째,\n최대한 휠체어를 타고 조사할 것",
