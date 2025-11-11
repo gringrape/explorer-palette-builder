@@ -13,7 +13,7 @@ const DoorSurvey = () => {
 
   const handleNext = () => {
     console.log("Door survey:", { doorType });
-    navigate("/size-survey");
+    navigate("/midpoint-encouragement");
   };
 
   const doorOptions = [
