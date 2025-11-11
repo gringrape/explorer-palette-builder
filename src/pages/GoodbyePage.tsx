@@ -76,11 +76,11 @@ const GoodbyePage = () => {
     return (
       <div className="h-svh flex flex-col bg-card">
         <header className="h-[11%] flex items-center justify-center">
-          <h1 className={`${typography.title} font-bold text-primary text-center`}>
-            모모탐사대
-            <br />
-            탐사 완료!
-          </h1>
+        <h1 className="text-3xl font-bold text-primary text-center">
+          모모탐사대
+          <br />
+          탐사 완료!
+        </h1>
         </header>
 
         <div className="flex-1 flex flex-col items-center justify-center p-6">
@@ -104,11 +104,11 @@ const GoodbyePage = () => {
   return (
     <div className="h-svh flex flex-col bg-card">
       <header className="h-[11%] flex items-center justify-center">
-        <h1 className={`${typography.title} font-bold text-primary text-center`}>
-          모모탐사대
-          <br />
-          탐사 완료!
-        </h1>
+      <h1 className="text-3xl font-bold text-primary text-center">
+        모모탐사대
+        <br />
+        탐사 완료!
+      </h1>
       </header>
 
       <div className="flex-1 flex items-center justify-center">
