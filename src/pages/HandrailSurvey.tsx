@@ -25,8 +25,7 @@ const HandrailSurvey = () => {
 
   const handleNext = () => {
     console.log("Selected handrail types:", selectedTypes);
-    // Navigate to next survey page
-    navigate("/");
+    navigate("/sink-survey");
   };
 
   return (
