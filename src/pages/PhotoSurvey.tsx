@@ -58,7 +58,7 @@ const PhotoSurvey = () => {
         <div className="bg-primary/10 border-2 border-primary rounded-lg p-4 space-y-3">
           <div className="space-y-2">
             <p className={`${typography.body} font-bold text-foreground`}>
-              특별 미션 #2 (준비물: 삼각대)
+              특별 미션 #2 (준비물: 셀카봉)
             </p>
             <p className={`${typography.body} text-foreground`}>
               화장실 <strong>"사진"</strong>을 찍어서<br />
@@ -82,7 +82,7 @@ const PhotoSurvey = () => {
               📸 사진은 이렇게 찍어줘!
             </p>
             <ul className={`${typography.body} text-foreground space-y-1 text-sm`}>
-              <li>- 첫 장은 반드시 삼각대를 화면에서 찍어야해.</li>
+              <li>- 첫 장은 반드시 셀카봉을 이용해서 찍어야해.</li>
               <li>- 얼굴은 되도록 나오지 않게 해줘.</li>
               <li>- <strong>사진 가이드 보기</strong>를 통해서 자세히 확인하자.</li>
             </ul>
@@ -96,7 +96,7 @@ const PhotoSurvey = () => {
               화장실 사진 촬영
             </p>
             <p className={`${typography.body} text-foreground`}>
-              삼각대로 사진을 찍어 보자! (최대 3장)
+              셀카봉으로 사진을 찍어 보자! (최대 3장)
             </p>
           </div>
 

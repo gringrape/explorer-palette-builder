@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import { colors } from "@/theme/colors";
 import { useNavigate } from "react-router-dom";
-import { characterImage } from "@/assets";
+import momoDoorVideo from "@/assets/momo-door-video.mp4";
 
 const DoorSurvey = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const DoorSurvey = () => {
 
   const doorOptions = [
     "앞으로 여는 문",
-    "앞으로 미는 문",
+    "옆으로 미는 문",
     "자동문(버튼)",
     "접는문(아코디언)",
     "기타(입력하기)"
@@ -37,13 +37,16 @@ const DoorSurvey = () => {
       </header>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-2">
-        {/* TODO: 애니메이션 삽입 */}
+        {/* 애니메이션 비디오 */}
         <div className="bg-card p-4">
           <div className="border-4 border-foreground rounded-lg overflow-hidden">
-            <img 
-              src={characterImage} 
-              alt="화장실 문 일러스트" 
-              className="m-auto w-1/2 h-auto"
+            <video 
+              src={momoDoorVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto"
             />
           </div>
         </div>

@@ -54,7 +54,9 @@ const RestroomConditionSurvey = () => {
             <div className="animate-fade-in space-y-4">
               <div className="p-6 space-y-4">
                 <p className={`${typography.body} font-bold text-foreground text-center mb-4`}>
-                  모모가 꿈꾸는 모두의 학교
+                  모모가 꿈꾸는 모두의 학교는
+                  <br />
+                  어떤 학교일까?
                 </p>
                 <Button
                   onClick={() => handleDreamSchoolSelect("accessible")}
@@ -78,7 +80,7 @@ const RestroomConditionSurvey = () => {
                   }`}
                   variant="outline"
                 >
-                  세욱시간에 혼자 남아있는
+                  체육시간에 혼자 남아있는
                   <br />
                   친구가 없는 학교
                 </Button>

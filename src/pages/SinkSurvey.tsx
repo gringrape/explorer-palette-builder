@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
-import sinkImage from "@/assets/sink-illustration.png";
+import momoWashHandsVideo from "@/assets/momo-wash-hands.mp4";
 
 const SinkSurvey = () => {
   const navigate = useNavigate();
@@ -28,10 +28,17 @@ const SinkSurvey = () => {
       </header>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-2">
-        {/* Illustration */}
+        {/* Animation Video */}
         <div className="bg-card p-4">
           <div className="border-4 border-primary rounded-lg overflow-hidden">
-            <img src={sinkImage} alt="휠체어를 탄 어린이가 세면대에서 손을 씻는 일러스트" className="w-full h-auto" />
+            <video 
+              src={momoWashHandsVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-auto"
+            />
           </div>
         </div>
 
