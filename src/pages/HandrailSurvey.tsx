@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
-import handrailImage from "@/assets/handrail-illustration.png";
+import { handrailGuide } from "@/assets";
 
 const HandrailSurvey = () => {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const HandrailSurvey = () => {
         <div className="bg-card p-4">
           <div className="border-4 border-primary rounded-lg overflow-hidden">
             <img
-              src={handrailImage}
+              src={handrailGuide}
               alt="화장실 손잡이 일러스트"
               className="w-full h-auto"
             />

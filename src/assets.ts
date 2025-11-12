@@ -5,3 +5,5 @@ export const goodbye = "https://i.postimg.cc/5yhgzvws/goodbye.jpg";
 export const momoMiddle = "https://i.postimg.cc/13t0zvhz/momo-middle.png";
 export const momoUnavailable = "https://i.postimg.cc/MHf2x76L/momo-unavailable.png";
 export const photoGuide = "https://i.postimg.cc/CLjDL96P/photo-guide.jpg";
+export const handrailGuide = "https://i.postimg.cc/SNM5QL8R/handrail.jpg";
+export const sizeGuide = "https://i.postimg.cc/Gtk5Kdb3/wheelchair.jpg";
