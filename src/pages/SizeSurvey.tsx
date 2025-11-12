@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { typography } from "@/theme/typography";
 import { useNavigate } from "react-router-dom";
-import { sizeMomo } from "@/assets";
+import { sizeGuide } from "@/assets";
 
 const SizeSurvey = () => {
   const navigate = useNavigate();
@@ -45,14 +45,10 @@ const SizeSurvey = () => {
           <div className="bg-card border-2 border-primary rounded-lg p-6">
             <div className="flex flex-col items-center justify-center space-y-2">
               <img 
-                src={sizeMomo} 
+                src={sizeGuide} 
                 alt="크기 측정 가이드" 
-                className="w-24 h-auto opacity-50"
+                className="w-full h-auto"
               />
-              <p className={`${typography.body} text-center text-foreground`}>
-                1.5m x 1.5m 가이드<br />
-                (이미지 삽입 필요)
-              </p>
             </div>
           </div>
         </div>
