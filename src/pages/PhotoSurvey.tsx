@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import { useNavigate } from "react-router-dom";
-import { characterImage } from "@/assets";
+import { photoGuide } from "@/assets";
 import { Camera } from "lucide-react";
 
 const PhotoSurvey = () => {
@@ -68,24 +68,26 @@ const PhotoSurvey = () => {
           </div>
           
           {/* 가이드 이미지 영역 */}
-          <div className="bg-card border-2 border-primary rounded-lg overflow-hidden">
+          <div className="bg-card border-2 border-primary rounded-lg overflow-hidden relative">
             <img 
-              src={characterImage} 
+              src={photoGuide} 
               alt="화장실 촬영 가이드" 
-              className="w-full h-48 object-cover"
+              className="w-full h-72 object-cover"
             />
-          </div>
-
-          {/* 촬영 팁 */}
-          <div className="space-y-2">
-            <p className={`${typography.body} font-bold text-foreground`}>
-              📸 사진은 이렇게 찍어줘!
-            </p>
-            <ul className={`${typography.body} text-foreground space-y-1 text-sm`}>
-              <li>- 첫 장은 반드시 셀카봉을 이용해서 찍어야해.</li>
-              <li>- 얼굴은 되도록 나오지 않게 해줘.</li>
-              <li>- <strong>사진 가이드 보기</strong>를 통해서 자세히 확인하자.</li>
-            </ul>
+            {/* 음영처리 오버레이 */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60"></div>
+            
+            {/* 촬영 팁 - 이미지 위에 배치 */}
+            <div className="absolute inset-0 flex flex-col justify-start p-4 space-y-2 text-white">
+              <p className={`${typography.body} font-bold text-white`}>
+                📸 사진은 이렇게 찍어줘!
+              </p>
+              <ul className={`${typography.body} text-white space-y-1 text-sm`}>
+                <li>- 첫 장은 반드시 셀카봉을 이용해서 찍어야해.</li>
+                <li>- 얼굴은 되도록 나오지 않게 해줘.</li>
+                <li>- <strong className="text-white">사진 가이드 보기</strong>를 통해서 자세히 확인하자.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
