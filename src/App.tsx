@@ -19,6 +19,7 @@ import HandrailSurvey from "./pages/HandrailSurvey";
 import SinkSurvey from "./pages/SinkSurvey";
 import MidpointEncouragement from "./pages/MidpointEncouragement";
 import GoodbyePage from "./pages/GoodbyePage";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/handrail-survey" element={<HandrailSurvey />} />
           <Route path="/sink-survey" element={<SinkSurvey />} />
           <Route path="/goodbye" element={<GoodbyePage />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           </Routes>
