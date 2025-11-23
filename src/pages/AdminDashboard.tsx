@@ -50,6 +50,10 @@ const AdminDashboard = () => {
   const fetchResponses = async () => {
     setIsLoading(true);
     try {
+      if (!supabase) {
+        throw new Error("Supabase client is not initialized");
+      }
+
       const { data, error } = await supabase
         .from("survey_responses")
         .select("*")
@@ -66,7 +70,7 @@ const AdminDashboard = () => {
       console.error("Error fetching responses:", error);
       toast({
         title: "데이터 로드 실패",
-        description: "설문 응답을 불러오는 중 오류가 발생했습니다.",
+        description: error instanceof Error ? error.message : "설문 응답을 불러오는 중 오류가 발생했습니다.",
         variant: "destructive",
       });
     } finally {
