@@ -14,7 +14,72 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      survey_responses: {
+        Row: {
+          building: string | null
+          can_use_restroom: string | null
+          can_wash: string | null
+          created_at: string
+          door_type: string | null
+          dream_school: string | null
+          floor: string | null
+          gender: string | null
+          handrail_types: string[] | null
+          has_sink: string | null
+          height: string | null
+          id: string
+          photos: string[] | null
+          sink_height: string | null
+          team_members: string[]
+          team_name: string
+          updated_at: string
+          why_not_use: string[] | null
+          width: string | null
+        }
+        Insert: {
+          building?: string | null
+          can_use_restroom?: string | null
+          can_wash?: string | null
+          created_at?: string
+          door_type?: string | null
+          dream_school?: string | null
+          floor?: string | null
+          gender?: string | null
+          handrail_types?: string[] | null
+          has_sink?: string | null
+          height?: string | null
+          id?: string
+          photos?: string[] | null
+          sink_height?: string | null
+          team_members: string[]
+          team_name: string
+          updated_at?: string
+          why_not_use?: string[] | null
+          width?: string | null
+        }
+        Update: {
+          building?: string | null
+          can_use_restroom?: string | null
+          can_wash?: string | null
+          created_at?: string
+          door_type?: string | null
+          dream_school?: string | null
+          floor?: string | null
+          gender?: string | null
+          handrail_types?: string[] | null
+          has_sink?: string | null
+          height?: string | null
+          id?: string
+          photos?: string[] | null
+          sink_height?: string | null
+          team_members?: string[]
+          team_name?: string
+          updated_at?: string
+          why_not_use?: string[] | null
+          width?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
