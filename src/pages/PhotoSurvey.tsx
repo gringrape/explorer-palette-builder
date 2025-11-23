@@ -7,6 +7,7 @@ import { Camera } from "lucide-react";
 import { useSurvey } from "@/contexts/SurveyContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { nanoid } from "nanoid";
 
 const PhotoSurvey = () => {
   const navigate = useNavigate();
@@ -29,10 +30,10 @@ const PhotoSurvey = () => {
     if (file && photoCount < 3) {
       setIsUploading(true);
       try {
-        // Generate unique filename
+        // Generate unique filename using nanoid
         const fileExt = file.name.split('.').pop();
-        const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
-        const filePath = `${fileName}`;
+        const fileName = `${nanoid()}.${fileExt}`;
+        const filePath = fileName;
 
         // Upload to Supabase Storage
         const { error: uploadError } = await supabase.storage
