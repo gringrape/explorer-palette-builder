@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { SurveyProvider } from "@/contexts/SurveyContext";
 import Index from "./pages/Index";
 import TeamInfo from "./pages/TeamInfo";
 import Preparation from "./pages/Preparation";
@@ -25,10 +26,11 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
+      <SurveyProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/team-info" element={<TeamInfo />} />
           <Route path="/preparation" element={<Preparation />} />
@@ -46,8 +48,9 @@ const App = () => (
           <Route path="/goodbye" element={<GoodbyePage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </SurveyProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

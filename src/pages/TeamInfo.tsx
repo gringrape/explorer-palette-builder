@@ -5,9 +5,11 @@ import { Plus } from "lucide-react";
 import TeamMemberInput from "@/components/TeamMemberInput";
 import { characterImage } from "@/assets";
 import { typography } from "@/theme/typography";
+import { useSurvey } from "@/contexts/SurveyContext";
 
 const TeamInfo = () => {
   const navigate = useNavigate();
+  const { updateSurveyData } = useSurvey();
   const [teamName, setTeamName] = useState("");
   const [members, setMembers] = useState(["", ""]);
 
@@ -22,6 +24,10 @@ const TeamInfo = () => {
   };
 
   const handleNext = () => {
+    updateSurveyData({
+      teamName,
+      teamMembers: members.filter((m) => m.trim() !== ""),
+    });
     console.log("Team Name:", teamName);
     console.log("Members:", members);
     navigate("/preparation");

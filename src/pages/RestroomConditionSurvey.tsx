@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
+import { useSurvey } from "@/contexts/SurveyContext";
 
 const RestroomConditionSurvey = () => {
   const navigate = useNavigate();
+  const { updateSurveyData } = useSurvey();
   const [currentStep, setCurrentStep] = useState(1);
   const [dreamSchool, setDreamSchool] = useState<string>("");
   const [canUseRestroom, setCanUseRestroom] = useState<string>("");
@@ -17,6 +19,7 @@ const RestroomConditionSurvey = () => {
 
   const handleCanUseSelect = (value: string) => {
     setCanUseRestroom(value);
+    updateSurveyData({ dreamSchool, canUseRestroom: value });
     if (value === "yes") {
       // 장애인 화장실을 사용할 수 있으면 시작 화면으로
       setTimeout(() => navigate("/survey-start"), 300);
@@ -31,6 +34,7 @@ const RestroomConditionSurvey = () => {
       ? whyNotUse.filter((v) => v !== value)
       : [...whyNotUse, value];
     setWhyNotUse(newWhyNotUse);
+    updateSurveyData({ whyNotUse: newWhyNotUse });
     
     // 선택 후 바로 goodbye 페이지로 이동
     console.log("Restroom condition survey:", { dreamSchool, canUseRestroom, whyNotUse: newWhyNotUse });

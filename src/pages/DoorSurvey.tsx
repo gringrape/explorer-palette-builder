@@ -4,14 +4,17 @@ import { typography } from "@/theme/typography";
 import { colors } from "@/theme/colors";
 import { useNavigate } from "react-router-dom";
 import momoDoorVideo from "@/assets/momo-door-video.mp4";
+import { useSurvey } from "@/contexts/SurveyContext";
 
 const DoorSurvey = () => {
   const navigate = useNavigate();
+  const { updateSurveyData } = useSurvey();
   const [doorType, setDoorType] = useState<string>("");
 
   const isSelected = doorType !== "";
 
   const handleNext = () => {
+    updateSurveyData({ doorType });
     console.log("Door survey:", { doorType });
     navigate("/midpoint-encouragement");
   };

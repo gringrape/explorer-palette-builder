@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import { colors } from "@/theme/colors";
 import { useNavigate } from "react-router-dom";
+import { useSurvey } from "@/contexts/SurveyContext";
 
 const LocationSurvey = () => {
   const navigate = useNavigate();
+  const { updateSurveyData } = useSurvey();
   const [building, setBuilding] = useState<string>("");
   const [floor, setFloor] = useState<string>("");
   const [gender, setGender] = useState<string>("");
@@ -13,6 +15,7 @@ const LocationSurvey = () => {
   const isAllSelected = building !== "" && floor !== "" && gender !== "";
 
   const handleNext = () => {
+    updateSurveyData({ building, floor, gender });
     console.log("Location survey:", { building, floor, gender });
     navigate("/restroom-condition-survey");
   };

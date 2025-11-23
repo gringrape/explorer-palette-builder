@@ -4,9 +4,11 @@ import { typography } from "@/theme/typography";
 import { useNavigate } from "react-router-dom";
 import { photoGuide } from "@/assets";
 import { Camera } from "lucide-react";
+import { useSurvey } from "@/contexts/SurveyContext";
 
 const PhotoSurvey = () => {
   const navigate = useNavigate();
+  const { updateSurveyData } = useSurvey();
   const [photoCount, setPhotoCount] = useState<number>(0);
   const [photos, setPhotos] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -37,6 +39,7 @@ const PhotoSurvey = () => {
   };
 
   const handleNext = () => {
+    updateSurveyData({ photos });
     console.log("Photo survey:", { photoCount });
     navigate("/handrail-survey");
   };
