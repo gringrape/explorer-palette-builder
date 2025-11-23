@@ -4,15 +4,18 @@ import { Input } from "@/components/ui/input";
 import { typography } from "@/theme/typography";
 import { useNavigate } from "react-router-dom";
 import characterImage from "@/assets/character.png";
+import { useSurvey } from "@/contexts/SurveyContext";
 
 const SizeSurvey = () => {
   const navigate = useNavigate();
+  const { updateSurveyData } = useSurvey();
   const [width, setWidth] = useState<string>("");
   const [height, setHeight] = useState<string>("");
 
   const isSelected = width !== "" && height !== "";
 
   const handleNext = () => {
+    updateSurveyData({ width, height });
     console.log("Size survey:", { width, height });
     navigate("/photo-survey");
   };

@@ -3,9 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import handrailImage from "@/assets/handrail-illustration.png";
+import { useSurvey } from "@/contexts/SurveyContext";
 
 const HandrailSurvey = () => {
   const navigate = useNavigate();
+  const { updateSurveyData } = useSurvey();
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
   const handrailOptions = [
@@ -24,6 +26,7 @@ const HandrailSurvey = () => {
   };
 
   const handleNext = () => {
+    updateSurveyData({ handrailTypes: selectedTypes });
     console.log("Selected handrail types:", selectedTypes);
     navigate("/sink-survey");
   };
