@@ -5,12 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { photoGuide } from "@/assets";
 import { Camera } from "lucide-react";
 import { useSurvey } from "@/contexts/SurveyContext";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const PhotoSurvey = () => {
   const navigate = useNavigate();
   const { updateSurveyData } = useSurvey();
+  const { toast } = useToast();
   const [photoCount, setPhotoCount] = useState<number>(0);
   const [photos, setPhotos] = useState<string[]>([]);
+  const [isUploading, setIsUploading] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isComplete = photoCount > 0;
@@ -20,17 +24,45 @@ const PhotoSurvey = () => {
     fileInputRef.current?.click();
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file && photoCount < 3) {
-      // Create a preview URL for the image
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const result = reader.result as string;
-        setPhotos((prev) => [...prev, result]);
+      setIsUploading(true);
+      try {
+        // Generate unique filename
+        const fileExt = file.name.split('.').pop();
+        const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        // Upload to Supabase Storage
+        const { error: uploadError } = await supabase.storage
+          .from('survey-photos')
+          .upload(filePath, file);
+
+        if (uploadError) throw uploadError;
+
+        // Get public URL
+        const { data } = supabase.storage
+          .from('survey-photos')
+          .getPublicUrl(filePath);
+
+        setPhotos((prev) => [...prev, data.publicUrl]);
         setPhotoCount((prev) => Math.min(prev + 1, 3));
-      };
-      reader.readAsDataURL(file);
+        
+        toast({
+          title: "사진이 업로드되었습니다",
+          description: `${photoCount + 1}/3 장`,
+        });
+      } catch (error) {
+        console.error('Upload error:', error);
+        toast({
+          title: "업로드 실패",
+          description: "사진 업로드 중 오류가 발생했습니다",
+          variant: "destructive",
+        });
+      } finally {
+        setIsUploading(false);
+      }
     }
     // Reset input so the same file can be selected again
     if (fileInputRef.current) {
@@ -118,15 +150,15 @@ const PhotoSurvey = () => {
           {/* 사진 촬영 버튼 */}
           <Button
             onClick={handleTakePhoto}
-            disabled={photoCount >= 3}
+            disabled={photoCount >= 3 || isUploading}
             className={`w-full h-14 rounded-full ${typography.button} font-bold transition-all ${
-              photoCount >= 3
+              photoCount >= 3 || isUploading
                 ? "bg-primary/30 text-primary-foreground cursor-not-allowed"
                 : "bg-primary hover:bg-primary/90 text-primary-foreground"
             }`}
           >
             <Camera className="mr-2 h-5 w-5" />
-            사진 촬영하기 {photoCount > 0 && `(${photoCount}/3)`}
+            {isUploading ? "업로드 중..." : `사진 촬영하기 ${photoCount > 0 ? `(${photoCount}/3)` : ""}`}
           </Button>
 
           {/* 촬영한 사진 미리보기 */}
