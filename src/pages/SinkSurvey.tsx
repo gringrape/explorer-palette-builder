@@ -5,6 +5,7 @@ import { typography } from "@/theme/typography";
 import momoWashHandsVideo from "@/assets/momo-wash-hands.mp4";
 import { useToast } from "@/hooks/use-toast";
 import { useSurvey } from "@/contexts/SurveyContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const SinkSurvey = () => {
   const navigate = useNavigate();
