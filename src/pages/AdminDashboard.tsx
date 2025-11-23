@@ -11,8 +11,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, RefreshCw } from "lucide-react";
+import { Loader2, RefreshCw, Image as ImageIcon } from "lucide-react";
 
 interface SurveyResponse {
   id: string;
@@ -150,12 +157,13 @@ const AdminDashboard = () => {
                     <TableHead>문 종류</TableHead>
                     <TableHead>크기(가로x세로)</TableHead>
                     <TableHead>사진 수</TableHead>
+                    <TableHead>사진 보기</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {responses.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={9} className="text-center py-8 text-muted-foreground">
+                      <TableCell colSpan={10} className="text-center py-8 text-muted-foreground">
                         아직 제출된 설문이 없습니다.
                       </TableCell>
                     </TableRow>
@@ -173,6 +181,51 @@ const AdminDashboard = () => {
                         <TableCell>{response.door_type}</TableCell>
                         <TableCell>{response.width} x {response.height} cm</TableCell>
                         <TableCell>{response.photos?.length || 0}장</TableCell>
+                        <TableCell>
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                disabled={!response.photos || response.photos.length === 0}
+                                className="gap-2"
+                              >
+                                <ImageIcon className="h-4 w-4" />
+                                보기
+                              </Button>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                              <DialogHeader>
+                                <DialogTitle>
+                                  {response.team_name} - 촬영 사진
+                                </DialogTitle>
+                              </DialogHeader>
+                              <div className="space-y-4">
+                                <div className="grid grid-cols-1 gap-4">
+                                  {response.photos?.map((photo, idx) => (
+                                    <div key={idx} className="space-y-2">
+                                      <p className={`${typography.body} font-semibold`}>
+                                        사진 {idx + 1}
+                                      </p>
+                                      <div className="relative aspect-video rounded-lg overflow-hidden border-2 border-border">
+                                        <img
+                                          src={photo}
+                                          alt={`${response.team_name} 사진 ${idx + 1}`}
+                                          className="w-full h-full object-contain bg-muted"
+                                        />
+                                      </div>
+                                    </div>
+                                  ))}
+                                </div>
+                                {(!response.photos || response.photos.length === 0) && (
+                                  <p className="text-center text-muted-foreground py-8">
+                                    사진이 없습니다.
+                                  </p>
+                                )}
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        </TableCell>
                       </TableRow>
                     ))
                   )}
