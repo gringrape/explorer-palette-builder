@@ -3,16 +3,82 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import sinkImage from "@/assets/sink-illustration.png";
+import { useSurvey } from "@/contexts/SurveyContext";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const SinkSurvey = () => {
   const navigate = useNavigate();
+  const { surveyData, updateSurveyData, resetSurveyData } = useSurvey();
+  const { toast } = useToast();
   const [hasSink, setHasSink] = useState<string>("");
   const [canWash, setCanWash] = useState<string>("");
   const [sinkHeight, setSinkHeight] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleNext = () => {
-    console.log("Sink survey:", { hasSink, canWash, sinkHeight });
-    navigate("/goodbye");
+  const handleNext = async () => {
+    setIsSubmitting(true);
+    
+    // Update final survey data
+    updateSurveyData({ hasSink, canWash, sinkHeight });
+    
+    // Prepare data for database
+    const finalData = {
+      ...surveyData,
+      hasSink,
+      canWash,
+      sinkHeight,
+    };
+
+    try {
+      const { error } = await supabase.from("survey_responses").insert({
+        team_name: finalData.teamName,
+        team_members: finalData.teamMembers,
+        building: finalData.building,
+        floor: finalData.floor,
+        gender: finalData.gender,
+        dream_school: finalData.dreamSchool,
+        can_use_restroom: finalData.canUseRestroom,
+        why_not_use: finalData.whyNotUse,
+        door_type: finalData.doorType,
+        width: finalData.width,
+        height: finalData.height,
+        photos: finalData.photos,
+        handrail_types: finalData.handrailTypes,
+        has_sink: finalData.hasSink,
+        can_wash: finalData.canWash,
+        sink_height: finalData.sinkHeight,
+      });
+
+      if (error) {
+        console.error("Error saving survey:", error);
+        toast({
+          title: "저장 실패",
+          description: "설문 데이터 저장에 실패했습니다. 다시 시도해주세요.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      console.log("Survey saved successfully!");
+      toast({
+        title: "저장 완료",
+        description: "설문 데이터가 성공적으로 저장되었습니다.",
+      });
+      
+      // Reset survey data for next response
+      resetSurveyData();
+      navigate("/goodbye");
+    } catch (error) {
+      console.error("Unexpected error:", error);
+      toast({
+        title: "오류 발생",
+        description: "예상치 못한 오류가 발생했습니다.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+    }
   };
 
   const isComplete = hasSink !== "" && canWash !== "" && sinkHeight !== "";
@@ -141,14 +207,14 @@ const SinkSurvey = () => {
       <div className="p-6 bg-card">
         <Button
           onClick={handleNext}
-          disabled={!isComplete}
+          disabled={!isComplete || isSubmitting}
           className={`w-full h-14 rounded-xl ${typography.button} font-bold transition-all ${
-            isComplete
+            isComplete && !isSubmitting
               ? "bg-primary hover:bg-primary/90 text-primary-foreground"
               : "bg-primary/30 text-primary-foreground cursor-not-allowed"
           }`}
         >
-          다음
+          {isSubmitting ? "저장 중..." : "다음"}
         </Button>
       </div>
     </div>
