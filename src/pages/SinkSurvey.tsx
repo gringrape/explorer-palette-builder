@@ -5,7 +5,7 @@ import { typography } from "@/theme/typography";
 import momoWashHandsVideo from "@/assets/momo-wash-hands.mp4";
 import { useToast } from "@/hooks/use-toast";
 import { useSurvey } from "@/contexts/SurveyContext";
-import { supabase } from "@/integrations/supabase/client";
+import { saveSurveyResponse } from "@/lib/api";
 
 const SinkSurvey = () => {
   const navigate = useNavigate();
@@ -31,35 +31,7 @@ const SinkSurvey = () => {
     };
 
     try {
-      const { error } = await supabase.from("survey_responses").insert({
-        team_name: finalData.teamName,
-        team_members: finalData.teamMembers,
-        building: finalData.building,
-        floor: finalData.floor,
-        gender: finalData.gender,
-        dream_school: finalData.dreamSchool,
-        can_use_restroom: finalData.canUseRestroom,
-        why_not_use: finalData.whyNotUse,
-        door_type: finalData.doorType,
-        width: finalData.width,
-        height: finalData.height,
-        photos: finalData.photos,
-        handrail_types: finalData.handrailTypes,
-        has_sink: finalData.hasSink,
-        can_wash: finalData.canWash,
-        sink_height: finalData.sinkHeight,
-      });
-
-      if (error) {
-        console.error("Error saving survey:", error);
-        toast({
-          title: "저장 실패",
-          description: "설문 데이터 저장에 실패했습니다. 다시 시도해주세요.",
-          variant: "destructive",
-        });
-        setIsSubmitting(false);
-        return;
-      }
+      await saveSurveyResponse(finalData);
 
       console.log("Survey saved successfully!");
       toast({
@@ -71,10 +43,10 @@ const SinkSurvey = () => {
       resetSurveyData();
       navigate("/goodbye");
     } catch (error) {
-      console.error("Unexpected error:", error);
+      console.error("Error saving survey:", error);
       toast({
-        title: "오류 발생",
-        description: "예상치 못한 오류가 발생했습니다.",
+        title: "저장 실패",
+        description: "설문 데이터 저장에 실패했습니다. 다시 시도해주세요.",
         variant: "destructive",
       });
       setIsSubmitting(false);

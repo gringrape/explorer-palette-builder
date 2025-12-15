@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { photoGuide } from "@/assets";
 import { Camera } from "lucide-react";
 import { useSurvey } from "@/contexts/SurveyContext";
-import { supabase } from "@/integrations/supabase/client";
+import { uploadPhoto } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { nanoid } from "nanoid";
 
@@ -21,7 +21,6 @@ const PhotoSurvey = () => {
   const isComplete = photoCount > 0;
 
   const handleTakePhoto = () => {
-    // Trigger file input to open camera
     fileInputRef.current?.click();
   };
 
@@ -30,24 +29,12 @@ const PhotoSurvey = () => {
     if (file && photoCount < 3) {
       setIsUploading(true);
       try {
-        // Generate unique filename using nanoid
         const fileExt = file.name.split('.').pop();
         const fileName = `${nanoid()}.${fileExt}`;
-        const filePath = fileName;
 
-        // Upload to Supabase Storage
-        const { error: uploadError } = await supabase.storage
-          .from('survey-photos')
-          .upload(filePath, file);
+        const publicUrl = await uploadPhoto(file, fileName);
 
-        if (uploadError) throw uploadError;
-
-        // Get public URL
-        const { data } = supabase.storage
-          .from('survey-photos')
-          .getPublicUrl(filePath);
-
-        setPhotos((prev) => [...prev, data.publicUrl]);
+        setPhotos((prev) => [...prev, publicUrl]);
         setPhotoCount((prev) => Math.min(prev + 1, 3));
         
         toast({
@@ -65,7 +52,6 @@ const PhotoSurvey = () => {
         setIsUploading(false);
       }
     }
-    // Reset input so the same file can be selected again
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }

@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
-import { momoUnavailable } from "@/assets";
 import { useSurvey } from "@/contexts/SurveyContext";
-import { supabase } from "@/integrations/supabase/client";
+import { saveSurveyResponse } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 
 const RestroomUnavailablePage = () => {
@@ -40,35 +39,7 @@ const RestroomUnavailablePage = () => {
     };
 
     try {
-      const { error } = await supabase.from("survey_responses").insert({
-        team_name: finalData.teamName,
-        team_members: finalData.teamMembers,
-        building: finalData.building,
-        floor: finalData.floor,
-        gender: finalData.gender,
-        dream_school: finalData.dreamSchool,
-        can_use_restroom: finalData.canUseRestroom,
-        why_not_use: finalData.whyNotUse,
-        door_type: null,
-        width: null,
-        height: null,
-        photos: null,
-        handrail_types: null,
-        has_sink: null,
-        can_wash: null,
-        sink_height: null,
-      });
-
-      if (error) {
-        console.error("Error saving survey:", error);
-        toast({
-          title: "저장 실패",
-          description: "설문 데이터 저장에 실패했습니다. 다시 시도해주세요.",
-          variant: "destructive",
-        });
-        setIsSubmitting(false);
-        return;
-      }
+      await saveSurveyResponse(finalData);
 
       console.log("Survey saved successfully!");
       toast({
@@ -79,10 +50,10 @@ const RestroomUnavailablePage = () => {
       resetSurveyData();
       navigate("/goodbye");
     } catch (error) {
-      console.error("Unexpected error:", error);
+      console.error("Error saving survey:", error);
       toast({
-        title: "오류 발생",
-        description: "예상치 못한 오류가 발생했습니다.",
+        title: "저장 실패",
+        description: "설문 데이터 저장에 실패했습니다. 다시 시도해주세요.",
         variant: "destructive",
       });
       setIsSubmitting(false);
