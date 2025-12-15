@@ -107,5 +107,6 @@ export async function uploadPhoto(file: File, fileName: string): Promise<string>
   }
 
   const data = await response.json();
+  console.log(data);
   return data.publicUrl;
 }
