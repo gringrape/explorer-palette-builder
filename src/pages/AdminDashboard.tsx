@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { typography } from "@/theme/typography";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
+import { fetchAllSurveyResponses, SurveyResponse } from "@/lib/api";
 import {
   Table,
   TableBody,
@@ -12,28 +12,7 @@ import {
 } from "@/components/ui/table";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2, RefreshCw, Image as ImageIcon } from "lucide-react";
-
-interface SurveyResponse {
-  id: string;
-  created_at: string;
-  team_name: string;
-  team_members: string[];
-  building: string;
-  floor: string;
-  gender: string;
-  dream_school: string;
-  can_use_restroom: string;
-  why_not_use: string[];
-  door_type: string;
-  width: string;
-  height: string;
-  photos: string[];
-  handrail_types: string[];
-  has_sink: string;
-  can_wash: string;
-  sink_height: string;
-}
+import { Loader2, RefreshCw } from "lucide-react";
 
 const AdminDashboard = () => {
   const [responses, setResponses] = useState<SurveyResponse[]>([]);
@@ -43,17 +22,11 @@ const AdminDashboard = () => {
   const fetchResponses = async () => {
     setIsLoading(true);
     try {
-      const { data, error } = await supabase
-        .from("survey_responses")
-        .select("*")
-        .order("created_at", { ascending: false });
-
-      if (error) throw error;
-
-      setResponses(data || []);
+      const data = await fetchAllSurveyResponses();
+      setResponses(data);
       toast({
         title: "데이터 로드 완료",
-        description: `${data?.length || 0}개의 설문 응답을 불러왔습니다.`,
+        description: `${data.length}개의 설문 응답을 불러왔습니다.`,
       });
     } catch (error) {
       console.error("Error fetching responses:", error);
