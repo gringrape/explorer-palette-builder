@@ -1,4 +1,4 @@
-import { supabase } from "@/integrations/supabase/client";
+const API_BASE_URL = "https://teacher.momo-school.shop";
 
 export interface SurveyData {
   teamName: string;
@@ -42,51 +42,70 @@ export interface SurveyResponse {
 
 // 설문 응답 저장 (전체 설문 완료 시)
 export async function saveSurveyResponse(data: SurveyData) {
-  const { error } = await supabase.from("survey_responses").insert({
-    team_name: data.teamName,
-    team_members: data.teamMembers,
-    building: data.building || null,
-    floor: data.floor || null,
-    gender: data.gender || null,
-    dream_school: data.dreamSchool || null,
-    can_use_restroom: data.canUseRestroom || null,
-    why_not_use: data.whyNotUse || null,
-    door_type: data.doorType || null,
-    width: data.width || null,
-    height: data.height || null,
-    photos: data.photos || null,
-    handrail_types: data.handrailTypes || null,
-    has_sink: data.hasSink || null,
-    can_wash: data.canWash || null,
-    sink_height: data.sinkHeight || null,
+  const response = await fetch(`${API_BASE_URL}/api/survey`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      team_name: data.teamName,
+      team_members: data.teamMembers,
+      building: data.building || null,
+      floor: data.floor || null,
+      gender: data.gender || null,
+      dream_school: data.dreamSchool || null,
+      can_use_restroom: data.canUseRestroom || null,
+      why_not_use: data.whyNotUse || null,
+      door_type: data.doorType || null,
+      width: data.width || null,
+      height: data.height || null,
+      photos: data.photos || null,
+      handrail_types: data.handrailTypes || null,
+      has_sink: data.hasSink || null,
+      can_wash: data.canWash || null,
+      sink_height: data.sinkHeight || null,
+    }),
   });
 
-  if (error) throw error;
+  if (!response.ok) {
+    throw new Error("Failed to save survey response");
+  }
+
   return { success: true };
 }
 
 // 모든 설문 응답 조회 (관리자용)
 export async function fetchAllSurveyResponses(): Promise<SurveyResponse[]> {
-  const { data, error } = await supabase
-    .from("survey_responses")
-    .select("*")
-    .order("created_at", { ascending: false });
+  const response = await fetch(`${API_BASE_URL}/api/survey`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-  if (error) throw error;
+  if (!response.ok) {
+    throw new Error("Failed to fetch survey responses");
+  }
+
+  const data = await response.json();
   return data || [];
 }
 
 // 사진 업로드
 export async function uploadPhoto(file: File, fileName: string): Promise<string> {
-  const { error: uploadError } = await supabase.storage
-    .from("survey-photos")
-    .upload(fileName, file);
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("fileName", fileName);
 
-  if (uploadError) throw uploadError;
+  const response = await fetch(`${API_BASE_URL}/api/survey/upload`, {
+    method: "POST",
+    body: formData,
+  });
 
-  const { data } = supabase.storage
-    .from("survey-photos")
-    .getPublicUrl(fileName);
+  if (!response.ok) {
+    throw new Error("Failed to upload photo");
+  }
 
-  return data.publicUrl;
+  const data = await response.json();
+  return data.url;
 }
