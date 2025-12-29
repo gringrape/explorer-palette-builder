@@ -9,7 +9,6 @@ import TeamInfo from "./pages/TeamInfo";
 import Preparation from "./pages/Preparation";
 import Roadmap from "./pages/Roadmap";
 import LocationSurvey from "./pages/LocationSurvey";
-import RestroomConditionSurvey from "./pages/RestroomConditionSurvey";
 import SurveyStart from "./pages/SurveyStart";
 import RestroomUnavailablePage from "./pages/RestroomUnavailablePage";
 import DoorSurvey from "./pages/DoorSurvey";
@@ -37,7 +36,6 @@ const App = () => (
           <Route path="/preparation" element={<Preparation />} />
           <Route path="/roadmap" element={<Roadmap />} />
             <Route path="/location-survey" element={<LocationSurvey />} />
-            <Route path="/restroom-condition-survey" element={<RestroomConditionSurvey />} />
             <Route path="/survey-start" element={<SurveyStart />} />
             <Route path="/restroom-unavailable" element={<RestroomUnavailablePage />} />
             <Route path="/door-survey" element={<DoorSurvey />} />
