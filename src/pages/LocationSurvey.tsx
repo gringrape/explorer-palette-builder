@@ -18,7 +18,12 @@ const LocationSurvey = () => {
   const handleNext = () => {
     updateSurveyData({ canUseRestroom, building, floor, gender });
     console.log("Location survey:", { canUseRestroom, building, floor, gender });
-    navigate("/survey-start");
+    
+    if (canUseRestroom === "사용 못해") {
+      navigate("/restroom-unavailable");
+    } else {
+      navigate("/survey-start");
+    }
   };
 
   const canUseOptions = ["사용할 수 있어!", "사용 못해"];
