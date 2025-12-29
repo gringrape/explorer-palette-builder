@@ -21,7 +21,7 @@ const LocationSurvey = () => {
     navigate("/survey-start");
   };
 
-  const canUseOptions = ["사용할 수 있음", "사용할 수 없음"];
+  const canUseOptions = ["사용할 수 있어!", "사용 못해"];
 
   const buildingOptions = ["본관", "별관", "체육관", "기타"];
   const floorOptions = ["1층", "2층", "3층", "4층"];
