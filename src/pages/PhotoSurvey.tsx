@@ -29,10 +29,13 @@ const PhotoSurvey = () => {
     if (file && photoCount < 3) {
       setIsUploading(true);
       try {
-        const fileExt = file.name.split('.').pop();
+        const fileExt = file.name.split('.').pop() || 'jpg';
         const fileName = `${nanoid()}.${fileExt}`;
+        
+        // 새 File 객체 생성 (nanoid 파일명 적용)
+        const renamedFile = new File([file], fileName, { type: file.type });
 
-        const publicUrl = await uploadPhoto(file, fileName);
+        const publicUrl = await uploadPhoto(renamedFile, fileName);
 
         setPhotos((prev) => [...prev, publicUrl]);
         setPhotoCount((prev) => Math.min(prev + 1, 3));
