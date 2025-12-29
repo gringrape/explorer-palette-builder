@@ -16,7 +16,6 @@ import SizeSurvey from "./pages/SizeSurvey";
 import PhotoSurvey from "./pages/PhotoSurvey";
 import HandrailSurvey from "./pages/HandrailSurvey";
 import SinkSurvey from "./pages/SinkSurvey";
-import MidpointEncouragement from "./pages/MidpointEncouragement";
 import GoodbyePage from "./pages/GoodbyePage";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
@@ -39,7 +38,6 @@ const App = () => (
             <Route path="/survey-start" element={<SurveyStart />} />
             <Route path="/restroom-unavailable" element={<RestroomUnavailablePage />} />
             <Route path="/door-survey" element={<DoorSurvey />} />
-            <Route path="/midpoint-encouragement" element={<MidpointEncouragement />} />
           <Route path="/size-survey" element={<SizeSurvey />} />
           <Route path="/photo-survey" element={<PhotoSurvey />} />
           <Route path="/handrail-survey" element={<HandrailSurvey />} />
