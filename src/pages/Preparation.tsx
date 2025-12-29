@@ -55,7 +55,7 @@ const Preparation = () => {
         <div className="space-y-3.5">
           {/* Wheelchair */}
           <div className="space-y-3">
-            <Label className={`${typography.body} font-bold text-foreground`}>휠체어 있니?</Label>
+            <Label className={`${typography.body} font-bold text-foreground`}>휠체어가 준비되어 있니?</Label>
             <div className="grid grid-cols-2 gap-3">
               <Button
                 type="button"
@@ -88,7 +88,7 @@ const Preparation = () => {
 
           {/* Tape */}
           <div className="space-y-3">
-            <Label className={`${typography.body} font-bold text-foreground`}>줄자 있니?</Label>
+            <Label className={`${typography.body} font-bold text-foreground`}>줄자는 가져왔어?</Label>
             <div className="grid grid-cols-2 gap-3">
               <Button
                 type="button"
@@ -121,7 +121,7 @@ const Preparation = () => {
 
           {/* Selfie Stick */}
           <div className="space-y-3">
-            <Label className={`${typography.body} font-bold text-foreground`}>셀카봉 있니?</Label>
+            <Label className={`${typography.body} font-bold text-foreground`}>화장실 사진을 찍을 셀카봉은 있어?</Label>
             <div className="grid grid-cols-2 gap-3">
               <Button
                 type="button"
