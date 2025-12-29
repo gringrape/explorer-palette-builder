@@ -68,7 +68,7 @@ const Preparation = () => {
                     : colors.button.unselected
                 }`}
               >
-                응
+                휠체어 준비 완료!
               </Button>
               <Button
                 type="button"
@@ -81,7 +81,7 @@ const Preparation = () => {
                     : colors.button.unselected
                 }`}
               >
-                아니
+                휠체어는 없어.
               </Button>
             </div>
           </div>
@@ -101,7 +101,7 @@ const Preparation = () => {
                     : colors.button.unselected
                 }`}
               >
-                응
+                줄자 있어!
               </Button>
               <Button
                 type="button"
@@ -114,7 +114,7 @@ const Preparation = () => {
                     : colors.button.unselected
                 }`}
               >
-                아니
+                줄자는 못챙겼어.
               </Button>
             </div>
           </div>
@@ -134,7 +134,7 @@ const Preparation = () => {
                     : colors.button.unselected
                 }`}
               >
-                응
+                셀카봉 챙겨왔어!
               </Button>
               <Button
                 type="button"
@@ -147,7 +147,7 @@ const Preparation = () => {
                     : colors.button.unselected
                 }`}
               >
-                아니
+                셀카봉이 없어.
               </Button>
             </div>
           </div>
