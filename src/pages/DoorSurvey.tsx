@@ -16,7 +16,7 @@ const DoorSurvey = () => {
   const handleNext = () => {
     updateSurveyData({ doorType });
     console.log("Door survey:", { doorType });
-    navigate("/midpoint-encouragement");
+    navigate("/size-survey");
   };
 
   const doorOptions = [
