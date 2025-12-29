@@ -8,17 +8,20 @@ import { useSurvey } from "@/contexts/SurveyContext";
 const LocationSurvey = () => {
   const navigate = useNavigate();
   const { updateSurveyData } = useSurvey();
+  const [canUseRestroom, setCanUseRestroom] = useState<string>("");
   const [building, setBuilding] = useState<string>("");
   const [floor, setFloor] = useState<string>("");
   const [gender, setGender] = useState<string>("");
 
-  const isAllSelected = building !== "" && floor !== "" && gender !== "";
+  const isAllSelected = canUseRestroom !== "" && building !== "" && floor !== "" && gender !== "";
 
   const handleNext = () => {
-    updateSurveyData({ building, floor, gender });
-    console.log("Location survey:", { building, floor, gender });
+    updateSurveyData({ canUseRestroom, building, floor, gender });
+    console.log("Location survey:", { canUseRestroom, building, floor, gender });
     navigate("/survey-start");
   };
+
+  const canUseOptions = ["사용할 수 있음", "사용할 수 없음"];
 
   const buildingOptions = ["본관", "별관", "체육관", "기타"];
   const floorOptions = ["1층", "2층", "3층", "4층"];
@@ -37,6 +40,29 @@ const LocationSurvey = () => {
       </header>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        {/* 장애인화장실 사용 가능 여부 */}
+        <div className="bg-card p-4">
+          <h2 className={`${typography.title} font-bold text-foreground mb-4`}>
+            모모가 우리학교 장애인화장실을 쓸 수 있어?
+          </h2>
+          <div className="grid grid-cols-2 gap-3">
+            {canUseOptions.map((option) => (
+              <Button
+                key={option}
+                onClick={() => setCanUseRestroom(option)}
+                className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
+                  canUseRestroom === option
+                    ? colors.button.selected
+                    : colors.button.unselected
+                }`}
+                variant="outline"
+              >
+                {option}
+              </Button>
+            ))}
+          </div>
+        </div>
+
         {/* 건물 찾기 */}
         <div className="bg-card p-4">
           <h2 className={`${typography.title} font-bold text-foreground mb-4`}>
