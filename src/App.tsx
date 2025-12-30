@@ -7,7 +7,7 @@ import { SurveyProvider } from "@/contexts/SurveyContext";
 import Index from "./pages/Index";
 import TeamInfo from "./pages/TeamInfo";
 import Preparation from "./pages/Preparation";
-import Roadmap from "./pages/Roadmap";
+
 import LocationSurvey from "./pages/LocationSurvey";
 import SurveyStart from "./pages/SurveyStart";
 import RestroomUnavailablePage from "./pages/RestroomUnavailablePage";
@@ -33,7 +33,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/team-info" element={<TeamInfo />} />
           <Route path="/preparation" element={<Preparation />} />
-          <Route path="/roadmap" element={<Roadmap />} />
+          
             <Route path="/location-survey" element={<LocationSurvey />} />
             <Route path="/survey-start" element={<SurveyStart />} />
             <Route path="/restroom-unavailable" element={<RestroomUnavailablePage />} />
