@@ -19,7 +19,7 @@ export type Database = {
           building: string | null
           can_wash: string | null
           created_at: string
-          door_type: string | null
+          door_type: Database["public"]["Enums"]["door_type_enum"] | null
           floor: number | null
           gender: string | null
           handrail_types: string[] | null
@@ -39,7 +39,7 @@ export type Database = {
           building?: string | null
           can_wash?: string | null
           created_at?: string
-          door_type?: string | null
+          door_type?: Database["public"]["Enums"]["door_type_enum"] | null
           floor?: number | null
           gender?: string | null
           handrail_types?: string[] | null
@@ -59,7 +59,7 @@ export type Database = {
           building?: string | null
           can_wash?: string | null
           created_at?: string
-          door_type?: string | null
+          door_type?: Database["public"]["Enums"]["door_type_enum"] | null
           floor?: number | null
           gender?: string | null
           handrail_types?: string[] | null
@@ -85,7 +85,12 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      door_type_enum:
+        | "swing_door"
+        | "sliding_door"
+        | "automatic_door"
+        | "accordion_door"
+        | "folding_door"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -212,6 +217,14 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      door_type_enum: [
+        "swing_door",
+        "sliding_door",
+        "automatic_door",
+        "accordion_door",
+        "folding_door",
+      ],
+    },
   },
 } as const

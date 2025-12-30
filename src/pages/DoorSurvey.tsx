@@ -20,11 +20,11 @@ const DoorSurvey = () => {
   };
 
   const doorOptions = [
-    "앞으로 여는 문",
-    "옆으로 미는 문",
-    "자동문(버튼)",
-    "접는문(아코디언)",
-    "기타(입력하기)"
+    { label: "앞으로 여는 문", value: "swing_door" },
+    { label: "옆으로 미는 문", value: "sliding_door" },
+    { label: "자동문(버튼)", value: "automatic_door" },
+    { label: "접는문(아코디언)", value: "accordion_door" },
+    { label: "폴딩도어", value: "folding_door" },
   ];
 
   return (
@@ -59,16 +59,16 @@ const DoorSurvey = () => {
           <div className="flex flex-col gap-3">
             {doorOptions.map((option) => (
               <Button
-                key={option}
-                onClick={() => setDoorType(option)}
+                key={option.value}
+                onClick={() => setDoorType(option.value)}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  doorType === option
+                  doorType === option.value
                     ? colors.button.selected
                     : colors.button.unselected
                 }`}
                 variant="outline"
               >
-                {option}
+                {option.label}
               </Button>
             ))}
           </div>
