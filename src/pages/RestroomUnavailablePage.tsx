@@ -10,18 +10,18 @@ const RestroomUnavailablePage = () => {
   const navigate = useNavigate();
   const { surveyData, updateSurveyData, resetSurveyData } = useSurvey();
   const { toast } = useToast();
-  const [whyNotUse, setWhyNotUse] = useState<string[]>([]);
+  const [unavailableReason, setUnavailableReason] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleReasonToggle = (value: string) => {
-    const newWhyNotUse = whyNotUse.includes(value)
-      ? whyNotUse.filter((v) => v !== value)
-      : [...whyNotUse, value];
-    setWhyNotUse(newWhyNotUse);
+    const newUnavailableReason = unavailableReason.includes(value)
+      ? unavailableReason.filter((v) => v !== value)
+      : [...unavailableReason, value];
+    setUnavailableReason(newUnavailableReason);
   };
 
   const handleSubmit = async () => {
-    if (whyNotUse.length === 0) {
+    if (unavailableReason.length === 0) {
       toast({
         title: "이유를 선택해주세요",
         description: "화장실을 사용할 수 없는 이유를 선택해주세요.",
@@ -31,11 +31,11 @@ const RestroomUnavailablePage = () => {
     }
 
     setIsSubmitting(true);
-    updateSurveyData({ whyNotUse });
+    updateSurveyData({ unavailableReason });
 
     const finalData = {
       ...surveyData,
-      whyNotUse,
+      unavailableReason,
     };
 
     try {
@@ -86,9 +86,9 @@ const RestroomUnavailablePage = () => {
           {/* 이유 선택 버튼들 */}
           <div className="space-y-3 px-6">
             <Button
-              onClick={() => handleReasonToggle("cleaning")}
+              onClick={() => handleReasonToggle("storage")}
               className={`w-full h-16 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                whyNotUse.includes("cleaning")
+                unavailableReason.includes("storage")
                   ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                   : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
               }`}
@@ -97,9 +97,9 @@ const RestroomUnavailablePage = () => {
               청소도구함으로 쓰이고 있어
             </Button>
             <Button
-              onClick={() => handleReasonToggle("student")}
+              onClick={() => handleReasonToggle("changing_room")}
               className={`w-full h-16 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                whyNotUse.includes("student")
+                unavailableReason.includes("changing_room")
                   ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                   : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
               }`}
@@ -108,9 +108,9 @@ const RestroomUnavailablePage = () => {
               학생 탈의실로 쓰이고 있어
             </Button>
             <Button
-              onClick={() => handleReasonToggle("teacher")}
+              onClick={() => handleReasonToggle("general_use")}
               className={`w-full h-16 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                whyNotUse.includes("teacher")
+                unavailableReason.includes("general_use")
                   ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                   : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
               }`}
@@ -119,9 +119,9 @@ const RestroomUnavailablePage = () => {
               교사, 일반학생 화장실로 쓰여
             </Button>
             <Button
-              onClick={() => handleReasonToggle("broken")}
+              onClick={() => handleReasonToggle("out_of_order")}
               className={`w-full h-16 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                whyNotUse.includes("broken")
+                unavailableReason.includes("out_of_order")
                   ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                   : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
               }`}
@@ -132,7 +132,7 @@ const RestroomUnavailablePage = () => {
             <Button
               onClick={() => handleReasonToggle("other")}
               className={`w-full h-16 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                whyNotUse.includes("other")
+                unavailableReason.includes("other")
                   ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                   : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
               }`}
@@ -148,9 +148,9 @@ const RestroomUnavailablePage = () => {
       <div className="p-6 bg-card">
         <Button
           onClick={handleSubmit}
-          disabled={whyNotUse.length === 0 || isSubmitting}
+          disabled={unavailableReason.length === 0 || isSubmitting}
           className={`w-full h-14 rounded-xl ${typography.button} font-bold transition-all ${
-            whyNotUse.length > 0 && !isSubmitting
+            unavailableReason.length > 0 && !isSubmitting
               ? "bg-primary hover:bg-primary/90 text-primary-foreground"
               : "bg-primary/30 text-primary-foreground cursor-not-allowed"
           }`}

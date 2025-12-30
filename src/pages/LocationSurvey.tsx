@@ -8,25 +8,28 @@ import { useSurvey } from "@/contexts/SurveyContext";
 const LocationSurvey = () => {
   const navigate = useNavigate();
   const { updateSurveyData } = useSurvey();
-  const [canUseRestroom, setCanUseRestroom] = useState<string>("");
+  const [accessibleRestroom, setAccessibleRestroom] = useState<string>("");
   const [building, setBuilding] = useState<string>("");
   const [floor, setFloor] = useState<number | null>(null);
   const [gender, setGender] = useState<string>("");
 
-  const isAllSelected = canUseRestroom === "사용 못해" || (canUseRestroom !== "" && building !== "" && floor !== null && gender !== "");
+  const isAllSelected = accessibleRestroom === "false" || (accessibleRestroom !== "" && building !== "" && floor !== null && gender !== "");
 
   const handleNext = () => {
-    updateSurveyData({ canUseRestroom, building, floor, gender });
-    console.log("Location survey:", { canUseRestroom, building, floor, gender });
+    updateSurveyData({ accessibleRestroom, building, floor, gender });
+    console.log("Location survey:", { accessibleRestroom, building, floor, gender });
     
-    if (canUseRestroom === "사용 못해") {
+    if (accessibleRestroom === "false") {
       navigate("/restroom-unavailable");
     } else {
       navigate("/survey-start");
     }
   };
 
-  const canUseOptions = ["사용할 수 있어!", "사용 못해"];
+  const canUseOptions = [
+    { label: "사용할 수 있어!", value: "true" },
+    { label: "사용 못해", value: "false" }
+  ];
 
   const buildingOptions = ["본관", "별관", "체육관", "기타"];
   const floorOptions = [1, 2, 3, 4];
@@ -53,23 +56,23 @@ const LocationSurvey = () => {
           <div className="grid grid-cols-2 gap-3">
             {canUseOptions.map((option) => (
               <Button
-                key={option}
-                onClick={() => setCanUseRestroom(option)}
+                key={option.value}
+                onClick={() => setAccessibleRestroom(option.value)}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  canUseRestroom === option
+                  accessibleRestroom === option.value
                     ? colors.button.selected
                     : colors.button.unselected
                 }`}
                 variant="outline"
               >
-                {option}
+                {option.label}
               </Button>
             ))}
           </div>
         </div>
 
         {/* 건물 찾기 */}
-        <div className={`bg-card p-4 transition-all duration-300 ${canUseRestroom === "사용 못해" ? "opacity-30 pointer-events-none" : ""}`}>
+        <div className={`bg-card p-4 transition-all duration-300 ${accessibleRestroom === "false" ? "opacity-30 pointer-events-none" : ""}`}>
           <h2 className={`${typography.title} font-bold text-foreground mb-4`}>
             어떤 건물의 화장실이야?
           </h2>
@@ -92,7 +95,7 @@ const LocationSurvey = () => {
         </div>
 
         {/* 층수 찾기 */}
-        <div className={`bg-card p-4 transition-all duration-300 ${canUseRestroom === "사용 못해" ? "opacity-30 pointer-events-none" : ""}`}>
+        <div className={`bg-card p-4 transition-all duration-300 ${accessibleRestroom === "false" ? "opacity-30 pointer-events-none" : ""}`}>
           <h2 className={`${typography.title} font-bold text-foreground mb-4`}>
             화장실이 몇층에 있어?
           </h2>
@@ -115,7 +118,7 @@ const LocationSurvey = () => {
         </div>
 
         {/* 성별 구분 */}
-        <div className={`bg-card p-4 transition-all duration-300 ${canUseRestroom === "사용 못해" ? "opacity-30 pointer-events-none" : ""}`}>
+        <div className={`bg-card p-4 transition-all duration-300 ${accessibleRestroom === "false" ? "opacity-30 pointer-events-none" : ""}`}>
           <h2 className={`${typography.title} font-bold text-foreground mb-4`}>
             남자 화장실이야, 여자 화장실이야?
           </h2>
