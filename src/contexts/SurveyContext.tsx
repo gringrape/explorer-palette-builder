@@ -12,7 +12,7 @@ export interface SurveyData {
   
   // Restroom condition
   dreamSchool: string;
-  accessibleRestroom: boolean | null;
+  hasAccessibleRestroom: boolean | null;
   unavailableReason: string[];
   
   // Door survey
@@ -47,7 +47,7 @@ const initialSurveyData: SurveyData = {
   floor: null,
   gender: "",
   dreamSchool: "",
-  accessibleRestroom: null,
+  hasAccessibleRestroom: null,
   unavailableReason: [],
   doorType: "",
   width: "",

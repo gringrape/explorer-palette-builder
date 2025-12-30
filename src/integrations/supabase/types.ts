@@ -16,7 +16,6 @@ export type Database = {
     Tables: {
       survey_responses: {
         Row: {
-          accessible_restroom: boolean | null
           building: string | null
           can_wash: string | null
           created_at: string
@@ -25,6 +24,7 @@ export type Database = {
           floor: number | null
           gender: string | null
           handrail_types: string[] | null
+          has_accessible_restroom: boolean | null
           has_sink: string | null
           height: string | null
           id: string
@@ -37,7 +37,6 @@ export type Database = {
           width: string | null
         }
         Insert: {
-          accessible_restroom?: boolean | null
           building?: string | null
           can_wash?: string | null
           created_at?: string
@@ -46,6 +45,7 @@ export type Database = {
           floor?: number | null
           gender?: string | null
           handrail_types?: string[] | null
+          has_accessible_restroom?: boolean | null
           has_sink?: string | null
           height?: string | null
           id?: string
@@ -58,7 +58,6 @@ export type Database = {
           width?: string | null
         }
         Update: {
-          accessible_restroom?: boolean | null
           building?: string | null
           can_wash?: string | null
           created_at?: string
@@ -67,6 +66,7 @@ export type Database = {
           floor?: number | null
           gender?: string | null
           handrail_types?: string[] | null
+          has_accessible_restroom?: boolean | null
           has_sink?: string | null
           height?: string | null
           id?: string
