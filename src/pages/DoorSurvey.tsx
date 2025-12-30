@@ -19,12 +19,104 @@ const DoorSurvey = () => {
     navigate("/size-survey");
   };
 
+  // ✅ 공통 타입
+  type IconProps = { className?: string; animate?: boolean };
+
+  // 1) 앞으로 여는 문(스윙) - TODO: SVG 교체
+  const SwingDoorIcon = ({ className }: IconProps) => (
+    <svg viewBox="0 0 96 96" fill="none" className={className}>
+      <path
+        d="M26 18H70V78H26V18Z"
+        stroke="currentColor"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M44 50H52" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+
+  // 2) 옆으로 미는 문(슬라이딩) - ✅ 실제 애니메이션
+  const SlidingDoorIcon = ({ className }: IconProps) => (
+    <svg viewBox="0 0 96 96" fill="none" className={className}>
+      <path
+        d="M26 18H70V78H26V18Z"
+        stroke="currentColor"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M30 22H66"
+        stroke="currentColor"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.9"
+      />
+      <g className="door-panel">
+        <path
+          d="M30 22H56V78H30V22Z"
+          stroke="currentColor"
+          strokeWidth="6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M50 50H54" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    </svg>
+  );
+
+  // 3) 자동문(버튼) - TODO
+  const AutomaticDoorIcon = ({ className }: IconProps) => (
+    <svg viewBox="0 0 96 96" fill="none" className={className}>
+      <path
+        d="M26 18H70V78H26V18Z"
+        stroke="currentColor"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M38 60H58" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M48 40V40" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+
+  // 4) 접는문(아코디언) - TODO
+  const AccordionDoorIcon = ({ className }: IconProps) => (
+    <svg viewBox="0 0 96 96" fill="none" className={className}>
+      <path
+        d="M26 18H70V78H26V18Z"
+        stroke="currentColor"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M34 22L62 78" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M62 22L34 78" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+
+  // 5) 폴딩도어 - TODO
+  const FoldingDoorIcon = ({ className }: IconProps) => (
+    <svg viewBox="0 0 96 96" fill="none" className={className}>
+      <path
+        d="M26 18H70V78H26V18Z"
+        stroke="currentColor"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path d="M48 18V78" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+
   const doorOptions = [
-    { label: "앞으로 여는 문", value: "swing_door" },
-    { label: "옆으로 미는 문", value: "sliding_door" },
-    { label: "자동문(버튼)", value: "automatic_door" },
-    { label: "접는문(아코디언)", value: "accordion_door" },
-    { label: "폴딩도어", value: "folding_door" },
+    { label: "앞으로 여는 문", value: "swing_door", Icon: SwingDoorIcon },
+    { label: "옆으로 미는 문", value: "sliding_door", Icon: SlidingDoorIcon },
+    { label: "자동문(버튼)", value: "automatic_door", Icon: AutomaticDoorIcon },
+    { label: "접는문(아코디언)", value: "accordion_door", Icon: AccordionDoorIcon },
+    { label: "폴딩도어", value: "folding_door", Icon: FoldingDoorIcon },
   ];
 
   return (
@@ -57,42 +149,9 @@ const DoorSurvey = () => {
                 }`}
                 variant="outline"
               >
-                {/* ✅ 여기(버튼 텍스트 앞)에 SVG 인라인으로 넣기 */}
                 <span className="inline-flex items-center gap-2">
-                  <svg viewBox="0 0 96 96" fill="none" className="w-6 h-6 momo-door">
-                    <path
-                      d="M26 18H70V78H26V18Z"
-                      stroke="currentColor"
-                      strokeWidth="6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M30 22H66"
-                      stroke="currentColor"
-                      strokeWidth="6"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      opacity="0.9"
-                    />
-                    <g className="door-panel">
-                      <path
-                        d="M30 22H56V78H30V22Z"
-                        stroke="currentColor"
-                        strokeWidth="6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <path
-                        d="M50 50H54"
-                        stroke="currentColor"
-                        strokeWidth="6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </g>
-                  </svg>
-
+                  {/* ✅ 버튼별로 다른 아이콘 */}
+                  <Icon className="w-6 h-6 momo-icon" />
                   {option.label}
                 </span>
               </Button>
