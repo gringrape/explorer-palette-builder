@@ -142,7 +142,7 @@ const AdminDashboard = () => {
                         <TableCell>{response.building}</TableCell>
                         <TableCell>{response.floor}</TableCell>
                         <TableCell>{response.gender}</TableCell>
-                        <TableCell>{response.accessible_restroom === "true" ? "예" : response.accessible_restroom === "false" ? "아니오" : response.accessible_restroom}</TableCell>
+                        <TableCell>{response.accessible_restroom === true ? "예" : response.accessible_restroom === false ? "아니오" : "-"}</TableCell>
                         <TableCell>{response.door_type}</TableCell>
                         <TableCell>{response.width} x {response.height} cm</TableCell>
                         <TableCell>{response.photos?.length || 0}장</TableCell>
