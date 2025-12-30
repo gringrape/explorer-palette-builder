@@ -16,7 +16,7 @@ const LocationSurvey = () => {
   const isAllSelected = accessibleRestroom === false || (accessibleRestroom === true && building !== "" && floor !== null && gender !== "");
 
   const handleNext = () => {
-    updateSurveyData({ accessibleRestroom, building, floor, gender });
+    updateSurveyData({ hasAccessibleRestroom: accessibleRestroom, building, floor, gender });
     console.log("Location survey:", { accessibleRestroom, building, floor, gender });
     
     if (accessibleRestroom === false) {
