@@ -5,17 +5,17 @@ export interface SurveyData {
   teamMembers: string[];
   building?: string;
   floor?: number | null;
-  gender?: string;
+  restroomGender?: string;
   
   hasAccessibleRestroom?: boolean;
   unavailableReason?: string[];
   doorType?: string;
   width?: string;
-  height?: string;
+  depth?: string;
   photos?: string[];
-  handrailTypes?: string[];
+  grabBarType?: string[];
   hasBasin?: boolean | null;
-  isUsable?: boolean | null;
+  isBasinUsable?: boolean | null;
   basinHeightType?: string;
 }
 
@@ -26,17 +26,17 @@ export interface SurveyResponse {
   team_members: string[];
   building: string | null;
   floor: number | null;
-  gender: string | null;
+  restroom_gender: string | null;
   
   has_accessible_restroom: boolean | null;
   unavailable_reason: string[] | null;
   door_type: string | null;
   width: string | null;
-  height: string | null;
+  depth: string | null;
   photos: string[] | null;
-  handrail_types: string[] | null;
+  grab_bar_type: string[] | null;
   has_basin: boolean | null;
-  is_usable: boolean | null;
+  is_basin_usable: boolean | null;
   basin_height_type: string | null;
 }
 
@@ -52,17 +52,17 @@ export async function saveSurveyResponse(data: SurveyData) {
       team_members: data.teamMembers,
       building: data.building || null,
       floor: data.floor || null,
-      gender: data.gender || null,
+      restroom_gender: data.restroomGender || null,
       
       has_accessible_restroom: data.hasAccessibleRestroom ?? null,
       unavailable_reason: data.unavailableReason || null,
       door_type: data.doorType || null,
       width: data.width || null,
-      height: data.height || null,
+      depth: data.depth || null,
       photos: data.photos || null,
-      handrail_types: data.handrailTypes || null,
+      grab_bar_type: data.grabBarType || null,
       has_basin: data.hasBasin ?? null,
-      is_usable: data.isUsable ?? null,
+      is_basin_usable: data.isBasinUsable ?? null,
       basin_height_type: data.basinHeightType || null,
     }),
   });

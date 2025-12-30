@@ -8,7 +8,7 @@ export interface SurveyData {
   // Location information
   building: string;
   floor: number | null;
-  gender: string;
+  restroomGender: string;
   
   // Restroom condition
   
@@ -20,17 +20,17 @@ export interface SurveyData {
   
   // Size survey
   width: string;
-  height: string;
+  depth: string;
   
   // Photos
   photos: string[];
   
   // Handrail survey
-  handrailTypes: string[];
+  grabBarType: string[];
   
   // Basin survey
   hasBasin: boolean | null;
-  isUsable: boolean | null;
+  isBasinUsable: boolean | null;
   basinHeightType: string;
 }
 
@@ -45,17 +45,17 @@ const initialSurveyData: SurveyData = {
   teamMembers: [],
   building: "",
   floor: null,
-  gender: "",
+  restroomGender: "",
   
   hasAccessibleRestroom: null,
   unavailableReason: [],
   doorType: "",
   width: "",
-  height: "",
+  depth: "",
   photos: [],
-  handrailTypes: [],
+  grabBarType: [],
   hasBasin: null,
-  isUsable: null,
+  isBasinUsable: null,
   basinHeightType: "",
 };
 

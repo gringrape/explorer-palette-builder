@@ -118,7 +118,7 @@ const AdminDashboard = () => {
                     <TableHead>팀명</TableHead>
                     <TableHead>건물</TableHead>
                     <TableHead>층</TableHead>
-                    <TableHead>성별</TableHead>
+                    <TableHead>화장실 구분</TableHead>
                     <TableHead>사용 가능</TableHead>
                     <TableHead>문 종류</TableHead>
                     <TableHead>크기(가로x세로)</TableHead>
@@ -141,10 +141,10 @@ const AdminDashboard = () => {
                         <TableCell className="font-medium">{response.team_name}</TableCell>
                         <TableCell>{response.building}</TableCell>
                         <TableCell>{response.floor}</TableCell>
-                        <TableCell>{response.gender}</TableCell>
+                        <TableCell>{response.restroom_gender}</TableCell>
                         <TableCell>{response.has_accessible_restroom === true ? "예" : response.has_accessible_restroom === false ? "아니오" : "-"}</TableCell>
                         <TableCell>{response.door_type}</TableCell>
-                        <TableCell>{response.width} x {response.height} cm</TableCell>
+                        <TableCell>{response.width} x {response.depth} cm</TableCell>
                         <TableCell>{response.photos?.length || 0}장</TableCell>
                       </TableRow>
                     ))

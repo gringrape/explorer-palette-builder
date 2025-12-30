@@ -26,8 +26,8 @@ const HandrailSurvey = () => {
   };
 
   const handleNext = () => {
-    updateSurveyData({ handrailTypes: selectedTypes });
-    console.log("Selected handrail types:", selectedTypes);
+    updateSurveyData({ grabBarType: selectedTypes });
+    console.log("Selected grab bar types:", selectedTypes);
     navigate("/sink-survey");
   };
 
