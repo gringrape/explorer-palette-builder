@@ -11,13 +11,13 @@ const LocationSurvey = () => {
   const [accessibleRestroom, setAccessibleRestroom] = useState<boolean | null>(null);
   const [building, setBuilding] = useState<string>("");
   const [floor, setFloor] = useState<number | null>(null);
-  const [gender, setGender] = useState<string>("");
+  const [restroomGender, setRestroomGender] = useState<string>("");
 
-  const isAllSelected = accessibleRestroom === false || (accessibleRestroom === true && building !== "" && floor !== null && gender !== "");
+  const isAllSelected = accessibleRestroom === false || (accessibleRestroom === true && building !== "" && floor !== null && restroomGender !== "");
 
   const handleNext = () => {
-    updateSurveyData({ hasAccessibleRestroom: accessibleRestroom, building, floor, gender });
-    console.log("Location survey:", { accessibleRestroom, building, floor, gender });
+    updateSurveyData({ hasAccessibleRestroom: accessibleRestroom, building, floor, restroomGender });
+    console.log("Location survey:", { accessibleRestroom, building, floor, restroomGender });
     
     if (accessibleRestroom === false) {
       navigate("/restroom-unavailable");
@@ -126,9 +126,9 @@ const LocationSurvey = () => {
             {genderOptions.map((option) => (
               <Button
                 key={option}
-                onClick={() => setGender(option)}
+                onClick={() => setRestroomGender(option)}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  gender === option
+                  restroomGender === option
                     ? colors.button.selected
                     : colors.button.unselected
                 }`}

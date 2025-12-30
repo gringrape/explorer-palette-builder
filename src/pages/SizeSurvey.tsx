@@ -10,13 +10,13 @@ const SizeSurvey = () => {
   const navigate = useNavigate();
   const { updateSurveyData } = useSurvey();
   const [width, setWidth] = useState<string>("");
-  const [height, setHeight] = useState<string>("");
+  const [depth, setDepth] = useState<string>("");
 
-  const isSelected = width !== "" && height !== "";
+  const isSelected = width !== "" && depth !== "";
 
   const handleNext = () => {
-    updateSurveyData({ width, height });
-    console.log("Size survey:", { width, height });
+    updateSurveyData({ width, depth });
+    console.log("Size survey:", { width, depth });
     navigate("/photo-survey");
   };
 
@@ -85,8 +85,8 @@ const SizeSurvey = () => {
             <div className="relative">
               <Input
                 type="number"
-                value={height}
-                onChange={(e) => setHeight(e.target.value)}
+                value={depth}
+                onChange={(e) => setDepth(e.target.value)}
                 placeholder="000"
                 className="w-full border-2 border-primary rounded-xl h-12 px-4 text-center text-lg focus:ring-2 focus:ring-primary transition-all"
               />

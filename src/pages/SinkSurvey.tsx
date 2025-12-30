@@ -12,7 +12,7 @@ const SinkSurvey = () => {
   const { surveyData, updateSurveyData, resetSurveyData } = useSurvey();
   const { toast } = useToast();
   const [hasBasin, setHasBasin] = useState<boolean | null>(null);
-  const [isUsable, setIsUsable] = useState<boolean | null>(null);
+  const [isBasinUsable, setIsBasinUsable] = useState<boolean | null>(null);
   const [basinHeightType, setBasinHeightType] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -20,13 +20,13 @@ const SinkSurvey = () => {
     setIsSubmitting(true);
     
     // Update final survey data
-    updateSurveyData({ hasBasin, isUsable, basinHeightType });
+    updateSurveyData({ hasBasin, isBasinUsable, basinHeightType });
     
     // Prepare data for database
     const finalData = {
       ...surveyData,
       hasBasin,
-      isUsable,
+      isBasinUsable,
       basinHeightType,
     };
 
@@ -53,7 +53,7 @@ const SinkSurvey = () => {
     }
   };
 
-  const isComplete = hasBasin !== null && isUsable !== null && basinHeightType !== "";
+  const isComplete = hasBasin !== null && isBasinUsable !== null && basinHeightType !== "";
 
   return (
     <div className="h-svh flex flex-col bg-card">
@@ -116,9 +116,9 @@ const SinkSurvey = () => {
             <p className={`${typography.body} font-bold text-foreground mb-3`}>손 씻을 수 있어?</p>
             <div className="grid grid-cols-2 gap-3">
               <Button
-                onClick={() => setIsUsable(true)}
+                onClick={() => setIsBasinUsable(true)}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  isUsable === true
+                  isBasinUsable === true
                     ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                     : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
                 }`}
@@ -127,9 +127,9 @@ const SinkSurvey = () => {
                 씻을 수 있어
               </Button>
               <Button
-                onClick={() => setIsUsable(false)}
+                onClick={() => setIsBasinUsable(false)}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  isUsable === false
+                  isBasinUsable === false
                     ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                     : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
                 }`}

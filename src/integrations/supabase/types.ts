@@ -21,16 +21,16 @@ export type Database = {
             | null
           building: string | null
           created_at: string
+          depth: string | null
           door_type: Database["public"]["Enums"]["door_type_enum"] | null
           floor: number | null
-          gender: string | null
-          handrail_types: string[] | null
+          grab_bar_type: string[] | null
           has_accessible_restroom: boolean | null
           has_basin: boolean | null
-          height: string | null
           id: string
-          is_usable: boolean | null
+          is_basin_usable: boolean | null
           photos: string[] | null
+          restroom_gender: string | null
           team_members: string[]
           team_name: string
           unavailable_reason: string[] | null
@@ -43,16 +43,16 @@ export type Database = {
             | null
           building?: string | null
           created_at?: string
+          depth?: string | null
           door_type?: Database["public"]["Enums"]["door_type_enum"] | null
           floor?: number | null
-          gender?: string | null
-          handrail_types?: string[] | null
+          grab_bar_type?: string[] | null
           has_accessible_restroom?: boolean | null
           has_basin?: boolean | null
-          height?: string | null
           id?: string
-          is_usable?: boolean | null
+          is_basin_usable?: boolean | null
           photos?: string[] | null
+          restroom_gender?: string | null
           team_members: string[]
           team_name: string
           unavailable_reason?: string[] | null
@@ -65,16 +65,16 @@ export type Database = {
             | null
           building?: string | null
           created_at?: string
+          depth?: string | null
           door_type?: Database["public"]["Enums"]["door_type_enum"] | null
           floor?: number | null
-          gender?: string | null
-          handrail_types?: string[] | null
+          grab_bar_type?: string[] | null
           has_accessible_restroom?: boolean | null
           has_basin?: boolean | null
-          height?: string | null
           id?: string
-          is_usable?: boolean | null
+          is_basin_usable?: boolean | null
           photos?: string[] | null
+          restroom_gender?: string | null
           team_members?: string[]
           team_name?: string
           unavailable_reason?: string[] | null
