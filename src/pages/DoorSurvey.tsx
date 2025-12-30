@@ -20,11 +20,11 @@ const DoorSurvey = () => {
   };
 
   const doorOptions = [
-    { label: "앞으로 여는 문", value: "swing_door" },
-    { label: "옆으로 미는 문", value: "sliding_door" },
-    { label: "자동문(버튼)", value: "automatic_door" },
-    { label: "접는문(아코디언)", value: "accordion_door" },
-    { label: "폴딩도어", value: "folding_door" },
+    { label: "앞으로 여는 문", value: "swing-door" },
+    { label: "옆으로 미는 문", value: "sliding-door" },
+    { label: "자동문(버튼)", value: "automatic-door" },
+    { label: "아코디언문", value: "accordion-door" },
+    { label: "폴딩도어", value: "folding-door" },
   ];
 
   return (
