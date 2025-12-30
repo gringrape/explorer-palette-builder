@@ -16,7 +16,7 @@ export type Database = {
     Tables: {
       survey_responses: {
         Row: {
-          accessible_restroom: string | null
+          accessible_restroom: boolean | null
           building: string | null
           can_wash: string | null
           created_at: string
@@ -37,7 +37,7 @@ export type Database = {
           width: string | null
         }
         Insert: {
-          accessible_restroom?: string | null
+          accessible_restroom?: boolean | null
           building?: string | null
           can_wash?: string | null
           created_at?: string
@@ -58,7 +58,7 @@ export type Database = {
           width?: string | null
         }
         Update: {
-          accessible_restroom?: string | null
+          accessible_restroom?: boolean | null
           building?: string | null
           can_wash?: string | null
           created_at?: string
