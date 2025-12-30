@@ -150,8 +150,7 @@ const DoorSurvey = () => {
                 variant="outline"
               >
                 <span className="inline-flex items-center gap-2">
-                  {/* ✅ 버튼별로 다른 아이콘 */}
-                  <Icon className="w-6 h-6 momo-icon" />
+                  <option.Icon className="w-6 h-6" />
                   {option.label}
                 </span>
               </Button>
