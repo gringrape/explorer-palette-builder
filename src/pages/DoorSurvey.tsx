@@ -34,23 +34,14 @@ const DoorSurvey = () => {
           <div className="w-2/6 h-full bg-primary rounded-full"></div>
         </div>
         <p className={`${typography.body} text-foreground`}>모모탐사대</p>
-        <h1 className={`${typography.title} font-bold text-primary`}>
-          화장실 문 조사하기
-        </h1>
+        <h1 className={`${typography.title} font-bold text-primary`}>화장실 문 조사하기</h1>
       </header>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-2">
         {/* 애니메이션 비디오 */}
         <div className="bg-card p-4">
           <div className="border-4 border-foreground rounded-lg overflow-hidden">
-            <video 
-              src={momoDoorVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-auto"
-            />
+            <video src={momoDoorVideo} autoPlay loop muted playsInline className="w-full h-auto" />
           </div>
         </div>
 
@@ -62,13 +53,48 @@ const DoorSurvey = () => {
                 key={option.value}
                 onClick={() => setDoorType(option.value)}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  doorType === option.value
-                    ? colors.button.selected
-                    : colors.button.unselected
+                  doorType === option.value ? colors.button.selected : colors.button.unselected
                 }`}
                 variant="outline"
               >
-                {option.label}
+                {/* ✅ 여기(버튼 텍스트 앞)에 SVG 인라인으로 넣기 */}
+                <span className="inline-flex items-center gap-2">
+                  <svg viewBox="0 0 96 96" fill="none" className="w-6 h-6 momo-door">
+                    <path
+                      d="M26 18H70V78H26V18Z"
+                      stroke="currentColor"
+                      strokeWidth="6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M30 22H66"
+                      stroke="currentColor"
+                      strokeWidth="6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      opacity="0.9"
+                    />
+                    <g className="door-panel">
+                      <path
+                        d="M30 22H56V78H30V22Z"
+                        stroke="currentColor"
+                        strokeWidth="6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M50 50H54"
+                        stroke="currentColor"
+                        strokeWidth="6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </g>
+                  </svg>
+
+                  {option.label}
+                </span>
               </Button>
             ))}
           </div>
