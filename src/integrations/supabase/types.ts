@@ -32,8 +32,8 @@ export type Database = {
           sink_height: string | null
           team_members: string[]
           team_name: string
+          unavailable_reason: string[] | null
           updated_at: string
-          why_not_use: string[] | null
           width: string | null
         }
         Insert: {
@@ -53,8 +53,8 @@ export type Database = {
           sink_height?: string | null
           team_members: string[]
           team_name: string
+          unavailable_reason?: string[] | null
           updated_at?: string
-          why_not_use?: string[] | null
           width?: string | null
         }
         Update: {
@@ -74,8 +74,8 @@ export type Database = {
           sink_height?: string | null
           team_members?: string[]
           team_name?: string
+          unavailable_reason?: string[] | null
           updated_at?: string
-          why_not_use?: string[] | null
           width?: string | null
         }
         Relationships: []
