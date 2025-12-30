@@ -22,7 +22,7 @@ export type Database = {
           created_at: string
           door_type: string | null
           dream_school: string | null
-          floor: string | null
+          floor: number | null
           gender: string | null
           handrail_types: string[] | null
           has_sink: string | null
@@ -43,7 +43,7 @@ export type Database = {
           created_at?: string
           door_type?: string | null
           dream_school?: string | null
-          floor?: string | null
+          floor?: number | null
           gender?: string | null
           handrail_types?: string[] | null
           has_sink?: string | null
@@ -64,7 +64,7 @@ export type Database = {
           created_at?: string
           door_type?: string | null
           dream_school?: string | null
-          floor?: string | null
+          floor?: number | null
           gender?: string | null
           handrail_types?: string[] | null
           has_sink?: string | null

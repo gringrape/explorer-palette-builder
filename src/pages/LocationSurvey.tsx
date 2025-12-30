@@ -10,10 +10,10 @@ const LocationSurvey = () => {
   const { updateSurveyData } = useSurvey();
   const [canUseRestroom, setCanUseRestroom] = useState<string>("");
   const [building, setBuilding] = useState<string>("");
-  const [floor, setFloor] = useState<string>("");
+  const [floor, setFloor] = useState<number | null>(null);
   const [gender, setGender] = useState<string>("");
 
-  const isAllSelected = canUseRestroom === "사용 못해" || (canUseRestroom !== "" && building !== "" && floor !== "" && gender !== "");
+  const isAllSelected = canUseRestroom === "사용 못해" || (canUseRestroom !== "" && building !== "" && floor !== null && gender !== "");
 
   const handleNext = () => {
     updateSurveyData({ canUseRestroom, building, floor, gender });
@@ -29,7 +29,7 @@ const LocationSurvey = () => {
   const canUseOptions = ["사용할 수 있어!", "사용 못해"];
 
   const buildingOptions = ["본관", "별관", "체육관", "기타"];
-  const floorOptions = ["1층", "2층", "3층", "4층"];
+  const floorOptions = [1, 2, 3, 4];
   const genderOptions = ["남자 화장실", "여자 화장실", "모두 사용할수 있음"];
 
   return (
@@ -108,7 +108,7 @@ const LocationSurvey = () => {
                 }`}
                 variant="outline"
               >
-                {option}
+                {option}층
               </Button>
             ))}
           </div>
