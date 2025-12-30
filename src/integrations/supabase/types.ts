@@ -24,7 +24,9 @@ export type Database = {
           depth: string | null
           door_type: Database["public"]["Enums"]["door_type_enum"] | null
           floor: number | null
-          grab_bar_type: string[] | null
+          grab_bar_type:
+            | Database["public"]["Enums"]["grab_bar_type_enum"][]
+            | null
           has_accessible_restroom: boolean | null
           has_basin: boolean | null
           id: string
@@ -46,7 +48,9 @@ export type Database = {
           depth?: string | null
           door_type?: Database["public"]["Enums"]["door_type_enum"] | null
           floor?: number | null
-          grab_bar_type?: string[] | null
+          grab_bar_type?:
+            | Database["public"]["Enums"]["grab_bar_type_enum"][]
+            | null
           has_accessible_restroom?: boolean | null
           has_basin?: boolean | null
           id?: string
@@ -68,7 +72,9 @@ export type Database = {
           depth?: string | null
           door_type?: Database["public"]["Enums"]["door_type_enum"] | null
           floor?: number | null
-          grab_bar_type?: string[] | null
+          grab_bar_type?:
+            | Database["public"]["Enums"]["grab_bar_type_enum"][]
+            | null
           has_accessible_restroom?: boolean | null
           has_basin?: boolean | null
           id?: string
@@ -98,6 +104,11 @@ export type Database = {
         | "automatic_door"
         | "accordion_door"
         | "folding_door"
+      grab_bar_type_enum:
+        | "horizontal-flexible"
+        | "horizontal-fixed"
+        | "vertical"
+        | "other"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -232,6 +243,12 @@ export const Constants = {
         "automatic_door",
         "accordion_door",
         "folding_door",
+      ],
+      grab_bar_type_enum: [
+        "horizontal-flexible",
+        "horizontal-fixed",
+        "vertical",
+        "other",
       ],
     },
   },
