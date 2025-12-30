@@ -18,7 +18,7 @@ const Preparation = () => {
     console.log("Wheelchair:", wheelchair);
     console.log("Tape:", tape);
     console.log("Selfie Stick:", selfieStick);
-    navigate("/roadmap");
+    navigate("/location-survey");
   };
 
   return (
