@@ -20,7 +20,6 @@ export type Database = {
           can_wash: string | null
           created_at: string
           door_type: string | null
-          dream_school: string | null
           floor: number | null
           gender: string | null
           handrail_types: string[] | null
@@ -41,7 +40,6 @@ export type Database = {
           can_wash?: string | null
           created_at?: string
           door_type?: string | null
-          dream_school?: string | null
           floor?: number | null
           gender?: string | null
           handrail_types?: string[] | null
@@ -62,7 +60,6 @@ export type Database = {
           can_wash?: string | null
           created_at?: string
           door_type?: string | null
-          dream_school?: string | null
           floor?: number | null
           gender?: string | null
           handrail_types?: string[] | null

@@ -6,7 +6,7 @@ export interface SurveyData {
   building?: string;
   floor?: number | null;
   gender?: string;
-  dreamSchool?: string;
+  
   hasAccessibleRestroom?: boolean;
   unavailableReason?: string[];
   doorType?: string;
@@ -27,7 +27,7 @@ export interface SurveyResponse {
   building: string | null;
   floor: number | null;
   gender: string | null;
-  dream_school: string | null;
+  
   has_accessible_restroom: boolean | null;
   unavailable_reason: string[] | null;
   door_type: string | null;
@@ -53,7 +53,7 @@ export async function saveSurveyResponse(data: SurveyData) {
       building: data.building || null,
       floor: data.floor || null,
       gender: data.gender || null,
-      dream_school: data.dreamSchool || null,
+      
       has_accessible_restroom: data.hasAccessibleRestroom ?? null,
       unavailable_reason: data.unavailableReason || null,
       door_type: data.doorType || null,
