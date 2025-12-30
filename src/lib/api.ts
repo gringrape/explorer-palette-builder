@@ -4,7 +4,7 @@ export interface SurveyData {
   teamName: string;
   teamMembers: string[];
   building?: string;
-  floor?: string;
+  floor?: number | null;
   gender?: string;
   dreamSchool?: string;
   canUseRestroom?: string;
@@ -25,7 +25,7 @@ export interface SurveyResponse {
   team_name: string;
   team_members: string[];
   building: string | null;
-  floor: string | null;
+  floor: number | null;
   gender: string | null;
   dream_school: string | null;
   can_use_restroom: string | null;

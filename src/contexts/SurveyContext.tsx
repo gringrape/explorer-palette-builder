@@ -7,7 +7,7 @@ export interface SurveyData {
   
   // Location information
   building: string;
-  floor: string;
+  floor: number | null;
   gender: string;
   
   // Restroom condition
@@ -44,7 +44,7 @@ const initialSurveyData: SurveyData = {
   teamName: "",
   teamMembers: [],
   building: "",
-  floor: "",
+  floor: null,
   gender: "",
   dreamSchool: "",
   canUseRestroom: "",
