@@ -14,9 +14,9 @@ export interface SurveyData {
   height?: string;
   photos?: string[];
   handrailTypes?: string[];
-  hasSink?: string;
-  canWash?: string;
-  sinkHeight?: string;
+  hasBasin?: boolean | null;
+  isUsable?: boolean | null;
+  basinHeightType?: string;
 }
 
 export interface SurveyResponse {
@@ -35,9 +35,9 @@ export interface SurveyResponse {
   height: string | null;
   photos: string[] | null;
   handrail_types: string[] | null;
-  has_sink: string | null;
-  can_wash: string | null;
-  sink_height: string | null;
+  has_basin: boolean | null;
+  is_usable: boolean | null;
+  basin_height_type: string | null;
 }
 
 // 설문 응답 저장 (전체 설문 완료 시)
@@ -61,9 +61,9 @@ export async function saveSurveyResponse(data: SurveyData) {
       height: data.height || null,
       photos: data.photos || null,
       handrail_types: data.handrailTypes || null,
-      has_sink: data.hasSink || null,
-      can_wash: data.canWash || null,
-      sink_height: data.sinkHeight || null,
+      has_basin: data.hasBasin ?? null,
+      is_usable: data.isUsable ?? null,
+      basin_height_type: data.basinHeightType || null,
     }),
   });
 

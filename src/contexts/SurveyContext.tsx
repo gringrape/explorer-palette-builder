@@ -28,10 +28,10 @@ export interface SurveyData {
   // Handrail survey
   handrailTypes: string[];
   
-  // Sink survey
-  hasSink: string;
-  canWash: string;
-  sinkHeight: string;
+  // Basin survey
+  hasBasin: boolean | null;
+  isUsable: boolean | null;
+  basinHeightType: string;
 }
 
 interface SurveyContextType {
@@ -54,9 +54,9 @@ const initialSurveyData: SurveyData = {
   height: "",
   photos: [],
   handrailTypes: [],
-  hasSink: "",
-  canWash: "",
-  sinkHeight: "",
+  hasBasin: null,
+  isUsable: null,
+  basinHeightType: "",
 };
 
 const SurveyContext = createContext<SurveyContextType | undefined>(undefined);

@@ -11,23 +11,23 @@ const SinkSurvey = () => {
   const navigate = useNavigate();
   const { surveyData, updateSurveyData, resetSurveyData } = useSurvey();
   const { toast } = useToast();
-  const [hasSink, setHasSink] = useState<string>("");
-  const [canWash, setCanWash] = useState<string>("");
-  const [sinkHeight, setSinkHeight] = useState<string>("");
+  const [hasBasin, setHasBasin] = useState<boolean | null>(null);
+  const [isUsable, setIsUsable] = useState<boolean | null>(null);
+  const [basinHeightType, setBasinHeightType] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleNext = async () => {
     setIsSubmitting(true);
     
     // Update final survey data
-    updateSurveyData({ hasSink, canWash, sinkHeight });
+    updateSurveyData({ hasBasin, isUsable, basinHeightType });
     
     // Prepare data for database
     const finalData = {
       ...surveyData,
-      hasSink,
-      canWash,
-      sinkHeight,
+      hasBasin,
+      isUsable,
+      basinHeightType,
     };
 
     try {
@@ -53,7 +53,7 @@ const SinkSurvey = () => {
     }
   };
 
-  const isComplete = hasSink !== "" && canWash !== "" && sinkHeight !== "";
+  const isComplete = hasBasin !== null && isUsable !== null && basinHeightType !== "";
 
   return (
     <div className="h-svh flex flex-col bg-card">
@@ -87,9 +87,9 @@ const SinkSurvey = () => {
             <p className={`${typography.body} font-bold text-foreground mb-3`}>화장실에 세면대 있어?</p>
             <div className="grid grid-cols-2 gap-3">
               <Button
-                onClick={() => setHasSink("yes")}
+                onClick={() => setHasBasin(true)}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  hasSink === "yes"
+                  hasBasin === true
                     ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                     : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
                 }`}
@@ -98,9 +98,9 @@ const SinkSurvey = () => {
                 있음
               </Button>
               <Button
-                onClick={() => setHasSink("no")}
+                onClick={() => setHasBasin(false)}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  hasSink === "no"
+                  hasBasin === false
                     ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                     : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
                 }`}
@@ -116,9 +116,9 @@ const SinkSurvey = () => {
             <p className={`${typography.body} font-bold text-foreground mb-3`}>손 씻을 수 있어?</p>
             <div className="grid grid-cols-2 gap-3">
               <Button
-                onClick={() => setCanWash("yes")}
+                onClick={() => setIsUsable(true)}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  canWash === "yes"
+                  isUsable === true
                     ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                     : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
                 }`}
@@ -127,9 +127,9 @@ const SinkSurvey = () => {
                 씻을 수 있어
               </Button>
               <Button
-                onClick={() => setCanWash("no")}
+                onClick={() => setIsUsable(false)}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  canWash === "no"
+                  isUsable === false
                     ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                     : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
                 }`}
@@ -145,9 +145,9 @@ const SinkSurvey = () => {
             <p className={`${typography.body} font-bold text-foreground mb-3`}>세면대 높이는 어때?</p>
             <div className="grid grid-cols-3 gap-3">
               <Button
-                onClick={() => setSinkHeight("high")}
+                onClick={() => setBasinHeightType("high")}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  sinkHeight === "high"
+                  basinHeightType === "high"
                     ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                     : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
                 }`}
@@ -156,9 +156,9 @@ const SinkSurvey = () => {
                 너무 높아
               </Button>
               <Button
-                onClick={() => setSinkHeight("good")}
+                onClick={() => setBasinHeightType("standard")}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  sinkHeight === "good"
+                  basinHeightType === "standard"
                     ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                     : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
                 }`}
@@ -167,15 +167,15 @@ const SinkSurvey = () => {
                 딱 좋아
               </Button>
               <Button
-                onClick={() => setSinkHeight("bad")}
+                onClick={() => setBasinHeightType("low")}
                 className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  sinkHeight === "bad"
+                  basinHeightType === "low"
                     ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
                     : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
                 }`}
                 variant="outline"
               >
-                별로야
+                너무 낮아
               </Button>
             </div>
           </div>
