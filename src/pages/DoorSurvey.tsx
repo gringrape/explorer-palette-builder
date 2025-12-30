@@ -19,104 +19,12 @@ const DoorSurvey = () => {
     navigate("/size-survey");
   };
 
-  // ✅ 공통 타입
-  type IconProps = { className?: string; animate?: boolean };
-
-  // 1) 앞으로 여는 문(스윙) - TODO: SVG 교체
-  const SwingDoorIcon = ({ className }: IconProps) => (
-    <svg viewBox="0 0 96 96" fill="none" className={className}>
-      <path
-        d="M26 18H70V78H26V18Z"
-        stroke="currentColor"
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M44 50H52" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-
-  // 2) 옆으로 미는 문(슬라이딩) - ✅ 실제 애니메이션
-  const SlidingDoorIcon = ({ className }: IconProps) => (
-    <svg viewBox="0 0 96 96" fill="none" className={className}>
-      <path
-        d="M26 18H70V78H26V18Z"
-        stroke="currentColor"
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M30 22H66"
-        stroke="currentColor"
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        opacity="0.9"
-      />
-      <g className="door-panel">
-        <path
-          d="M30 22H56V78H30V22Z"
-          stroke="currentColor"
-          strokeWidth="6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path d="M50 50H54" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-      </g>
-    </svg>
-  );
-
-  // 3) 자동문(버튼) - TODO
-  const AutomaticDoorIcon = ({ className }: IconProps) => (
-    <svg viewBox="0 0 96 96" fill="none" className={className}>
-      <path
-        d="M26 18H70V78H26V18Z"
-        stroke="currentColor"
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M38 60H58" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M48 40V40" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-
-  // 4) 접는문(아코디언) - TODO
-  const AccordionDoorIcon = ({ className }: IconProps) => (
-    <svg viewBox="0 0 96 96" fill="none" className={className}>
-      <path
-        d="M26 18H70V78H26V18Z"
-        stroke="currentColor"
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M34 22L62 78" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M62 22L34 78" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-
-  // 5) 폴딩도어 - TODO
-  const FoldingDoorIcon = ({ className }: IconProps) => (
-    <svg viewBox="0 0 96 96" fill="none" className={className}>
-      <path
-        d="M26 18H70V78H26V18Z"
-        stroke="currentColor"
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M48 18V78" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-
   const doorOptions = [
-    { label: "앞으로 여는 문", value: "swing_door", Icon: SwingDoorIcon },
-    { label: "옆으로 미는 문", value: "sliding_door", Icon: SlidingDoorIcon },
-    { label: "자동문(버튼)", value: "automatic_door", Icon: AutomaticDoorIcon },
-    { label: "접는문(아코디언)", value: "accordion_door", Icon: AccordionDoorIcon },
-    { label: "폴딩도어", value: "folding_door", Icon: FoldingDoorIcon },
+    { label: "앞으로 여는 문", value: "swing_door" },
+    { label: "옆으로 미는 문", value: "sliding_door" },
+    { label: "자동문(버튼)", value: "automatic_door" },
+    { label: "접는문(아코디언)", value: "accordion_door" },
+    { label: "폴딩도어", value: "folding_door" },
   ];
 
   return (
@@ -140,21 +48,25 @@ const DoorSurvey = () => {
         {/* 문 종류 선택 */}
         <div className="bg-card p-4">
           <div className="flex flex-col gap-3">
-            {doorOptions.map((option) => (
-              <Button
-                key={option.value}
-                onClick={() => setDoorType(option.value)}
-                className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  doorType === option.value ? colors.button.selected : colors.button.unselected
-                }`}
-                variant="outline"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <option.Icon className="w-6 h-6" />
-                  {option.label}
-                </span>
-              </Button>
-            ))}
+            {doorOptions.map((option) => {
+              const Icon = option.Icon; // ✅ 추가: 이 옵션의 아이콘 컴포넌트
+
+              return (
+                <Button
+                  key={option.value}
+                  onClick={() => setDoorType(option.value)}
+                  className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
+                    doorType === option.value ? colors.button.selected : colors.button.unselected
+                  }`}
+                  variant="outline"
+                >
+                  <span className="inline-flex items-center gap-2">
+                    <Icon className="w-6 h-6" /> {/* ✅ 추가: 아이콘 렌더링 */}
+                    {option.label}
+                  </span>
+                </Button>
+              );
+            })}
           </div>
         </div>
       </div>
