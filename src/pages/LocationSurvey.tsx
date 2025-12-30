@@ -13,7 +13,7 @@ const LocationSurvey = () => {
   const [floor, setFloor] = useState<string>("");
   const [gender, setGender] = useState<string>("");
 
-  const isAllSelected = canUseRestroom !== "" && building !== "" && floor !== "" && gender !== "";
+  const isAllSelected = canUseRestroom === "사용 못해" || (canUseRestroom !== "" && building !== "" && floor !== "" && gender !== "");
 
   const handleNext = () => {
     updateSurveyData({ canUseRestroom, building, floor, gender });
