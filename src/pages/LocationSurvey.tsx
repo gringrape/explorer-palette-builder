@@ -69,7 +69,7 @@ const LocationSurvey = () => {
         </div>
 
         {/* 건물 찾기 */}
-        <div className="bg-card p-4">
+        <div className={`bg-card p-4 transition-all duration-300 ${canUseRestroom === "사용 못해" ? "opacity-30 pointer-events-none" : ""}`}>
           <h2 className={`${typography.title} font-bold text-foreground mb-4`}>
             어떤 건물의 화장실이야?
           </h2>
@@ -92,7 +92,7 @@ const LocationSurvey = () => {
         </div>
 
         {/* 층수 찾기 */}
-        <div className="bg-card p-4">
+        <div className={`bg-card p-4 transition-all duration-300 ${canUseRestroom === "사용 못해" ? "opacity-30 pointer-events-none" : ""}`}>
           <h2 className={`${typography.title} font-bold text-foreground mb-4`}>
             화장실이 몇층에 있어?
           </h2>
@@ -115,7 +115,7 @@ const LocationSurvey = () => {
         </div>
 
         {/* 성별 구분 */}
-        <div className="bg-card p-4">
+        <div className={`bg-card p-4 transition-all duration-300 ${canUseRestroom === "사용 못해" ? "opacity-30 pointer-events-none" : ""}`}>
           <h2 className={`${typography.title} font-bold text-foreground mb-4`}>
             남자 화장실이야, 여자 화장실이야?
           </h2>
