@@ -16,19 +16,21 @@ export type Database = {
     Tables: {
       survey_responses: {
         Row: {
+          basin_height_type:
+            | Database["public"]["Enums"]["basin_height_type_enum"]
+            | null
           building: string | null
-          can_wash: string | null
           created_at: string
           door_type: Database["public"]["Enums"]["door_type_enum"] | null
           floor: number | null
           gender: string | null
           handrail_types: string[] | null
           has_accessible_restroom: boolean | null
-          has_sink: string | null
+          has_basin: boolean | null
           height: string | null
           id: string
+          is_usable: boolean | null
           photos: string[] | null
-          sink_height: string | null
           team_members: string[]
           team_name: string
           unavailable_reason: string[] | null
@@ -36,19 +38,21 @@ export type Database = {
           width: string | null
         }
         Insert: {
+          basin_height_type?:
+            | Database["public"]["Enums"]["basin_height_type_enum"]
+            | null
           building?: string | null
-          can_wash?: string | null
           created_at?: string
           door_type?: Database["public"]["Enums"]["door_type_enum"] | null
           floor?: number | null
           gender?: string | null
           handrail_types?: string[] | null
           has_accessible_restroom?: boolean | null
-          has_sink?: string | null
+          has_basin?: boolean | null
           height?: string | null
           id?: string
+          is_usable?: boolean | null
           photos?: string[] | null
-          sink_height?: string | null
           team_members: string[]
           team_name: string
           unavailable_reason?: string[] | null
@@ -56,19 +60,21 @@ export type Database = {
           width?: string | null
         }
         Update: {
+          basin_height_type?:
+            | Database["public"]["Enums"]["basin_height_type_enum"]
+            | null
           building?: string | null
-          can_wash?: string | null
           created_at?: string
           door_type?: Database["public"]["Enums"]["door_type_enum"] | null
           floor?: number | null
           gender?: string | null
           handrail_types?: string[] | null
           has_accessible_restroom?: boolean | null
-          has_sink?: string | null
+          has_basin?: boolean | null
           height?: string | null
           id?: string
+          is_usable?: boolean | null
           photos?: string[] | null
-          sink_height?: string | null
           team_members?: string[]
           team_name?: string
           unavailable_reason?: string[] | null
@@ -85,6 +91,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      basin_height_type_enum: "standard" | "high" | "low"
       door_type_enum:
         | "swing_door"
         | "sliding_door"
@@ -218,6 +225,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      basin_height_type_enum: ["standard", "high", "low"],
       door_type_enum: [
         "swing_door",
         "sliding_door",
