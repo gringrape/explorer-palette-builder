@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, ReactNode } from "react";
 
 export interface SurveyData {
   // School ID from URL query string
@@ -68,13 +68,13 @@ const SurveyContext = createContext<SurveyContextType | undefined>(undefined);
 export const SurveyProvider = ({ children }: { children: ReactNode }) => {
   const [surveyData, setSurveyData] = useState<SurveyData>(initialSurveyData);
 
-  const updateSurveyData = (data: Partial<SurveyData>) => {
+  const updateSurveyData = useCallback((data: Partial<SurveyData>) => {
     setSurveyData((prev) => ({ ...prev, ...data }));
-  };
+  }, []);
 
-  const resetSurveyData = () => {
+  const resetSurveyData = useCallback(() => {
     setSurveyData(initialSurveyData);
-  };
+  }, []);
 
   return (
     <SurveyContext.Provider value={{ surveyData, updateSurveyData, resetSurveyData }}>
