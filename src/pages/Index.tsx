@@ -1,7 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import momoCharacter from "@/assets/momo-character.png";
 import { typography } from "@/theme/typography";
+import { useSurvey } from "@/contexts/SurveyContext";
 
 const dialogs = [
   "모모탐사대에 오신 것을 환영해요.",
@@ -13,11 +14,21 @@ const dialogs = [
 
 const Index = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { updateSurveyData } = useSurvey();
   const [currentDialog, setCurrentDialog] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isTyping, setIsTyping] = useState(true);
   const [showFinalScreen, setShowFinalScreen] = useState(false);
   const typingIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // URL에서 schoolId 쿼리스트링 읽어서 저장
+  useEffect(() => {
+    const schoolId = searchParams.get("schoolId");
+    if (schoolId) {
+      updateSurveyData({ schoolId });
+    }
+  }, [searchParams, updateSurveyData]);
 
   useEffect(() => {
     if (showFinalScreen) return;

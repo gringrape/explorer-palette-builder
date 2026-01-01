@@ -1,6 +1,7 @@
 const API_BASE_URL = "https://teacher.momo-school.shop";
 
 export interface SurveyData {
+  schoolId?: string;
   teamName: string;
   teamMembers: string[];
   building?: string;
@@ -27,6 +28,7 @@ export interface SurveyResponse {
   building: string | null;
   floor: number | null;
   restroom_gender: string | null;
+  school_id: string | null;
   
   has_accessible_restroom: boolean | null;
   unavailable_reason: string[] | null;
@@ -48,6 +50,7 @@ export async function saveSurveyResponse(data: SurveyData) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      school_id: data.schoolId || null,
       team_name: data.teamName,
       team_members: data.teamMembers,
       building: data.building || null,

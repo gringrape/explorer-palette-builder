@@ -1,6 +1,9 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
 export interface SurveyData {
+  // School ID from URL query string
+  schoolId: string;
+  
   // Team information
   teamName: string;
   teamMembers: string[];
@@ -41,6 +44,7 @@ interface SurveyContextType {
 }
 
 const initialSurveyData: SurveyData = {
+  schoolId: "",
   teamName: "",
   teamMembers: [],
   building: "",
