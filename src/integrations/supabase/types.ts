@@ -33,6 +33,7 @@ export type Database = {
           is_basin_usable: boolean | null
           photos: string[] | null
           restroom_gender: string | null
+          school_id: string | null
           team_members: string[]
           team_name: string
           unavailable_reason: string[] | null
@@ -57,6 +58,7 @@ export type Database = {
           is_basin_usable?: boolean | null
           photos?: string[] | null
           restroom_gender?: string | null
+          school_id?: string | null
           team_members: string[]
           team_name: string
           unavailable_reason?: string[] | null
@@ -81,6 +83,7 @@ export type Database = {
           is_basin_usable?: boolean | null
           photos?: string[] | null
           restroom_gender?: string | null
+          school_id?: string | null
           team_members?: string[]
           team_name?: string
           unavailable_reason?: string[] | null
