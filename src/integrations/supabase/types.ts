@@ -25,7 +25,7 @@ export type Database = {
           door_type: Database["public"]["Enums"]["door_type_enum"] | null
           floor: number | null
           grab_bar_type:
-            | Database["public"]["Enums"]["grab_bar_type_enum"]
+            | Database["public"]["Enums"]["grab_bar_type_enum"][]
             | null
           has_accessible_restroom: boolean | null
           has_basin: boolean | null
@@ -50,7 +50,7 @@ export type Database = {
           door_type?: Database["public"]["Enums"]["door_type_enum"] | null
           floor?: number | null
           grab_bar_type?:
-            | Database["public"]["Enums"]["grab_bar_type_enum"]
+            | Database["public"]["Enums"]["grab_bar_type_enum"][]
             | null
           has_accessible_restroom?: boolean | null
           has_basin?: boolean | null
@@ -75,7 +75,7 @@ export type Database = {
           door_type?: Database["public"]["Enums"]["door_type_enum"] | null
           floor?: number | null
           grab_bar_type?:
-            | Database["public"]["Enums"]["grab_bar_type_enum"]
+            | Database["public"]["Enums"]["grab_bar_type_enum"][]
             | null
           has_accessible_restroom?: boolean | null
           has_basin?: boolean | null
