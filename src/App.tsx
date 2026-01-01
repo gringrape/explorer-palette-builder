@@ -25,30 +25,29 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <SurveyProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
+      <BrowserRouter>
+        <SurveyProvider>
+          <Toaster />
+          <Sonner />
           <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/team-info" element={<TeamInfo />} />
-          <Route path="/preparation" element={<Preparation />} />
-          
+            <Route path="/" element={<Index />} />
+            <Route path="/team-info" element={<TeamInfo />} />
+            <Route path="/preparation" element={<Preparation />} />
             <Route path="/location-survey" element={<LocationSurvey />} />
             <Route path="/survey-start" element={<SurveyStart />} />
             <Route path="/restroom-unavailable" element={<RestroomUnavailablePage />} />
             <Route path="/door-survey" element={<DoorSurvey />} />
-          <Route path="/size-survey" element={<SizeSurvey />} />
-          <Route path="/photo-survey" element={<PhotoSurvey />} />
-          <Route path="/handrail-survey" element={<HandrailSurvey />} />
-          <Route path="/sink-survey" element={<SinkSurvey />} />
-          <Route path="/goodbye" element={<GoodbyePage />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
+            <Route path="/size-survey" element={<SizeSurvey />} />
+            <Route path="/photo-survey" element={<PhotoSurvey />} />
+            <Route path="/handrail-survey" element={<HandrailSurvey />} />
+            <Route path="/sink-survey" element={<SinkSurvey />} />
+            <Route path="/goodbye" element={<GoodbyePage />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
-      </SurveyProvider>
+        </SurveyProvider>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
