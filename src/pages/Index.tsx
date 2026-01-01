@@ -22,13 +22,15 @@ const Index = () => {
   const [showFinalScreen, setShowFinalScreen] = useState(false);
   const typingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // URL에서 schoolId 쿼리스트링 읽어서 저장
+  // URL에서 schoolId 쿼리스트링 읽어서 저장 (최초 마운트 시에만)
   useEffect(() => {
     const schoolId = searchParams.get("schoolId");
     if (schoolId) {
+      console.log("schoolId from URL:", schoolId);
       updateSurveyData({ schoolId });
     }
-  }, [searchParams, updateSurveyData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (showFinalScreen) return;
