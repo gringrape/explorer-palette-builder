@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Sniglet font */
+@import url("https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&display=swap");
+
 /* Web Fonts */
 @font-face {
     font-family: 'NexonMaplestory';
@@ -121,4 +124,174 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-family: 'NexonMaplestory', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
+}
+
+/* =========================
+   SVG 애니메이션 스타일
+   ========================= */
+/* 
+ * SVG는 DOM 요소이므로 CSS로 내부 요소를 직접 참조할 수 있습니다.
+ * 
+ * 예시:
+ * - SlidingDoorIcon 내부의 <g className="door-panel"> 요소를
+ *   CSS 선택자 .door-panel로 참조할 수 있습니다.
+ * 
+ * 이렇게 하면 JavaScript 없이 CSS만으로 SVG 애니메이션을 만들 수 있습니다.
+ */
+
+/* 
+ * SlidingDoorIcon 애니메이션 스타일
+ * 최대한 강력하고 직접적인 선택자 사용
+ */
+
+/* 기본 상태(닫힘): 문 패널이 원래 위치에 있음 */
+g.door-panel {
+  transform: translateX(0) !important;
+  transition: transform 200ms ease-out !important;
+}
+
+/* 활성 상태(열림): 문 패널이 오른쪽으로 이동 */
+svg.door-selected g.door-panel,
+svg[data-selected="true"] g.door-panel {
+  transform: translateX(16px) !important;
+  transition: transform 200ms ease-out !important;
+}
+
+/* =========================
+   SwingDoorIcon – Illusion Animation (pivot locked to hinge in viewBox coords)
+   ========================= */
+
+   svg.swingdoor .door-illusion {
+    /* ✅ viewBox 좌표로 origin을 쓰기 위한 핵심 */
+    transform-box: view-box;
+    transform-origin: 30px 48px; /* 힌지 축: x=30, 세로 중앙 y=48 */
+  
+    transform: translateX(0px) scaleX(1) skewY(0deg);
+    transition: transform 220ms ease-out;
+    will-change: transform;
+  }
+  
+  svg.swingdoor.is-open .door-illusion {
+    /* ✅ scale/skew로 문이 열리는 착시를 주되,
+       왼쪽 힌지가 떨어져 보이지 않게 약간 '왼쪽'으로 당김 */
+    transform: translateX(-2px) scaleX(0.82) skewY(-6deg);
+  }
+
+/* =========================
+   AutomaticDoorIcon – split open
+   ========================= */
+
+svg.autodoor .auto-left,
+svg.autodoor .auto-right {
+  transition: transform 220ms ease-out;
+  will-change: transform;
+}
+
+/* 기본(닫힘) */
+svg.autodoor .auto-left {
+  transform: translateX(0);
+}
+
+svg.autodoor .auto-right {
+  transform: translateX(0);
+}
+
+/* 열림(선택됨): 좌/우로 벌어짐 */
+svg.autodoor.is-open .auto-left {
+  transform: translateX(-14px);
+}
+
+svg.autodoor.is-open .auto-right {
+  transform: translateX(14px);
+}
+
+/* 버튼도 살짝 강조(선택사항) */
+svg.autodoor.is-open .auto-button circle {
+  opacity: 1;
+}
+
+/* =========================
+   AccordionDoorIcon – fold illusion (RIGHT EDGE LOCKED)
+   ========================= */
+
+svg.accordiondoor .acc-panels {
+  transform-box: fill-box;
+  transform-origin: right center; /* ✅ 오른쪽 문틀 쪽 고정 */
+  transform: scaleX(1);
+  transition: transform 220ms ease-out;
+  will-change: transform;
+}
+
+svg.accordiondoor.is-open .acc-panels {
+  transform: scaleX(0.65); /* 접힘 정도 */
+}
+
+/* =========================
+   FoldingDoorIcon – 2-step fold illusion
+   Result: only LEFT panel feels remaining
+   ========================= */
+
+/* 기본(닫힘) */
+svg.foldingdoor .fold-right {
+  transform: translateX(0) skewY(0deg);
+  transform-origin: right center;
+  transition: transform 240ms ease-out, opacity 240ms ease-out;
+  will-change: transform;
+}
+
+/* 열림 상태 */
+svg.foldingdoor.is-open .fold-right {
+  /*
+    - translateX(-18px): 한 칸 + α 더 접힘
+    - skewY(-10deg): 접히는 각도 강화
+  */
+  transform: translateX(-18px) skewY(-10deg);
+  opacity: 0.72; /* 뒤로 말려 들어간 느낌 */
+}
+
+/* 점선 힌트는 더 약하게 */
+svg.foldingdoor.is-open .fold-right path[stroke-dasharray] {
+  opacity: 0.18;
+}
+
+/* =========================
+   Flip Grab Bar (horizontal, fold-up)
+   ========================= */
+
+svg.flipgrabbar .arm {
+  /* 핵심: 힌지 기준 회전 */
+  transform-box: fill-box;
+  transform-origin: 0% 50%; /* arm bbox의 왼쪽 중앙 */
+  transform: rotate(0deg);
+  transition: transform 220ms ease-out;
+  will-change: transform;
+}
+
+svg.flipgrabbar.is-open .arm {
+  /* 위로 접히는 느낌 */
+  transform: rotate(-90deg);
+}
+
+/* =========================
+   Splash Screen Animation
+   ========================= */
+
+.font-sniglet {
+  font-family: "Sniglet", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Splash text animation */
+@keyframes splashFadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.splash-text {
+  animation: splashFadeScale 480ms ease-out forwards;
 }
