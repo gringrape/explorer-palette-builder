@@ -22,12 +22,20 @@ const Index = () => {
   const [showFinalScreen, setShowFinalScreen] = useState(false);
   const typingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // URL에서 schoolId 쿼리스트링 읽어서 저장 (최초 마운트 시에만)
+  // URL에서 schoolId 쿼리스트링 읽어서 localStorage에 저장
   useEffect(() => {
     const schoolId = searchParams.get("schoolId");
     if (schoolId) {
       console.log("schoolId from URL:", schoolId);
+      localStorage.setItem("schoolId", schoolId);
       updateSurveyData({ schoolId });
+    } else {
+      // URL에 없으면 localStorage에서 복원
+      const savedSchoolId = localStorage.getItem("schoolId");
+      if (savedSchoolId) {
+        console.log("schoolId from localStorage:", savedSchoolId);
+        updateSurveyData({ schoolId: savedSchoolId });
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
