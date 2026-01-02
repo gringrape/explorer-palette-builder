@@ -1,6 +1,6 @@
 // src/pages/Splash.tsx
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 type SplashProps = {
   durationMs?: number;
@@ -12,11 +12,19 @@ export default function Splash({
   to = "/index",
 }: SplashProps) {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
+    // URL에서 schoolId 읽어서 localStorage에 저장
+    const schoolId = searchParams.get("schoolId");
+    if (schoolId) {
+      console.log("Splash: schoolId from URL:", schoolId);
+      localStorage.setItem("schoolId", schoolId);
+    }
+
     const t = window.setTimeout(() => navigate(to), durationMs);
     return () => window.clearTimeout(t);
-  }, [durationMs, navigate, to]);
+  }, [durationMs, navigate, to, searchParams]);
 
   return (
     <div className="h-svh w-full bg-primary flex items-center justify-center">
