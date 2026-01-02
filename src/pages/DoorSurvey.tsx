@@ -5,67 +5,11 @@ import { colors } from "@/theme/colors";
 import { useNavigate } from "react-router-dom";
 import momoDoorVideo from "@/assets/momo-door-video.mp4";
 import { useSurvey } from "@/contexts/SurveyContext";
-
-/* =========================
-   아이콘 타입 & 컴포넌트
-   (파일 최상단, 안전)
-   ========================= */
-
-type IconProps = { className?: string };
-
-const SwingDoorIcon = ({ className }: IconProps) => (
-  <svg viewBox="0 0 96 96" fill="none" className={className}>
-    <path d="M26 18H70V78H26V18Z" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M44 50H52" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-const SlidingDoorIcon = ({ className }: IconProps) => (
-  <svg viewBox="0 0 96 96" fill="none" className={className}>
-    <path d="M26 18H70V78H26V18Z" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    <path
-      d="M30 22H66"
-      stroke="currentColor"
-      strokeWidth="6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      opacity="0.9"
-    />
-    <g className="door-panel">
-      <path
-        d="M30 22H56V78H30V22Z"
-        stroke="currentColor"
-        strokeWidth="6"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M50 50H54" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    </g>
-  </svg>
-);
-
-const AutomaticDoorIcon = ({ className }: IconProps) => (
-  <svg viewBox="0 0 96 96" fill="none" className={className}>
-    <path d="M26 18H70V78H26V18Z" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M38 60H58" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="48" cy="44" r="3" fill="currentColor" />
-  </svg>
-);
-
-const AccordionDoorIcon = ({ className }: IconProps) => (
-  <svg viewBox="0 0 96 96" fill="none" className={className}>
-    <path d="M26 18H70V78H26V18Z" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M34 22L62 78" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M62 22L34 78" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
-
-const FoldingDoorIcon = ({ className }: IconProps) => (
-  <svg viewBox="0 0 96 96" fill="none" className={className}>
-    <path d="M26 18H70V78H26V18Z" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M48 18V78" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);
+import { SlidingDoorIcon } from "@/components/icons/SlidingDoorIcon";
+import { SwingDoorIcon } from "@/components/icons/SwingDoorIcon";
+import { AutomaticDoorIcon } from "@/components/icons/AutomaticDoorIcon";
+import { AccordionDoorIcon } from "@/components/icons/AccordionDoorIcon";
+import { FoldingDoorIcon } from "@/components/icons/FoldingDoorIcon";
 
 /* =========================
    페이지 컴포넌트
@@ -128,7 +72,19 @@ const DoorSurvey = () => {
                   variant="outline"
                 >
                   <span className="inline-flex items-center gap-2">
-                    <Icon className="w-6 h-6" />
+                    {option.value === "sliding_door" ? (
+                      <SlidingDoorIcon className="!w-10 !h-10" selected={selected} />
+                    ) : option.value === "swing_door" ? (
+                      <SwingDoorIcon className="!w-10 !h-10" selected={selected} />
+                    ) : option.value === "automatic_door" ? (
+                      <AutomaticDoorIcon className="!w-10 !h-10" selected={selected} />
+                    ) : option.value === "accordion_door" ? (
+                      <AccordionDoorIcon className="!w-10 !h-10" selected={selected} />
+                    ) : option.value === "folding_door" ? (
+                      <FoldingDoorIcon className="!w-10 !h-10" selected={selected} />
+                    ) : (
+                      <Icon className="!w-10 !h-10" />
+                    )}
                     {option.label}
                   </span>
                 </Button>

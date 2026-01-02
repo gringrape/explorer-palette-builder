@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { typography } from "@/theme/typography";
 import { handrailGuide } from "@/assets";
 import { useSurvey } from "@/contexts/SurveyContext";
+import { HorizontalFlipGrabBarIcon } from "@/components/icons/HorizontalFlipGrabBarIcon";
+import { HorizontalFixedGrabBarIcon } from "@/components/icons/HorizontalFixedGrabBarIcon";
+import { VerticalGrabBarIcon } from "@/components/icons/VerticalGrabBarIcon";
+import { LGrabBarIcon } from "@/components/icons/LGrabBarIcon";
 
 const HandrailSurvey = () => {
   const navigate = useNavigate();
@@ -13,8 +17,8 @@ const HandrailSurvey = () => {
   const handrailOptions = [
     { id: "horizontal-flexible", label: "가로 손잡이(변신)" },
     { id: "horizontal-fixed", label: "가로 손잡이(고정)" },
-    { id: "vertical", label: "세로 손잡이" },
-    { id: "other", label: "기타(L자형, T자형 등)" },
+    { id: "vertical", label: "세로 손잡이(고정)" },
+    { id: "other", label: "기타(L자, T자형)" },
   ];
 
   const handleCheckboxChange = (optionId: string) => {
@@ -62,20 +66,37 @@ const HandrailSurvey = () => {
           </p>
 
           <div className="flex flex-col gap-3">
-            {handrailOptions.map((option) => (
-              <Button
-                key={option.id}
-                onClick={() => handleCheckboxChange(option.id)}
-                className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
-                  selectedTypes.includes(option.id)
-                    ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
-                    : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
-                }`}
-                variant="outline"
-              >
-                {option.label}
-              </Button>
-            ))}
+            {handrailOptions.map((option) => {
+              const selected = selectedTypes.includes(option.id);
+              return (
+                <Button
+                  key={option.id}
+                  onClick={() => handleCheckboxChange(option.id)}
+                  className={`h-14 rounded-full border-2 ${typography.button} font-bold transition-all ${
+                    selected
+                      ? "bg-primary text-primary-foreground border-primary hover:bg-primary"
+                      : "bg-card text-foreground border-primary/40 hover:bg-primary/10"
+                  }`}
+                  variant="outline"
+                >
+                  <span className="inline-flex items-center gap-2">
+                    {option.id === "horizontal-flexible" && (
+                      <HorizontalFlipGrabBarIcon className="!w-10 !h-10" selected={selected} />
+                    )}
+                    {option.id === "horizontal-fixed" && (
+                      <HorizontalFixedGrabBarIcon className="!w-10 !h-10" />
+                    )}
+                    {option.id === "vertical" && (
+                      <VerticalGrabBarIcon className="!w-10 !h-10" />
+                    )}
+                    {option.id === "other" && (
+                      <LGrabBarIcon className="!w-10 !h-10" />
+                    )}
+                    {option.label}
+                  </span>
+                </Button>
+              );
+            })}
           </div>
         </div>
       </div>

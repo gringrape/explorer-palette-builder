@@ -1,4 +1,8 @@
-const API_BASE_URL = "https://teacher.momo-school.shop";
+// 개발 환경에서는 프록시를 통해 요청 (CORS 문제 해결)
+// 프로덕션에서는 직접 API 서버로 요청
+const API_BASE_URL = import.meta.env.DEV 
+  ? "" // 개발 환경: 프록시를 통해 /api 경로로 요청
+  : "https://teacher.momo-school.shop"; // 프로덕션: 직접 API 서버
 
 export interface SurveyData {
   schoolId?: string;
